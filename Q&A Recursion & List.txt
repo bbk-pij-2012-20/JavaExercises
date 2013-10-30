@@ -1,0 +1,30 @@
+Question:	Can one traverse a linked list in reverse without
+it being a doubley-linked list.
+Answer:		Yes, one would need to use 'normal' recursion, for
+example:
+
+int f(int n)
+{
+	if(n==0)
+	{
+		return 0;
+	}
+	int x=f(n-1);
+	x+=n;
+	return x;
+}
+
+
+Notice however that this would NOT be possible using tail 
+recursion, for example:
+
+int f(int n)
+{
+	if(n==0)
+	{
+		return 0;
+	}
+	int x=1;
+	x+=n;
+	return f(x);
+}
