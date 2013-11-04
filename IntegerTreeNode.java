@@ -15,8 +15,7 @@ public class IntegerTreeNode //Day9Ex1.1
 	public IntegerTreeNode(int value)
 	{
 		this.value=value;
-		left=null;
-		right=null;		
+		left=right=null;		
 	}
 	
 	public static void main(String[] args)
@@ -33,16 +32,17 @@ public class IntegerTreeNode //Day9Ex1.1
 		itn.add(39);
 		
 		boolean find345=itn.contains(345);
-		System.out.printf("The integer 345 is %spresent\n",find345?"":"not ");
+		System.out.printf("\nThe integer 345 is %spresent\n",find345?"":"not ");
 	
 		boolean find30000=itn.contains(30000);
-		System.out.printf("The integer 30000 is %spresent\n",find30000?"":"not ");
+		System.out.printf("\nThe integer 30000 is %spresent\n\n",find30000?"":"not ");
+
+		int minimum=itn.getMin(); 
+		System.out.println("min is "+minimum);
 
 		int maximum=itn.getMax(); 
 		System.out.println("max is "+maximum);
 		
-		int minimum=itn.getMin(); 
-		System.out.println("min is "+minimum);
 	}
 	
 	/** Copied from Day9 notes.
@@ -114,15 +114,13 @@ public class IntegerTreeNode //Day9Ex1.1
 	*/	
 	public int getMax()
 	{
-		if(right==null)
+		if(this.right==null)
 		{
-			return right.value;
+			return this.right.value;
 		}
 		else
 		{
-			this.right=right.right;
-			this.left=right.left;  
-			return this.getMax(); 
+			return this.right.getMax(); 
 /*
 	It compiles and the contains() method works fine but I 
 	get this exception:
@@ -142,15 +140,13 @@ public class IntegerTreeNode //Day9Ex1.1
 	*/	
 	public int getMin()
 	{
-		if(left==null)
+		if(this.left==null)
 		{
-			return left.value;
+			return this.left.value;
 		}
 		else
 		{
-			this.left=left.left;
-			this.right=left.right;
-			return this.getMin(); //recursive??
+			return this.left.getMin();
 		}
 	}
 }
