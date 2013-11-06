@@ -92,7 +92,7 @@ public class IntegerTreeNode //Day9Ex1.1
     		}
     		else
     		{
-				return right.contains(n);
+				return right.contains(n);// debugged by Ryan/Dave!
 			}
 		}
 		else
@@ -103,7 +103,7 @@ public class IntegerTreeNode //Day9Ex1.1
 			}
 			else
 			{
-				return left.contains(n); 
+				return left.contains(n); // debugged by Ryan/Dave!
 			}
 		}
 	}
