@@ -1,13 +1,8 @@
 public class IntegerTreeNode //Day9Ex1.1
 {
-	private int value;
+	private int value; // as a member field, this will be initialised to 0 automatically.
 	private IntegerTreeNode left;
 	private IntegerTreeNode right;
-
-	//Empty constructor so that I can create the 
-	//itn object (line 21) without having to pass any value to it.
-	public IntegerTreeNode()
-	{}
 	
 	/** 
 	* constructor to allow add() method to pass the new value with the new node.
@@ -17,17 +12,27 @@ public class IntegerTreeNode //Day9Ex1.1
 		this.value=value;
 		left=right=null;		
 	}
+
+	/*
+	* a second constructor, empty this time. This is to enable me to create an itn  
+	* object without having to pass an integer to it (line 26).
+	*/
+	public IntegerTreeNode()
+	{}
+
 	
 	public static void main(String[] args)
 	{			
-		IntegerTreeNode itn=new IntegerTreeNode();
+		IntegerTreeNode itn=new IntegerTreeNode(); // thus, as an empty constructor, 
+		// the node this creates, which is the first node (i.e. root), will be whatever
+		// int value was initialised to on line 3. i.e. 0, hence getMin() returns 0. 
 		
 		itn.add(10);
-		itn.add(2);
+		itn.add(3);
 		itn.add(30);
 		itn.add(14);
 		itn.add(345);
-		itn.add(1);
+		itn.add(2);
 		itn.add(134);
 		itn.add(39);
 		
@@ -35,13 +40,13 @@ public class IntegerTreeNode //Day9Ex1.1
 		System.out.printf("\nThe integer 345 is %spresent\n",find345?"":"not ");
 	
 		boolean find30000=itn.contains(30000);
-		System.out.printf("\nThe integer 30000 is %spresent\n\n",find30000?"":"not ");
+		System.out.printf("\nThe integer 30000 is %spresent\n",find30000?"":"not ");
 
 		int minimum=itn.getMin(); 
-		System.out.println("min is "+minimum);
+		System.out.println("\nmin is "+minimum);
 
 		int maximum=itn.getMax(); 
-		System.out.println("max is "+maximum);
+		System.out.println("\nmax is "+maximum+"\n");
 		
 	}
 	
@@ -116,21 +121,11 @@ public class IntegerTreeNode //Day9Ex1.1
 	{
 		if(this.right==null)
 		{
-			return this.right.value;
+			return this.value;
 		}
 		else
 		{
-			return this.right.getMax(); 
-/*
-	It compiles and the contains() method works fine but I 
-	get this exception:
-	
-	Exception in thread "main" java.lang.NullPointerException
-	at IntegerTreeNode.getMax(IntegerTreeNode.java:110)
-	at IntegerTreeNode.getMax(IntegerTreeNode.java:111)
-	at IntegerTreeNode.getMax(IntegerTreeNode.java:111)
-	at IntegerTreeNode.main(IntegerTreeNode.java:37)
-*/			
+			return this.right.getMax(); 	
 		}
 	}
 
@@ -142,7 +137,7 @@ public class IntegerTreeNode //Day9Ex1.1
 	{
 		if(this.left==null)
 		{
-			return this.left.value;
+			return this.value;
 		}
 		else
 		{
