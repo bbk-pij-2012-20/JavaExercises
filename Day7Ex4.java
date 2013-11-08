@@ -32,8 +32,8 @@ public class Day7Ex4 // "Queue length"
 		listSize=hosMan.getSize();
 		System.out.println("\nNow's it's "+listSize+" patients long.");
 	}
-// Here is the one of two methods which together calculate 
-// the list size (as per Day7 exercise#4).
+//	Here is the one of two methods which together calculate 
+//	the list size (as per Day7 exercise#4).This is both iterative AND recursive.
 	public int getSize()
 	{
 		if(patientListStart==null)
@@ -46,6 +46,8 @@ public class Day7Ex4 // "Queue length"
 			return patientListStart.getListSize();
 		}
 	}
+
+
 	public void initList(Patient firstPatient)
 	{
 		if(patientListStart==null)
@@ -109,19 +111,39 @@ class Patient
 	private String illness;
 	public Patient nextPatient;
 
-// Here is the method for calculating list size (as per
-// exercise 4).
+/*	Here is the method for calculating list size (as per
+	exercise 4, iteratively)
 	public int getListSize()
 	{
+		Patient currentPatient=this;
 		int size=1;
-		while(this.nextPatient!=null)
+		while(currentPatient.nextPatient!=null)
 		{
-			this=nextPatient;
 			size++;
+			currentPatient=currentPatient.nextPatient;
 		}
 		return size;
 	}
-	
+*/
+// Here is the method for calculating list size (as per
+// exercise 4, recursively)
+	public int getListSize()
+	{
+		if(nextPatient==null)
+		{
+			return 1;
+		}
+		else
+		{
+			return 1+nextPatient.getListSize(); 
+		}
+	}
+/* Notes (Sokratis)-----------------------------------------------------
+A recursive call can only deal with a small part of the problem at a time.
+For a linked list, recursion is more elegant than iteration
+but is much less preferable to iteration, the bigger the list gets. 
+For a tree, recursion is much less complicated than iteration. 
+*/	
 	public Patient(String name,int age,String illness)
 	{
 		this.name=name;
@@ -172,3 +194,25 @@ class Patient
 		}
 	}
 }
+/* Additional notes (Sokratis)---------------------------------
+Consider:	class T 
+			{
+				int x; 
+				int y;
+			}	
+			Create a object of this class
+			 T t=new T();
+The address that is assigned to 't' by 'new' operator is the same address
+that is automatically assigned to 'this'. 
+The two boxes contain the same value.
+(Boxes here refers to the diagram of the object as a circle with member 
+fields inside drawn as boxes).
+
+You can think of class T having three member fields:
+class T
+{
+	int x;
+	int y;
+	T this;
+}
+*/
