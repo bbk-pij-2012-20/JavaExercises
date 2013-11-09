@@ -8,7 +8,8 @@ NOTE: Casting from int to double is fine but from double to
 int can result in loss of data. e.g. Casting the double 10.5 
 to an int gives 10. Casting that int back to a double gives 10.0. 
 Therefore, I partially address this here by multiplying any 
-double to int casting by 100 then dividing by 100. 
+double-to-int casting by 100, then dividing the returned value 
+by 100. 
 
 Comparator class has three methods, but each performs the same
 function. They have the same name but different signatures 
@@ -17,8 +18,10 @@ of 'method overloading'.
 One method takes 2 integers, returns 1 integer. A second method 
 takes 2 doubles, returns 1 double. The third method takes 2 
 Strings, returns 1 String.
+
 This is rewritten in the class ComparatorLess directly beneath 
-Comparator.
+Comparator so that the comparison "algorithm" is now only in 
+getMax(int,int) and no longer repeated in the other two methods. 
  
 public class Comparator 
 {
@@ -71,7 +74,7 @@ public class ComparatorLess
 		String sRes=cl.getMax("10","10000");
 		System.out.println("\nString result should be 10000. \nactual result is: "+sRes+"\n");
 	}
-   /** This method takes 2 integers and returns the larger one.
+	/** This method takes 2 integers and returns the larger one.
 	*  @param 2 integers n and m 
 	*  @return integer
 	*/
@@ -86,7 +89,7 @@ public class ComparatorLess
 			return m;
 		}
 	}
-   /** This method takes 2 doubles and returns the larger one.
+	/** This method takes 2 doubles and returns the larger one.
 	*  @param 2 doubles d1 and d2 
 	*  @return double
 	*/	
@@ -97,7 +100,7 @@ public class ComparatorLess
 		double result=((double) getMax(n,m))/100;
 		return result; 
 	}
-   /** This method takes 2 numbers as Strings and returns the larger one.
+	/** This method takes 2 numbers as Strings and returns the larger one.
 	*   @param 2 Strings number1 and number2 
 	*   @return String
 	*/
