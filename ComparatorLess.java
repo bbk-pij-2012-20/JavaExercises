@@ -15,6 +15,7 @@ Comparator class has three methods, but each performs the same
 function. They have the same name but different signatures 
 (i.e. different return types and parameters). This is an example
 of 'method overloading'. 
+
 One method takes 2 integers, returns 1 integer. A second method 
 takes 2 doubles, returns 1 double. The third method takes 2 
 Strings, returns 1 String.
