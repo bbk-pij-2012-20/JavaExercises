@@ -31,7 +31,7 @@ public class Day7Ex5 // "Doubly-linked list"
 		listSize=hm.getSize();
 		System.out.println("\nNow's it's "+listSize+" patients long.");
 	}
-/*
+
 	public int getSize()
 	{
 		if(patientListStart==null)
@@ -44,7 +44,7 @@ public class Day7Ex5 // "Doubly-linked list"
 			return patientListStart.getListSize();
 		}
 	}
-*/
+
 	public void initList(Patient firstPatient)
 	{
 		if(patientListStart==null)
@@ -110,8 +110,8 @@ class Patient
 	public Patient nextPatient;
 	public Patient previousPatient;
 
-	//(recursive version of this method only is shown)
-/*	public int getListSize()
+//(recursive version of this method only is shown)
+	public int getListSize()
 	{
 		if(nextPatient==null)
 		{
@@ -122,7 +122,7 @@ class Patient
 			return 1+nextPatient.getListSize(); 
 		}
 	}
-*/
+
 	public Patient(String name,int age,String illness)
 	{
 		this.name=name;
@@ -165,9 +165,10 @@ class Patient
 			return true;
 		}
 		else 
+		{
 			return this.nextPatient.deletePatient(patient);
 		}
-	}	
+	}
 	
 	public void printPatients()
 	{
