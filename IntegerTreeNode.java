@@ -1,3 +1,5 @@
+// cd Desktop/JAVA_CODING/JavaEx_noGIT/d9Ex_noGIT
+
 public class IntegerTreeNode //Day9Ex1.1
 {
 	private int value; // as a member field, this will be initialised to 0 automatically.
@@ -16,17 +18,21 @@ public class IntegerTreeNode //Day9Ex1.1
 	/*
 	* a second constructor, empty this time. This is to enable me to create an itn  
 	* object without having to pass an integer to it (line 26).
+	* (Obviously an empty constructor would be generated
 	*/
-	public IntegerTreeNode()
-	{}
-
-	
+//	public IntegerTreeNode(){}
 	public static void main(String[] args)
 	{			
-		IntegerTreeNode itn=new IntegerTreeNode(); // thus, as an empty constructor, 
-		// the node this creates, which is the first node (i.e. root), will be whatever
-		// int value was initialised to on line 3. i.e. 0, hence getMin() returns 0. 
-		
+		IntegerTreeNode itn=new IntegerTreeNode(1); 
+/* 
+		IntegerTreeNode itn=new IntegerTreeNode(); 
+
+If IntegerTreeNode is instantiated without any value sent to the 
+constructor, the node this creates, which is the first node 
+(i.e. root), will be whatever int 'value' was initialised to on 
+line 3, i.e. 0 (because it is a member field, not explicitly 
+initialised to any integer, hence getMin() returns 0. 
+*/		
 		itn.add(10);
 		itn.add(3);
 		itn.add(30);
@@ -47,9 +53,7 @@ public class IntegerTreeNode //Day9Ex1.1
 
 		int maximum=itn.getMax(); 
 		System.out.println("\nmax is "+maximum+"\n");
-		
 	}
-	
 	/** Copied from Day9 notes.
 	* method to add elements (i.e. int value, inside a new node) to the tree.
 	* @return returns void. Either creates new node or points to another node and repeats.  
@@ -112,7 +116,6 @@ public class IntegerTreeNode //Day9Ex1.1
 			}
 		}
 	}
-	
 	/**
 	* method to return the maximum values stored in the tree.
 	* @return returns the value integer
