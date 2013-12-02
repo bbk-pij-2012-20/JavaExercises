@@ -1,4 +1,4 @@
-// cd desktop/JavaCoding/JavaExNoTGIT/d11Ex_noGIT
+// cd desktop/JavaCoding/JavaExercises
 
 public class UpcastingDowncasting//Day11 Ex2
 {
