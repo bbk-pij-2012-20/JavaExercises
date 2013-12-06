@@ -28,24 +28,25 @@ public class MortgageCalculator
 		MortgageCalculator mc=new MortgageCalculator();
 		double mortgage=mc.getMortgageTotal(borrowed,rate);
 		double yearlyPay=mc.getYearlyPay(years,mortgage);
-		double yearsIntOnly=mc.getYrsIntOnly(mortgage,borrowed,yearlyPay);	
+		double yearsIntOnly=(mc.getYrsIntOnly(mortgage,borrowed,yearlyPay)*100)/100;
+		System.out.println("mortgage = "+mortgage);
+		System.out.println("yearly payment = "+yearlyPay);
+		System.out.println("years to pay off interest only = "+yearsIntOnly);
+		double roundOff=(double) Math.round(yearsIntOnly*100)/100;
+		System.out.println("years to pay ..rounded off = "+roundOff);
 	}
-
 	public double getMortgageTotal(double borrowed,double rate)
 	{
 		double mortgage=borrowed*(1+(rate/100));
-		System.out.println("mortgage = "+mortgage);
 		return mortgage;
 	}
 	public double getYearlyPay(double years,double mortgage)
 	{
-		System.out.println("yearly payment = "+mortgage/years);
 		return mortgage/years;
 	}
 	public double getYrsIntOnly(double mortgage,double borrowed,double yearlyPay)
 	{
 		double interest=mortgage-borrowed;
-		System.out.println("years to pay off interest only = "+interest/yearlyPay);
 		return interest/yearlyPay;		
 	}
 }
