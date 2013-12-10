@@ -1,4 +1,4 @@
-//cd desktop/JavaCoding/JavaExNoGIT/d6Ex_noGIT
+//cd desktop/JavaCoding/JavaExercises
 /*Day 6 Ex3 - Creating matrices*/
 public class Matrix
 {
