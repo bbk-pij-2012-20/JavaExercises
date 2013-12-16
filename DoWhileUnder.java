@@ -10,16 +10,17 @@ public class DoWhileUnder
 		int distinction=0; 
 		boolean invalid=false;
 		int mark;
-		int students=0;
+		int student=0;
 		do
 		{
 			System.out.println("Input a mark: ");
 			String s=System.console().readLine();
 			mark=Integer.parseInt(s);
-			students++;
+			student++;
 			if(mark<0||mark>100)
 			{
 				System.out.println("invalid");
+				student--;
 				continue;
 			}
 			else 
@@ -43,6 +44,6 @@ public class DoWhileUnder
 			}
 		}
 		while(mark!=-1&&!invalid);
-		System.out.println(students+" students: "+distinction+" distinctions, "+pass+" passes, "+fail+" fails.");
+		System.out.println(student+" students: "+distinction+" distinctions, "+merit+" merits, "+pass+" passes, "+fail+" fails.");
 	}
 }
