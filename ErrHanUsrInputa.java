@@ -15,7 +15,7 @@ public class ErrHanUsrInputa {
 			try {
 				int n = Integer.parseInt(str);//"line 16"
 			} catch (NumberFormatException e) {
-				System.out.println("number format exception at line 13");
+				System.out.println("number format exception at line 16");
 				e.printStackTrace();
 				continue;
 			}	catch (Exception e) {
