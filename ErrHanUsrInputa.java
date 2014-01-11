@@ -1,4 +1,7 @@
 //cd ~/Desktop/JavaCoding/JavaExercises
+/* Day 15 Ex3a */
+//import java.lang.Exception;
+//import java.lang.NullPointerException;
 
 public class ErrHanUsrInputa {
 	public static void main(String[] args) {
@@ -10,15 +13,14 @@ public class ErrHanUsrInputa {
 			System.out.println("enter number (10 in total)");
 			str = System.console().readLine();
 			try {
-				int n = Integer.parseInt(str);//"line 13"
+				int n = Integer.parseInt(str);//"line 16"
 			} catch (NumberFormatException e) {
 				System.out.println("number format exception at line 13");
 				e.printStackTrace();
 				continue;
 			}	catch (Exception e) {
-				System.out.println("some other exception");
-				e.printStackTrace();	
-				continue;
+				System.out.println("some exception other than NullPointerException");
+				e.printStackTrace();
 			}
 			counter++;
 		} while (counter<10);
