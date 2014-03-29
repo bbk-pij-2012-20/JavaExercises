@@ -1,14 +1,35 @@
-// cd desktop/JAVA_CODING/JavaExercises
+// cd Desktop/JAVA_CODING/JavaExercises
 
-public class PhoneLauncherDay10Ex1Ex2
+4.1 
+Q. Change the visibility of playGame(String) to private and check whether the script you 
+wrote in the former exercise still works. Why does this happen? 
+A. It does not compile. This is because 'private' restricts visibility to the class it is
+in only. Protected increases visibility to subclasses.
+
+Q. What are the minimal changes that you need to make on class SmartPhone so that the 
+script still works?
+A. Protected works.
+
+4.2 
+Q. Create a class RestrictedSmartPhone that overrides playGame(String) to make 
+it private and thus non-visible to external classes and scripts. Is this possible? Why?
+A. It doesn't compile when the overriding method is private. It does override if the 
+the visibility is public or protected.
+But I'm not sure what's meant by external classes? Does "external" refer to outside of 
+the package?
+*/
+
+public class PhoneLauncherDay10Ex1Ex2Ex3Ex4
 {
 	public static void main(String[] args)
 	{
 		SmartPhone sp=new SmartPhone();
+		RestrictedSmartPhone rsp=new RestrictedSmartPhone();
 		sp.browseWeb("How to make a cheese cake");
 		sp.findPosition();
 		sp.ringAlarm("beep beep");
-		sp.playGame("Game: Crazy Penguins\n");
+		sp.playGame("Crazy Penguins\n");
+//		rsp.playGame("RESTRICTED\n");
 		
 		sp.call("00123");
 		sp.call("00234");
@@ -41,11 +62,23 @@ public class PhoneLauncherDay10Ex1Ex2
 		sp.printLastNumbers();
 		
 		SmartPhone sp2=new SmartPhone("Gucci");
-		sp2.getBrand();
+		String brand=sp2.getBrand();
+		System.out.println("Brand is:"+ brand);
+	}
+}
+class RestrictedSmartPhone extends MobilePhone
+{
+	@Override
+//	public void playGame(String gameName) - this works, as does protected 
+	protected void playGame(String gameName)
+//	private void playGame(String gameName) - this one doesn't compile
+	{
+		System.out.println("\n(MobilePhone) The game is: "+gameName);
 	}
 }
 class SmartPhone extends MobilePhone
 {
+	public SmartPhone(){}
 	public SmartPhone(String brand)
 	{
 		super(brand);
@@ -72,6 +105,8 @@ class MobilePhone extends OldPhone
 {	
 	private String[] last10=new String[10]; 
 	
+	public MobilePhone()
+	{}
 	public MobilePhone(String brand)
 	{
 		super(brand);
@@ -102,16 +137,20 @@ class MobilePhone extends OldPhone
 	}	
 	public void ringAlarm(String alarmNoise)
 	{
-		System.out.println("\n(MobilePhone) Alarm goes "+alarmNoise);
+		System.out.println("\n(MobilePhone) Alarm goes: "+alarmNoise);
 	}
-	public void playGame(String gameName)
+	//private void playGame(String gameName)
+	//public void playGame(String gameName)
+	protected void playGame(String gameName)
 	{
-		System.out.println("\n(MobilePhone) Game called: "+gameName);
+		System.out.println("\n(MobilePhone) The game is: "+gameName);
 	}
 }
 class OldPhone implements Phone
 {
 	private String brand=null;
+	public OldPhone()
+	{}
 	public OldPhone(String brand) 
 	{
 		this.brand=brand;

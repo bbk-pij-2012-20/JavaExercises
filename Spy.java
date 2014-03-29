@@ -1,5 +1,5 @@
 //cd desktop/JavaCoding/JavaExercises
-
+/*Day 7 Ex 1*/
 public class Spy
 {
 	private static int spyCount;
@@ -16,7 +16,8 @@ public class Spy
 // if this method were not static it would be able 
 // to access the instance variable ID without needing.
 // But it is static, therefore ID must be passed to it.
-	public static void spyCount(int ID)	{
+	public static void spyCount(int ID)	
+	{
 //		System.out.print("number of spies so far: "+spyCount);
 //		System.out.println(" - id# "+ID);		
 	}

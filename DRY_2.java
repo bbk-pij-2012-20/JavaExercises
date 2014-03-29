@@ -1,9 +1,10 @@
 //cd ~/Desktop/JavaCoding/JavaExercises
-/* Day 11 Ex 1, 2nd attempt at this (without looking at first attempt!)
-'Don't Repeat Yourself'. Task is to improve the code 
-given, by casting between types*/
+/* Day 11 Ex 1 - 'Don't Repeat Yourself'. Task is to improve the code 
+given, by casting between types. 
+This is my 2nd attempt at this (without first looking at my first attempt)
+It turns out I produced quite different solutions ! */
 
-public class DRY_2 {
+public class DRY_2 { //The 1st attempt has different name: "ComparatorLess.java"
 	public static void main(String[] args) {
 /*2 of the getMax() methods were commented out. Now all getMax() calls
 must be passed 2 strings and it will only return a string.

@@ -1,15 +1,15 @@
 // cd Desktop/JAVA_CODING/JavaEx_noGIT/d9Ex_noGIT
 
-public class IntegerTreeNode //Day9Ex1.1
+public class IntegerTreeNode2 //Day9Ex1.1
 {
 	private int value; // as a member field, this will be initialised to 0 automatically.
-	private IntegerTreeNode left;
-	private IntegerTreeNode right;
+	private IntegerTreeNode2 left;
+	private IntegerTreeNode2 right;
 	
 	/** 
 	* constructor to allow add() method to pass the new value with the new node.
 	*/	
-	public IntegerTreeNode(int value)
+	public IntegerTreeNode2(int value)
 	{
 		this.value=value;
 		left=right=null;		
@@ -20,12 +20,12 @@ public class IntegerTreeNode //Day9Ex1.1
 	* object without having to pass an integer to it (line 26).
 	* (Obviously an empty constructor would be generated
 	*/
-//	public IntegerTreeNode(){}
+//	public IntegerTreeNode2(){}
 	public static void main(String[] args)
 	{			
-		IntegerTreeNode itn=new IntegerTreeNode(1); 
+		IntegerTreeNode2 itn=new IntegerTreeNode2(1); 
 /* 
-		IntegerTreeNode itn=new IntegerTreeNode(); 
+		IntegerTreeNode2 itn=new IntegerTreeNode2(); 
 
 If IntegerTreeNode is instantiated without any value sent to the 
 constructor, the node this creates, which is the first node 
@@ -64,7 +64,7 @@ initialised to any integer, hence getMin() returns 0.
 		{
 			if(right==null)
 			{
-				right=new IntegerTreeNode(newNumber);
+				right=new IntegerTreeNode2(newNumber);
 			} 
 			else 
 			{ 
@@ -75,7 +75,7 @@ initialised to any integer, hence getMin() returns 0.
 		{
 			if(left==null)
 			{
-				left=new IntegerTreeNode(newNumber);
+				left=new IntegerTreeNode2(newNumber);
 			}
 			else
 			{

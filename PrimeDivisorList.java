@@ -1,5 +1,7 @@
 //cd ~/Desktop/JavaCoding/JavaExercises
-/*Day15 Ex5*/
+/*Day15 Ex5
+Only done the exception part, not done the interface,TDD, or the 
+toString override ! */
 import java.lang.NullPointerException;
 import java.lang.IllegalArgumentException;
 
@@ -12,6 +14,7 @@ public class PrimeDivisorList {
 		if (!isPrime(integer)) {
 			throw new IllegalArgumentException();
 		}
+//		new PrimeDivisorList(integer);
 	}
 	private static boolean isPrime(int integer) { 
 		boolean prime = true;
@@ -24,6 +27,11 @@ public class PrimeDivisorList {
 			}
 		}
 		return prime;
+	}
+	
+	public static String toString() {
+		
+		return 
 	}
 
 	public static void main(String[] args) {
@@ -56,5 +64,7 @@ public class PrimeDivisorList {
 			e.printStackTrace();
 			System.out.println("caught you trying to pass a non-prime");
 		}
+		
+//		System.out.println("calculation using the integers: "+new PrimeDivisorList().toString());
 	}	
 }
