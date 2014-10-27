@@ -1,5 +1,5 @@
-// cd ~/Desktop/JOBS_CVs/0_RedoingJavaExercises/Day3
-// Exercise 3.8 (Learning the basics). 
+//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/BasicScripts#2
+// Exercise 3.8 (Learning the basics). Using iteration. (Recursive solution also shown here).
 
 /*
 A palindrome is a word, phrase, number, or other sequence of units that may be read 
@@ -33,7 +33,24 @@ public class Palindrome {
 		} 
 
 		System.out.printf("The text '%s' is %spalindromic\n", input, palindromic? "" : "not ");
-
+//		System.out.printf("The text '%s' is %spalindromic\n", input, isPalindromic(input)? "" : "not ");	
+	
 	}
+
+/*	
+//	Recursive solution:
+
+	public static boolean isPalindromic(String input) {
+	
+		if (input.length() == 0 || input.length() == 1) {
+		
+			return true;
+		
+		}
+		
+		return input.charAt(0) == input.charAt(input.length() - 1) 
+		  && isPalindromic(input.substring(1,input.length()-1));	
+	
+	} */
 		
 }
