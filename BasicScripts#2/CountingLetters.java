@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/BasicScripts#2
-// Exercise 2.5 (Learning the basics. Beginning to encapsulate in classes & methods)
+// Exercise 3.5 (Learning the basics).
 
 /*
 Write a program that reads some text from the user and then says how many 

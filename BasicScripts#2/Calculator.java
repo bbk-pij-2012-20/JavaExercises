@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/BasicScripts#2
-// Exercise 2.1 (Learning the basics. Beginning to encapsulate in classes & methods)
+// Exercise 3.1 (Learning the basics. Beginning to encapsulate in classes & methods)
 
 /*
 Write a program that reads two numbers from the user and then offers a menu with 

@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/BasicScripts#2
-// Exercise 2.6 (Learning the basics). 
+// Exercise 3.6 (Learning the basics). 
 
 /*
 Write a program that reads a short string and then some longer text. 
