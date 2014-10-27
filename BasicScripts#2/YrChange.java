@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/BasicScripts#2
-// Exercise 2.3 (Learning the basics. Beginning to encapsulate in classes & methods)
+// Exercise 3.3 (Learning the basics). 
 
 /* 
 Write a program that reads the total cost of a purchase and an amount of money 
