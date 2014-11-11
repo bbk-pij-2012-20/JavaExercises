@@ -8,13 +8,7 @@
 	more natural for you. If one takes too long, try the other way.
 */
 
-/*
-	This is following code is copied from exercise 3. 
-	A method for calculating the list length iteratively or 
-	recursively is added to the Patient class. 
-*/
-
-public class HospitalManagerPlusGetSize { // "Queue length"
+public class HospitalManagerPlusGetSize {
 
 	private Patient patientListStart = null;
 	
