@@ -101,6 +101,8 @@ public class Day5ex2b {
 	
 		private int[] precalculated = null;
 		
+		
+		
 		public int fib(int n) {
 		
 			if (precalculated == null) {

@@ -1,4 +1,4 @@
-//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExNoGIT/d7Ex_noGIT
+//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
 // Exercise 7.3 (Intro to data structures, pointers and recursion)
 
 /*
