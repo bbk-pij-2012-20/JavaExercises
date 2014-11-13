@@ -1,61 +1,87 @@
-//cd Desktop/JavaCoding/JavaExercises
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises
+// Exercise 10.5 (multiple inheritance in Java)
 
-public class MultipleInheritance//Day10Ex5
-{
-	public static void main(String args[])
-	{
-		Guitar g=new Guitar();
+/*
+	Create a class MusicalInstrument with a method play(). 
+	Now create another class WoodenObject with a method burn().	
+	Create a class Guitar that is at the same time a musical instrument and a wooden 
+	object. How would you do it in Java?
+*/
+
+public class MultipleInheritance {
+	
+	public static void main(String args[]) {
+	
+		Guitar g = new Guitar();
 		g.play();
 		g.burn();
+	
 	}
+
 }
 
-interface MusicalInstrument //Day10 Ex5
-{
-	/**	@param no parameters
+interface MusicalInstrument { 
+
+   /**	@param no parameters
 	*	@return void return type, just prints message.
 	*/	 
 	public void play();
+
 }
-interface WoodenObject
-{
-	/**	@param no parameters
+
+interface WoodenObject {
+
+   /**	@param no parameters
 	*	@return void return type, just prints a message.
 	*/
 	public void burn();
+
 }
-class Guitar implements WoodenObject, MusicalInstrument
-{
-	public void burn()
-	{
+
+class Guitar implements WoodenObject, MusicalInstrument {
+
+	public void burn() {
+	
 		System.out.println("My Fender's on fire");
+	
 	}
 
-	public void play()
-	{
+	public void play() {
+	
 		System.out.println("Playing All Along the Watchtower");
+	
 	}	
+
 }
 
-/* Implementing one and extending the other also works,
-though this is not multiple INHERITANCE 
+/* 
 
-interface MusicalInstrument //Day10 Ex5
-{
+Implementing one and extending the other also works, though this is not multiple INHERITANCE 
+
+interface MusicalInstrument {
+
 	public void play();
+
 }
-class WoodenObject
-{
-	public void burn()
-	{
+
+class WoodenObject {
+
+	public void burn() {
+	
 		System.out.println("My Fender's on fire");
+	
 	}
+
 }
-class Guitar extends WoodenObject implements MusicalInstrument
-{
-	public void play()
-	{
+
+class Guitar extends WoodenObject implements MusicalInstrument {
+
+	public void play() {
+	
 		System.out.println("Playing All Along the Watchtower");
+	
 	}
+
 }
+
 */
