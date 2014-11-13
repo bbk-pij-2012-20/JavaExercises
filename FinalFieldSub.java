@@ -1,4 +1,4 @@
-// cd desktop/JAVA_CODING/JavaEx_noGIT/d10Ex_noGIT
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises
 
 public class FinalFieldSub extends FinalField
 {
