@@ -67,18 +67,15 @@ public class Mortgage {
 	
 	public void printOutputs() {
 	
-		roundOffOutputs();
-		System.out.println("total amount to be paid : £ " + totalRepayment);
-		System.out.println("money to be paid each year: £ " + repaymentPerYear);
-		System.out.println("number of years for interest only to be repaid: " + yearsToRepayInterest + " years");
+		System.out.println("total amount to be paid : £ " + roundedOff2DecPlaces(totalRepayment));
+		System.out.println("money to be paid each year: £ " + roundedOff2DecPlaces(repaymentPerYear));
+		System.out.println("number of years for interest only to be repaid: " + roundedOff2DecPlaces(yearsToRepayInterest) + " years");
 	
 	}
 	
-	private void roundOffOutputs() {
-	
-		totalRepayment = Math.round(100 * totalRepayment) / 100.;
-		repaymentPerYear = Math.round(100 * repaymentPerYear) / 100.;
-		yearsToRepayInterest = Math.round(100 * yearsToRepayInterest) / 100.;
+	private double roundedOff2DecPlaces(Double value) {
+		
+		double roundedValue = Math.round(100 * value) / 100.;
 	
 	}
 	
