@@ -1,5 +1,5 @@
-//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
-// Implementing a linked list using a static nested class for the Node.
+//	cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
+//	Implementing a linked list using a static nested class for the Node.
 
 //	STILL HAS PLENTY COMPILATION ERRORS !! 
 
