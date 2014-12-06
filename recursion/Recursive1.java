@@ -1,25 +1,29 @@
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/recursion
+// Exercise 5.1a (Recursion, Recursion vs iteration).
+/* What number would the following method print on screen if you called printNumbers(6)? */
+
 public class Recursive1 {
 
 	public static void main(String[] args) {
 	
 		Recursive1 r1 = new Recursive1();
 		d5.printNumbers(6);
-		System.out.println();
+		System.out.print("\n");
 	
 	}
 	
 	public static void printNumbers(int n) { 
 		
-		if(n<=0) {
+		if(n <= 0) {
 		
 			return; 
 		
 		}
 		
-		System.out.print(n+" "); 
-		printNumbers(n-2); 
-		printNumbers(n-3); 
-		System.out.print(n+" ");
+		System.out.print(n + " "); 
+		printNumbers(n - 2); 
+		printNumbers(n - 3); 
+		System.out.print(n + " ");
 	
 	}
 

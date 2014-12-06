@@ -1,4 +1,9 @@
-/* This gives 'Exception in thread "main" java.lang.StackOverflowError' at runtime.
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/recursion
+// Exercise 5.1c (Recursion, recursion vs iteration).
+
+/* 
+Question: Do you see anything wrong with the following code? How would you fix it?
+Result: This gives 'Exception in thread "main" java.lang.StackOverflowError' at runtime.
 
 public class Recursive2 {
 
@@ -40,8 +45,8 @@ public class Recursive2 {
 			return ""; 
 
 		}
-		//SOFError solved by placing the bottom limit before 		
-		//the recursive call instead of after it.
+		// StackOverFlowError resolved by placing the bottom limit 
+		// prior to the recursive call instead of following it.
         String result = doggyMethod(n - 3) + n + doggyMethod(n - 2); 
         return result;
     
