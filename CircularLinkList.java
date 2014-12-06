@@ -1,14 +1,15 @@
 //cd desktop/JavaCoding/JavaExercises
 
-public class CircularLinkList
-{
-	private Node root=null;	
-	public static void main(String args[])
-	{
-		CircularLinkList cll=new CircularLinkList();
-		Node firstNode=new Node("the first",4);
-		Node secondNode=new Node("the next",6);
-		Node thirdNode=new Node("the last",8);
+public class CircularLinkList {
+
+	private Node root = null;	
+
+	public static void main(String args[]) {
+	
+		CircularLinkList cll = new CircularLinkList();
+		Node firstNode = new Node("the first",4);
+		Node secondNode = new Node("the next",6);
+		Node thirdNode = new Node("the last",8);
 		cll.addNode(firstNode);
 		cll.addNode(secondNode);
 		cll.addNode(thirdNode);
@@ -16,19 +17,24 @@ public class CircularLinkList
 		cll.deleteNode(secondNode);
 		cll.deleteNode(firstNode);
 		cll.showMeUp();
+	
 	}
-	public void addNode(Node n)
-	{
-		if(root==null)
-		{
-			root=n;
-			n.next=root;
-		}
-		else
-		{
+	
+	public void addNode(Node n) {
+	
+		if (root == null) {
+		
+			root = n;
+			n.next = root;
+		
+		} else {
+			
 			root.addNode(n,root);
+		
 		}
+	
 	}
+	
 	public void deleteNode(Node n)
 	{
 		if(root==null)
@@ -64,18 +70,21 @@ class Node
 	{
 		return num;
 	}
-	public void addNode(Node p,Node head)
-	{
-		if(next==head)
-		{
-			next=p;
-			p.next=head;//or next.next=head;
-		}
-		else
-		{
-			next.addNode(p,head);
+	
+	public void addNode(Node p, Node head) {
+	
+		if (next == head) {
+		
+			next = p;
+			p.next = head;//or next.next=head;
+
+		} else {
+
+			next.addNode(p, head);
+
 		}
 	}
+	
 	public Node deleteNode(Node node, Node head)
 	{
 		if(num==node.num)
