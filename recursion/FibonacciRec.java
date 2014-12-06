@@ -1,15 +1,18 @@
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/recursion
+// Exercise 5.2b (Recursion, recursion vs iteration).
 /* 
-This exercise is to write a small program that 
-calculates the nth element of the Fibonacci sequence.
-Fibonacci is sum of any number -1 and -2. So, Fib(4)=(4-1)+(4-2)=5.
-However the Fib for 1 or less is always just 1. 
+Write a small program with a method that calculates the nth element of the Fibonacci sequence as seen in the notes.
+Is it easy to do this both iteratively and recursively? Try both ways and see which is more natural for you. If
+one takes too long, try the other way.
+When doing it recursively, do it with and without memoization. Compare the time that is needed in each case
+to find F(40) or F(45).
+
 The sequence of Fibonacci numbers starts off like this: 
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, and so on..
-This is how the code looks when implemented by recursion:
 */
 
 /*
-public class Day5ex2b {
+public class FibonacciRec {
 
 	public static void main(String[] args) {
 	
@@ -44,11 +47,11 @@ public class Day5ex2b {
 }
 */
 
-// ITERATIVELY:     1  		2 		3		4	  5	  6	  7  	8
-//					1  		1  		2		3	  5	  8	  13	21
-//				  fibN_2  fibN_1   fib_N
-//						  fibN_2   fibN_1  fib_N
-
+/* ITERATIVELY:     1  		2 		3		4	  5	  6	  7  	8
+					1  		1  		2		3	  5	  8	  13	21
+				  fibN_2  fibN_1   fib_N
+						  fibN_2   fibN_1  fib_N
+*/
 public class FibonacciRec {
 
 	public static void main(String[] args) {
@@ -90,18 +93,15 @@ public class FibonacciRec {
 }
 
 
-/* 
-Memoization is a technique whereby we keep track of the values already
-calculated in an array.
-
+ 
+// Memoization is a technique whereby we keep track of the values already calculated in an array.
 // arrays are 0-based, so F(1) is stored at position 0, etc
-public class Day5ex2b {
+/*
+public class FibonacciRec {
 
 	public static void main(String[] args) {
 	
 		private int[] precalculated = null;
-		
-		
 		
 		public int fib(int n) {
 		
@@ -143,6 +143,5 @@ public class Day5ex2b {
 	}
 
 }
-*/
 // ...additional code would go here...
-
+*/
