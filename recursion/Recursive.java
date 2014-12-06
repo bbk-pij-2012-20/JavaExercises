@@ -1,12 +1,19 @@
-/* Exercise is to write a small program that 
-calculates the factorial of an integer.
-We should try this both iteratively and recursively.
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/recursion
+// Exercise 5.2a (Recursion, recursion vs iteration).
+
+/* 
+Write a small program with a method that calculates the factorial of an integer number as 
+seen in the notes. Is it easy to do this both iteratively and recursively? 
+Try both ways and see which is more natural for you. 
+If one takes too long, try the other way.
+
 Factorial of a number is: for example 4!=4X3X2X1
 Factorial of 0 or less is not possible.
 */
+
 // ITERATIVELY:
 /* 
-public class Day5ex2a {
+public class Recursive {
 
 	public static void main(String[] args) {
 	
