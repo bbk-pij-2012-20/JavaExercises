@@ -1,6 +1,5 @@
 // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/recursion
 // Exercise 5.2a (Recursion, recursion vs iteration).
-
 /* 
 Write a small program with a method that calculates the factorial of an integer number as 
 seen in the notes. Is it easy to do this both iteratively and recursively? 
