@@ -20,7 +20,7 @@ public class ErrHanUsrInputa {
 		
 			try {
 		
-				int n = Integer.parseInt(str);//"line 16"
+				int n = Integer.parseInt(str);
 		
 			} catch (NumberFormatException e) {
 		
@@ -40,4 +40,5 @@ public class ErrHanUsrInputa {
 		} while (counter < 10);
 	
 	}
+	
 }
