@@ -1,5 +1,5 @@
 // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/Inheritance_AdhocPolymorphism/Phone
-// Ex Introducing Interfaces, their implementation and Javadoc comments 
+// Exercise 10.2 : Introducing Interfaces, their implementation and Javadoc comments 
 
 public class PhoneEx2 {
 
@@ -48,40 +48,45 @@ public class PhoneEx2 {
 
 }
 
-class SmartPhone extends MobilePhone {
+/**
+* A phone makes calls 
+*/
+interface Phone {
+ 
+	/**
+	* Just print on the screen: "Calling <number>...".
+	*/
+	public void call(String number);
+	
+}
 
-	public SmartPhone(String brand) {
+
+class OldPhone implements Phone {
+
+	private String brand = null;
+
+	public OldPhone(String brand) {
 	
-		super(brand);
-	
-	}
-	
-	public void browseWeb(String keyword) {
-	
-		System.out.println("\n(SmartPhone) Googling: " + keyword);
-	
-	}
-	
-	public void findPosition() {
-	
-		System.out.println("\n(SmartPhone) Location: You are in a library");
+		this.brand = brand;
 	
 	}
 	
-	@Override
-	public void call(String number) {
+	public String getBrand() {
 	
-		super.call(number);//i.e call method in MobilePhone, stores last 10 numbers.
-		
-		if (number.substring(0, 2).equals("00")) {
-		
-			System.out.println("(SmartPhone) For number: " + number + ", switching to Skype.");
-		
-		}
+		return brand;
 	
-	}	
+	}
+	
+	// ... there is no setter for brand	
+
+ 	public void call(String number) {
+ 	
+		System.out.println("Calling.... " + number);
+	
+	}
 
 }
+
 
 class MobilePhone extends OldPhone {
 	
@@ -139,40 +144,38 @@ class MobilePhone extends OldPhone {
 
 }
 
-class OldPhone implements Phone {
 
-	private String brand = null;
+class SmartPhone extends MobilePhone {
 
-	public OldPhone(String brand) {
+	public SmartPhone(String brand) {
 	
-		this.brand = brand;
+		super(brand);
 	
 	}
 	
-	public String getBrand() {
+	public void browseWeb(String keyword) {
 	
-		return brand;
+		System.out.println("\n(SmartPhone) Googling: " + keyword);
+	
+	}
+	
+	public void findPosition() {
+	
+		System.out.println("\n(SmartPhone) Location: You are in a library");
 	
 	}
 	
-	// ... there is no setter for brand	
-
- 	public void call(String number) {
- 	
-		System.out.println("Calling.... " + number);
+	@Override
+	public void call(String number) {
 	
-	}
-
-}
-
-/**
-* A phone makes calls 
-*/
-interface Phone {
- 
-	/**
-	* Just print on the screen: "Calling <number>...".
-	*/
-	public void call(String number);
+		super.call(number);//i.e call method in MobilePhone, stores last 10 numbers.
+		
+		if (number.substring(0, 2).equals("00")) {
+		
+			System.out.println("(SmartPhone) For number: " + number + ", switching to Skype.");
+		
+		}
 	
+	}	
+
 }
