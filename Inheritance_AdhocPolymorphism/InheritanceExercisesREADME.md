@@ -25,12 +25,14 @@ public void launch() {
 // your code creating and using SmartPhone here...
 }
 }
+
 2 Overriding
 Save money by routing your international calls through the internet! Modify your class SmartPhone so that it
 overrides the method call(String) inherited from OldPhone. If the string parameter starts with “00”, the method
 should output “Calling <number> through the internet to save money”; otherwise, the method should do the same
 as the original method (hint: use super).
-1
+
+
 3 Passing information to ancestor classes
 Add the following field, constructor, and method to OldPhone:
 private String brand = null;
@@ -44,20 +46,24 @@ return brand;
 Add the appropriate constructors to MobilePhone and SmartPhone in order to be able to call the method
 getBrand() from an object of class SmartPhone and obtain the right answer, i.e. the brand provided in the con-
 structor.
+
 4 Visibility
 4.1 Increasing visibility
 Change the visibility of playGame(String) to private and check whether the script you wrote in the former exercise
 still works. Why does this happen? What are the minimal changes that you need to make on class SmartPhone so
 that the script still works?
+
 4.2 Reducing visibility
 Some parents are concerned that their children spend too much time playing with their smartphones. Create a class
 RestrictedSmartPhone that overrides playGame(String) to make it private and thus non-visible to external
 classes and scripts. Is this possible? Why?
+
 5 Multiple inheritance
 Create a class MusicalInstrument with a method play(). Now create another class WoodenObject with a method
 burn().
 Create a class Guitar that is at the same time a musical instrument and a wooden object. How would you do
 it in Java?
+
 6 Java magic
 Can you see what is wrong in the following code (most JavaDoc comments ommited for the sake of space)?
 // Teacher.java
@@ -74,7 +80,7 @@ System.out.println("Teaching lesson: " + lessonName);
 }
 }
 (...)
-2
+
 // Lecturer.java
 /**
 * A lecturer has both teaching and research responsibilities
@@ -87,9 +93,11 @@ System.out.println("Doing research on: " + topic);
 If it is not evident, try to compile the code.
 If it compiles without problems, write a script that creates an object of class Lecturer and uses its two methods.
 If it does not, modify class Lecturer so that the program compiles, and then write the script to use its two methods.
+
 7 Final means no change
 Create a class that extends String and adds a method printEven() that prints on screen the even-numbered
 characters of the string. Try to compile it and see what happens.
+
 8 Noah’s Ark (*)
 Design and implement an application that represents the day that Noah’s Ark was open, just before the rain started.
 In your script, create an animal of each species and then call them all in. Every animal must implement a method
