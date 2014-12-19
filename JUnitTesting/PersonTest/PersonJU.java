@@ -1,5 +1,5 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/RECURSION/Memoization
-// Exercise 12.3: Introduction to Testing (primarily using JUnit)
+//cd~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/JUnitTesting/PersonTest
+// Exercise 12.3: Introduction to JUnit Testing
 
 /*
 The method getInitials(String) has a bug! If you introduce a name with more than one 
