@@ -14,7 +14,7 @@ public class Recursive1 {
 	
 	public static void printNumbers(int n) { 
 		
-		if(n <= 0) {
+		if (n <= 0) {
 		
 			return; 
 		

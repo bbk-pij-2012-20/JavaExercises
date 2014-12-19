@@ -1,4 +1,6 @@
-//method that takes array of strings and concatenates them recursively
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/recursion
+// (Recursion)
+/* method that takes array of strings and concatenates them recursively */
 
 public class ArrayConcat {
 
@@ -8,6 +10,7 @@ public class ArrayConcat {
 		String[] arrStr = {"ab","Cd", "ef", "gh"};
 		//System.out.println("result is: " + ac.concatenate(arrStr, 0));
 		System.out.println("result is: " + ac.concatenate(arrStr));
+	
 	}
 
 /*
@@ -30,13 +33,13 @@ public class ArrayConcat {
 
 	public String concatenate(String[] aryStrs) {
 
-		if (aryStrs.length-1 == 0) {
+		if (aryStrs.length == 1) {
 		
 			return aryStrs[0];
 		
 		} else {
 		
-			String[] newAryStrs = new String[aryStrs.length-1];
+			String[] newAryStrs = new String[aryStrs.length - 1];
 			
 			for (int i = 0; i < newAryStrs.length; i++) {
 			
@@ -44,7 +47,7 @@ public class ArrayConcat {
 			
 			}
 		
-			return concatenate(newAryStrs) + aryStrs[aryStrs.length-1];
+			return concatenate(newAryStrs) + aryStrs[aryStrs.length - 1];
 		
 		}
 		
