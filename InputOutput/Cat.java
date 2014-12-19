@@ -1,5 +1,5 @@
-//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/InputOutput
-//Exercise 7.9 (Introduction to input/output)
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/InputOutput
+// Exercise 16.3: Introduction to Input/Output
 
 /*
 a) Write a program that takes a name from the user at the  command line. 
