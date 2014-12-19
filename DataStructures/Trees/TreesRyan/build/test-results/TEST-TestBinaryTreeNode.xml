@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="TestBinaryTreeNode" tests="3" failures="0" errors="0" timestamp="2013-12-23T17:55:21" hostname="Shahins-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="testShouldGiveLeftPointer" classname="TestBinaryTreeNode" time="0.0"/>
+  <testcase name="testShouldGiveValueToNode" classname="TestBinaryTreeNode" time="0.0"/>
+  <testcase name="testShouldGiveRightPointer" classname="TestBinaryTreeNode" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

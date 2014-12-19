@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="TestBinaryTree" tests="4" failures="0" errors="0" timestamp="2013-12-23T17:55:21" hostname="Shahins-MacBook-Pro.local" time="0.007">
+  <properties/>
+  <testcase name="testShouldAddNodeToTree" classname="TestBinaryTree" time="0.002"/>
+  <testcase name="testShouldAddNodeRightToChild" classname="TestBinaryTree" time="0.0"/>
+  <testcase name="testShouldAddNodeToLeftChild" classname="TestBinaryTree" time="0.0"/>
+  <testcase name="shouldKnowIfTreeContainsANumber" classname="TestBinaryTree" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
