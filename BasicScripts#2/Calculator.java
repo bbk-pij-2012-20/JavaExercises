@@ -57,5 +57,7 @@ public class Calculator {
 		return d1 / d2;
 	
 	}
+	
+	//public static int modulo(){}
 
 }
