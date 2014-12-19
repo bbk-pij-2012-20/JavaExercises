@@ -1,7 +1,7 @@
-//	cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
-//	Implementing a linked list using a static nested class for the Node.
+//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
+//Trying to implementing the linked list with a STATIC NESTED CLASS for the Node.. for fun.
 
-//	STILL HAS PLENTY COMPILATION ERRORS !! 
+//STILL HAS PLENTY COMPILATION ERRORS ... grrr
 
 
 public class ListStaticNested {

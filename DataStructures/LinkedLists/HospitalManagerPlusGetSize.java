@@ -1,5 +1,5 @@
 // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
-// Exercise 7.4 (Intro to data structures, pointers and recursion)
+// Exercise 7.4 (Introduction to data structures & pointers)
 
 /*
 	Reuse the code of one of the dynamic list in the former exercise, 

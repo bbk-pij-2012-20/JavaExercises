@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
-// Exercise 7.3 (Intro to data structures, pointers and recursion)
+// Exercise 7.3 (Introduction to data structures & pointers)
 
 /*
 	Create a linked list following the “hospital and patients” example of the notes:
@@ -21,23 +21,23 @@ public class HospitalManager {
 	
 		HospitalManager hm = new HospitalManager();
 
-		admit(new Patient("Jack",157,"Asperger's Syndrome"));
-		admit(new Patient("Mack",227,"Manic Depression"));
-		admit(new Patient("Jim",307,"Tourette's Syndrome"));
-		admit(new Patient("John",47,"Syphilitic Psychosis"));
-		admit(new Patient("Jane",717,"Schizophrenia"));
-		admit(new Patient("Jackie",51,"Asperger's Syndrome"));
-		admit(new Patient("Mackie",43,"Manic Depression"));
-		admit(new Patient("Jimie",56,"Tourette's Syndrome"));
-		admit(new Patient("Johnny",23,"Syphilitic Psychosis"));
-		admit(new Patient("Janette",2,"Schizophrenia"));		
+		admit(new Patient("Jack", 157, "Asperger's Syndrome"));
+		admit(new Patient("Mack", 227, "Manic Depression"));
+		admit(new Patient("Jim", 307, "Tourette's Syndrome"));
+		admit(new Patient("John", 47, "Syphilitic Psychosis"));
+		admit(new Patient("Jane", 717, "Schizophrenia"));
+		admit(new Patient("Jackie", 51, "Asperger's Syndrome"));
+		admit(new Patient("Mackie", 43, "Manic Depression"));
+		admit(new Patient("Jimie", 56, "Tourette's Syndrome"));
+		admit(new Patient("Johnny", 23, "Syphilitic Psychosis"));
+		admit(new Patient("Janette", 2, "Schizophrenia"));		
 		
 		System.out.println("\nAfter admitting 10 patients. List of patients is: ");
 		hm.printPatientList();
 		
-		hm.discharge(new Patient("Jack",157,"Asperger's Syndrome"));
-		hm.discharge(new Patient("Mack",227,"Manic Depression"));
-		hm.discharge(new Patient("Jim",307,"Tourette's Syndrome"));	
+		hm.discharge(new Patient("Jack", 157, "Asperger's Syndrome"));
+		hm.discharge(new Patient("Mack", 227, "Manic Depression"));
+		hm.discharge(new Patient("Jim", 307, "Tourette's Syndrome"));	
 
 		System.out.println("\nAfter deleting 3 patients. List of patients is: ");
 		hm.printPatientList();
