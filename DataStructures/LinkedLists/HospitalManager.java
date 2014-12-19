@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
-// Exercise 7.3 (Introduction to data structures & pointers)
+//Exercise 7.3 (Introduction to data structures & pointers)
 
 /*
 	Create a linked list following the “hospital and patients” example of the notes:
