@@ -1,8 +1,6 @@
 // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/Trees
 // Exercise 9.1: Intro to Tree data structures 
 
-// cd Desktop/JAVA_CODING/JavaEx_noGIT/d9Ex_noGIT
-
 public class IntegerTreeNode {
 
 	private int value; // as a member field, this will be initialised to 0 automatically.
