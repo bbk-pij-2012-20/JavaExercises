@@ -2,8 +2,8 @@ JavaExercises
 =============
 
 These are series of coding tasks I undertook as part of the 'Programming in Java' module 
-run by Dr Santos and Dr Keith L Mannock and Sokratis Karkalas at Birkbeck College London.
-The questions were put together by Dr Santos.
+run by Dr Keith L Mannock, Sokratis Karkalas and Dr Sergio G Santos  at Birkbeck College London.
+(The questions were put together by Dr Santos).
 
 They constitute more than 200 hours of coding/learning time.
 
