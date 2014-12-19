@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists/Queues
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists/Queue
 // Exercise 8.1: Data Structures (implementation of Queue interface with Linked List)
 
 /*
