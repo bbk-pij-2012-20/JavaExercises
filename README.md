@@ -2,7 +2,8 @@
 
 These are a series of coding exercises that formed the majority part (Oct-Dec 2014) of the 'Programming in Java' module run by Dr Keith L Mannock, Sokratis Karkalas and Dr Sergio G Santos at Birkbeck College London. (The questions were put together by Dr Santos, 2012). They constitute more than 200 hours of coding & learning time. These Java exercises were followed up by two programming courseworks: https://github.com/bbk-pij-2012-20/ContactManager & https://github.com/bbk-pij-2012-20/Quiz
 
-<ol>The topics are organised in the following 12 main subtopics:
+<ol>
+The topics are organised in the following 12 main subtopics:
 
 <li>Basic scripts #1</li>
 <li>Basic scripts #2</li>
@@ -19,12 +20,9 @@ These are a series of coding exercises that formed the majority part (Oct-Dec 20
 <li>Network (with RMI)</li></ol>
 (A mixture of a few simple but important code is stored in one subdirectory)
 
-
-basic scripts with iteration, conditions and basic mathematical operations, compilation & running Java class, encapsulation, scope & visibility, 
-
-
+---
 <h4> 'Programming in Java' & Computer Science MSc</h4>
-The 'Programming in Java' module represented an important part of the Computer Science conversion masters at Birkbeck College (2012-2014).
+The <a href="https://sites.google.com/site/shahinzibaee/computing-interests/msc/pij">Programming in Java</a> module represented an important part of the Computer Science conversion masters at Birkbeck College (2012-2014).
 <br/>The other 6 modules were: 
 * <a href="https://sites.google.com/site/shahinzibaee/computing-interests/msc/oodp">Object-Oriented Design & Programming</a>, which included two programming courseworks: https://github.com/phil1000/SMLCW & https://bitbucket.org/shahinzibaee/battleshipclone 
 * <a href="https://sites.google.com/site/shahinzibaee/computing-interests/msc/foc">Fundamentals of Computing</a>
