@@ -18,10 +18,10 @@ The topics are organised in the following 12 main subtopics:
 <li>Input output</li>
 <li>Concurrency</li>
 <li>Network (with RMI)</li></ol>
-(A mixture of a few simple but important code is stored in one subdirectory)
+(A mixture of a few, simple but important Java basics are stored in one subdirectory).
 
 ---
-<h4> 'Programming in Java' & Computer Science MSc</h4>
+<h4> 'Programming in Java' & the conversion masters in Computer Science at Birkbeck College London 2013/4</h4>
 The <a href="https://sites.google.com/site/shahinzibaee/computing-interests/msc/pij">Programming in Java</a> module represented an important part of the Computer Science conversion masters at Birkbeck College (2012-2014).
 <br/>The other 6 modules were: 
 * <a href="https://sites.google.com/site/shahinzibaee/computing-interests/msc/oodp">Object-Oriented Design & Programming</a>, which included two programming courseworks: https://github.com/phil1000/SMLCW & https://bitbucket.org/shahinzibaee/battleshipclone 
