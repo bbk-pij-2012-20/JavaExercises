@@ -35,10 +35,7 @@ elements (one-by-one, by rows, and by columns), and prints the matrix on the scr
 
 // NB: as redoing this exercise later, I am incorporating Javadoc and exception handling. 
 
-
-
 public class Matrix {
-
 
 	private int[][] matrix = null;
 	

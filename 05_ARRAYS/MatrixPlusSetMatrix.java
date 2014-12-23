@@ -1,5 +1,5 @@
 // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/05_ARRAYS
-// Exercise 6.3 (Arrays)
+// Exercise 6.4 (Arrays)
 /*
 Extend your Matrix class with a method setMatrix(String) that takes a String representing the numbers to be
 put in the elements of the array separated by commas, separating rows by semicolons, e.g. 1,2,3;4,5,6;7,8,9.
@@ -50,25 +50,19 @@ public class MatrixPlusSetMatrix {
 		m.setMatrix("1000,2000,3000,4000;5000,6000,7000,8000;9000,10000,11000,12000");
 		System.out.println("matrix after setMatrix(\"1000,2000,3000,4000;5000,6000,7000,8000;9000,10000,11000,12000\") (prettyPrint): ");
 		m.prettyPrint();
-		
-		
 
 	}
 	
+	/**
+	*	constructor sets size of default constructor (all values set to 1)
+	*
+	*	@param i			row length
+	*	@param j			column length
+	*/
 	public MatrixPlusSetMatrix(int i, int j) {
 		
-		matrix = new int[i][j];
-		
-		for (int n = 0; n < i; n++) {
-		
-			for (int m = 0; m < j; m++) {
+		setDefaultMatrix(i, j);
 			
-				matrix[n][m] = 1;
-			
-			}
-		
-		}
-	
 	}
 	
 		
@@ -302,6 +296,38 @@ public class MatrixPlusSetMatrix {
 	
 		System.out.println("\n" + toString("\n", "\t"));
 	
+	}
+	
+   /**
+   	*	returns the matrix (made for MatrixChecker)
+   	*	
+   	*	@return	int[][]				the matrix
+	*/
+	public int[][] getMatrix() {
+	
+		return matrix;
+	
+	}
+
+   /**
+   	*	sets a new matrix
+   	*	
+   	*	@param i					row length
+   	*	@param j					column length
+	*/
+	public void setDefaultMatrix(int i, int j) {
+	
+		matrix = new int[i][j];
+		
+		for (int n = 0; n < i; n++) {
+		
+			for (int m = 0; m < j; m++) {
+			
+				matrix[n][m] = 1;
+			
+			}
+		
+		}
 	}
 
 }
