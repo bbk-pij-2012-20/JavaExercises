@@ -29,20 +29,25 @@ public class MatrixChecker {
 		MatrixChecker mc = new MatrixChecker();
 		int[] symmetricArray = {4,3,3,2,1,0,1,2,3,3,4};
 		int[] aSymmetricArray = {4,3,3,2,1,0,1,2,3,3};
-		System.out.printf("\"symmetricArray\" is %ssymmetric.\n", mc.isSymmetrical(symmetricArray)? "" : "not ");
-		System.out.printf("\"aSymmetricArray\" is %ssymmetric.\n", mc.isSymmetrical(aSymmetricArray)? "" : "not ");
+		System.out.printf("\"symmetricArray\" is %ssymmetric.\n\n", mc.isSymmetrical(symmetricArray)? "" : "not ");
+		System.out.printf("\"aSymmetricArray\" is %ssymmetric.\n\n", mc.isSymmetrical(aSymmetricArray)? "" : "not ");
 
 		MatrixPlusSetMatrix m = new MatrixPlusSetMatrix(4, 4);
 
-		m.setMatrix("6,11,200,0; 11,8,52,1; 2,52,20,5; 0,1,5,12");
-		System.out.printf("symmetric matrix is %ssymmetric.\n", mc.isSymmetrical(m.getMatrix())? "" : "not ");
+		m.setMatrix("6,11,2,0;11,8,52,1;2,52,20,5;0,1,5,12");
+		System.out.print("Symmetric matrix: "); m.prettyPrint();		
+		System.out.printf("\"symmetric matrix\" is %ssymmetric.\n\n", mc.isSymmetrical(m.getMatrix())? "" : "not ");
+
 		m.setMatrix("11,200,0,6;11,8,52,1;200,52,20,5;0,1,5,12");
-		System.out.printf("asymmetric matrix is %ssymmetric.\n", mc.isSymmetrical(m.getMatrix())? "" : "not ");
+		System.out.print("aSymmetric matrix: "); m.prettyPrint();
+		System.out.printf("\"asymmetric matrix\" is %ssymmetric.\n\n", mc.isSymmetrical(m.getMatrix())? "" : "not ");
 
 		m.setMatrix("6,11,200,9;0,8,52,1;0,0,20,5;0,0,0,12");
-		System.out.printf("triangular matrix is %striangular.\n", mc.isTriangular(m.getMatrix())? "" : "not ");
+		System.out.print("triangular matrix: "); m.prettyPrint();
+		System.out.printf("\"triangular matrix\" is %striangular.\n\n", mc.isTriangular(m.getMatrix())? "" : "not ");
 		m.setMatrix("6,11,200,9;0,8,52,1;0,0,20,5;0,0,10000,12");
-		System.out.printf("non-triangular matrix is %striangular.\n", mc.isTriangular(m.getMatrix())? "" : "not ");
+		System.out.print("non-triangular matrix: "); m.prettyPrint();
+		System.out.printf("\"non-triangular matrix\" is %striangular.\n\n", mc.isTriangular(m.getMatrix())? "" : "not ");
 				
 	}
 		
