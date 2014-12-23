@@ -45,23 +45,25 @@ Here they come! Try to bring the plane down!
 Enter a coordinate X:
 */
 
-public class AntiAircraftAim {
+public class Target {
 
 	private int[][][] space3D = null;
+	private int size;
 	
 	public static void main(String[] args) {
 	
 	
 	}
 
-	public AntiAircraftAim(int size) {
+	public Target(int size) {
 	
-		target(size);
+		this.size = size;
+		target();
 		
 	}
 	
 	
-	public void target(int size) {
+	public void target() {
 	
 		for (int i = 0; i < size; i++) {
 		
@@ -77,6 +79,15 @@ public class AntiAircraftAim {
 			
 		}
 	
+	}
+	
+	public void init() {
+	
+		target();
+		int numberOfPositions = Math.pow(size, 3)
+		int rand = (int) Math.abs(numberOfPositions * Math.random()).
+		space3D[i][j][k] = 1;
+			
 	}
 
 }
