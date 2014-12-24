@@ -124,17 +124,17 @@ public class BigEnough {
  	*/		
 	public String toString(String[] resultArray) {
 	
-		if (resultArray.length == 1) {
+		if (resultArray[0] == null) {
 		
-			return "[" + resultArray[0] + "]";
+			return "";
 		
-		} else if (resultArray.length == 2) {
+		} else if (resultArray.length == 1) {
 			
-			return "[" + resultArray[0] + ", " + resultArray[1] + "]";
+			return resultArray[0]; // don't really understand why I don't need to put brackets around this for odd numbered arrays.
 		
 		}
 
-		return resultArray[0] + ", " + toString(Arrays.copyOfRange(resultArray, 1, resultArray.length - 1)); 
+		return "[" + resultArray[0] + "]" + toString(Arrays.copyOfRange(resultArray, 1, resultArray.length - 1)); 
 	
 	}
 
