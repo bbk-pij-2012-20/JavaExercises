@@ -134,7 +134,7 @@ public class BigEnough {
 		
 		}
 
-		return resultArray[0] + ", " + toString(Arrays.copyOfRange(resultArray, 1, resultArray.length - 2)); 
+		return resultArray[0] + ", " + toString(Arrays.copyOfRange(resultArray, 1, resultArray.length - 1)); 
 	
 	}
 
@@ -148,17 +148,20 @@ public class BigEnough {
 		int initialSize = 10;
 		String[] nameId = new String[initialSize];
 		int j = -1;
+		int i = 0;
 		
-		for (int i = 0; i < records.getRecordSize(); i++) {
+		while (i < records.getRecordSize() && records.getNameAt(i) != null) {
 		
 			String nameAt_i = records.getNameAt(i).toUpperCase();
 			int idAt_i = records.getIdAt(i);
 		
 			if (nameAt_i.charAt(0) == 'S' || idAt_i % 2 == 0) {
 
-				nameId[++j] = records.getNameAt(i) + records.getIdAt(i);
+				nameId[++j] = records.getNameAt(i) + "_" + records.getIdAt(i);
 
 			}
+			
+			i++;
 			
 		}
 
