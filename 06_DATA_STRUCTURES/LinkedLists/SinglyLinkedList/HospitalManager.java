@@ -164,19 +164,3 @@ class Patient {
 	}
 	
 }
-
-/* 
-	So, my understanding of a linked list is that it consists of two classes, a node and 
-	a node manager. The node class defines a linked list by the fact that every node object
-	will have a pointer to the next node in the list.
-
-	The node manager holds a reference to one, very important node, called the root. 
-
-	What makes this data structure a "dynamic" one is that it contains the behaviour of 
-	shrinking and growing within itself, i.e. the methods are included in the classes and 
-	therefore these are the intrinsic 'properties' of the objects. 
-
-	There must be at least two methods (which can be recursive). 
-	These are admit() and discharge(). In this 'Hospital' example, the node is the patient 
-	and the node manager is 'HospitalManager'
-*/
