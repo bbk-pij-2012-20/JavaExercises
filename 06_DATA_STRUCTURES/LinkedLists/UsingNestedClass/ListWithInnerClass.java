@@ -7,8 +7,8 @@ called NodeManager.
 
 Objects that are instances of the inner class, Node, exist within an object instance of the
 enclosing (outer) class. So to make a Node object, an object of ListWithInnerClass must 1st
-be instantiated. The slightly unusual syntax is the attachment of the object to the 'new'
-word. 
+be instantiated. 
+Notice the slightly unusual syntax is the attachment of the object to the 'new' word. 
 */
 
 public class ListWithInnerClass {
@@ -60,7 +60,7 @@ public class ListWithInnerClass {
 		
 		} else {
 		
-			if (root == node) {
+			if (root.info == node.info) {
 						
 				root = root.next;
 				return true;
@@ -118,7 +118,7 @@ public class ListWithInnerClass {
 		
 		private boolean delete(Node node) {
 		
-			if (next == node) {
+			if (next.info == node.info) {
 			
 				next = next.next;
 				return true;
