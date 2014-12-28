@@ -36,17 +36,18 @@ public class CircLList {
 		CircLList.Node node6 = c.new Node("cNode6",6);
 		
 		c.add(node0);
-		System.out.print("\nList after adding one node only: ");	
+		System.out.print("\nList after adding one node only:\n");	
 		c.print();
-		c.delete(node0);	
-		System.out.print("\n..then deleting that one node: ");
+		System.out.printf("The deletion of \'%s\' has %sbeen achieved.", node0.info, c.delete(node0)? "" : "not ");	
+		System.out.print("\n..after deleting that one node, the remaining list contains:\n");
 		c.print();
 
 		c.add(node1);
 		c.add(node2);
-		System.out.print("\nList after adding two nodes to empty list: ");
-		c.delete(node2);
-		System.out.print("\n..then deleting node2: ");
+		System.out.print("\nList after adding two nodes to empty list:\n");
+		c.print();
+		System.out.printf("The deletion of \'%s\' has %sbeen achieved.", node2.info, c.delete(node2)? "" : "not ");
+		System.out.print("\n..after deleting cNode2, the remaining list contains:\n");
 		c.print();
 		
 		c.add(node3);
@@ -54,6 +55,12 @@ public class CircLList {
 		c.add(node5);	
 		c.add(node6);
 		System.out.print("\nList after adding nodes 3-6: ");		
+		c.print();
+		
+		c.delete(node2);
+		System.out.print("\n..trying to delete the already deleted node2..\n");
+		System.out.printf("The deletion of \'%s\' has %sbeen achieved.", node2.info, c.delete(node2)? "" : "not ");
+		System.out.print("\n..after deleting cNode2, the remaining list contains:\n");
 		c.print();
 		System.out.println();
 					
@@ -119,7 +126,7 @@ public class CircLList {
 	
 		if (root == null) {
 		
-			System.out.println("List is empty");
+			System.out.println("empty");
 		
 		} else {
 			
@@ -173,7 +180,7 @@ public class CircLList {
 				
 				} else {
 				
-					return delete(node);
+					return next.delete(node);
 				
 				}
 			
