@@ -13,7 +13,13 @@ How do you know that you have reached the end of the list when you never find a 
 6. Traverse it again printing out the content of each element.
 */
 
-//singly linked circular list with inner Node class 
+/*
+I've made a similar singly linked circular list, as first attempt (CircularLinkList.java)
+but this time I've used an inner Node class. So there's no need to pass the root node as 
+an argument to the Node class, the inner class can already see the enclosing class's 
+private members.
+*/
+
 public class CircLList {
 
 	private Node root = null;
@@ -62,7 +68,7 @@ public class CircLList {
 		
 		} else {
 		
-			root.add(root, node);
+			root.add(node);
 			
 		}
 	
@@ -94,7 +100,7 @@ public class CircLList {
 			
 				if (root.next != root) {
 				
-					return root.delete(root, node);
+					return root.delete(node);
 			
 				} else {
 				
@@ -117,7 +123,7 @@ public class CircLList {
 		
 		} else {
 			
-			root.print(root);
+			root.print();
 	
 		}
 		
@@ -137,7 +143,7 @@ public class CircLList {
 		
 		}
 
-		public void add(Node root, Node node) {
+		public void add(Node node) {
 		
 			if (next == root) {
 			
@@ -146,13 +152,13 @@ public class CircLList {
 				
 			} else {
 
-				next.add(root, node);
+				next.add(node);
 
 			}
 
 		}
 		
-		public boolean delete(Node root, Node node) {
+		public boolean delete(Node node) {
 		
 			if (next.info == node.info) {
 				
@@ -167,7 +173,7 @@ public class CircLList {
 				
 				} else {
 				
-					return delete(root, node);
+					return delete(node);
 				
 				}
 			
@@ -175,13 +181,13 @@ public class CircLList {
 		
 		}
 		
-		public void print(Node root) {
+		public void print() {
 		
 			System.out.println("\'" + info + " : " + n + "\'");
 		
 			if (next != root) {
 			
-				next.print(root);
+				next.print();
 			
 			}
 			
