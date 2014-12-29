@@ -57,6 +57,7 @@ back										front
 node <- (next) node <- (next) node <- (next) node
 
 */
+
 public class QueuesMain {
 
 	public static void main(String[] args) {
