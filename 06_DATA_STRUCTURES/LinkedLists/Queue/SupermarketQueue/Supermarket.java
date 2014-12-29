@@ -20,7 +20,7 @@ Then create a class Supermarket that has two methods: addPerson(Person) and serv
 These methods must call the appropriate methods of PersonQueue.
 */
 
-public class Supermarket2 {
+public class Supermarket {
 
 	private PersonQueue2Impl pqi = new PersonQueue2Impl();
 	
@@ -56,7 +56,7 @@ public class Supermarket2 {
 	
 	public static void main(String args[]) {
 	
-		Supermarket2 sm = new Supermarket2();
+		Supermarket sm = new Supermarket();
 		sm.add(new Person("bob"));
 		sm.add(new Person("bob2"));
 		sm.add(new Person("bob3"));
