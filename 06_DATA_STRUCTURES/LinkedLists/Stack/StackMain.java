@@ -108,8 +108,8 @@ class Stack {
 	
 	}
 	
-	//inner class
-	public class Node {
+	//inner class. Not private so that StackMain's popping can instantiate it.
+	protected class Node {
 		
 		private Node next;
 		private int n;
