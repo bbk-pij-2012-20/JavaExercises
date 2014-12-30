@@ -184,7 +184,8 @@ class Queues {
 		
 	}
 
-	public class Node {
+	//inner class
+	private class Node {
 
 		private int n = 0;
 		private Node next = null;
