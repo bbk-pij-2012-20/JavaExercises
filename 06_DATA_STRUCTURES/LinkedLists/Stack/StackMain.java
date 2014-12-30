@@ -1,5 +1,5 @@
 // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/06_DATA_STRUCTURES/LinkedLists/Stack
-// Exercise 7.7 (Introduction to data structures & pointers)
+// Exercise 7.8 (Introduction to data structures & pointers)
 /*
 A stack is a dynamic structure that implements these methods:
 
