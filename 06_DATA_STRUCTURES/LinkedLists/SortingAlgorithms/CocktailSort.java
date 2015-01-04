@@ -18,14 +18,13 @@ public class CocktailSort {
 	
 		CocktailSort cs = new CocktailSort();
 		List list = new List();
-//		System.out.println("Before making list: ");
-//		list.print();
-
+		System.out.print("\nBefore making list: ");
+		list.print();
 		list = cs.makeDLL();
-		System.out.println("After making list: ");
+		System.out.println("\nAfter making list: ");
 		list.print();
 		ListUtilities.cocktailSort(list);
-		System.out.println("After sorting list: ");
+		System.out.println("\nAfter sorting list: ");
 		list.print();
 	
 	}
@@ -34,7 +33,7 @@ public class CocktailSort {
 	
 		
 		List list = new List();
-/*		add(list, new Node(5));
+		add(list, new Node(5));
 		add(list, new Node(12));
 		add(list, new Node(1));		
 		add(list, new Node(8));
@@ -46,12 +45,11 @@ public class CocktailSort {
 		add(list, new Node(67));
 		add(list, new Node(50));
 		add(list, new Node(2));
-*/
 		add(list, new Node(5));		
 		add(list, new Node(1));
 		add(list, new Node(2));
 		add(list, new Node(4));
-/*		add(list, new Node(5));
+		add(list, new Node(5));
 		add(list, new Node(6));
 		add(list, new Node(7));
 		add(list, new Node(8));
@@ -59,7 +57,7 @@ public class CocktailSort {
 		add(list, new Node(10));
 		add(list, new Node(11));
 		add(list, new Node(12));
-*/		
+		
 		return list;
 																					
 	}
@@ -122,7 +120,8 @@ class List {
 		
 		} else {
 		
-			first.print();
+			System.out.println();
+			first.print(this);
 		
 		} 
 	
@@ -200,13 +199,17 @@ class Node {
 	
 	}
 	
-	public void print() {
+	public void print(List list) {
 	
-		System.out.println("Node n: " + n);
-		
+		System.out.print(n + " ");
+
 		if (next != null) {
 		
-			next.print();
+			next.print(list);
+		
+		} else {
+		
+			System.out.print("\n");
 		
 		}
 		
@@ -221,9 +224,6 @@ class ListUtilities {
 		Node first = list.getFirst();
 		Node last = list.getLast();
 	
-		boolean startedToSort = false;
-		boolean sorted = false;
-
 		try {
 
 			if (first == null) {
@@ -232,7 +232,7 @@ class ListUtilities {
 			
 			} else if (first.getNext() == null) {
 
-				throw new NullPointerException("Nothing to sort, list only has one Node.");
+				throw new IllegalArgumentException("Nothing to sort, list only has one Node.");
 				
 			} else if (first.getNext() == last) { //only two in the list
 
@@ -250,21 +250,22 @@ class ListUtilities {
 				return;
 
 			}
-
-			startedToSort = true;
+	
+			boolean startedToSort = true;
+			boolean sorted = false;
 
 			while (!sorted) {
 
-				sorted = sort(list, first, startedToSort);
-//				sorted = sortRev(list, last, startedToSort);
+				sorted = sort(list, list.getFirst(), startedToSort);
+				sorted = sortRev(list, list.getLast(), startedToSort);
 				
 			}
 
 			
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 
 			e.printStackTrace();
-			//System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 		
 		}
 		
@@ -273,7 +274,7 @@ class ListUtilities {
 	private static boolean sort(List list, Node node, boolean sorted) {
 
 		boolean sorted2 = sorted;	
-			
+
 		if (node == list.getLast()) {
 
 			return sorted2;
@@ -282,7 +283,7 @@ class ListUtilities {
 		
 		Node nextNextNode = null;
 		Node nextNode = node.getNext();
-		Node prevNode = null;
+		Node preNode = null;
 
 		if (nextNode.getNext() != null) {
 		
@@ -292,7 +293,7 @@ class ListUtilities {
 		
 		if (node.getPrevious() != null) {
 		
-			prevNode = node.getPrevious();
+			preNode = node.getPrevious();
 		
 		}
 		
@@ -324,71 +325,70 @@ class ListUtilities {
 
 			} else {
 			
-				nextNode.setPrevious(prevNode);
-				prevNode.setNext(nextNode);
+				nextNode.setPrevious(preNode);
+				preNode.setNext(nextNode);
 				
 			}
 		
-		}	
+		}
 
-		return sorted2 && sort(list, nextNode, sorted);
+		return sort(list, nextNode, sorted2);
 			
 	}
 
-/*	private static boolean sortRev(Node node, boolean sorted) {
+	private static boolean sortRev(List list, Node node, boolean sorted) {
 	
-		boolean sorted2 = sorted;	
-				
-		if (node.getPrevious().getPrevious().getPrevious() == null) {
-		
-			if (node.getPrevious().getPrevious().getN() > node.getPrevious().getN()) {
-			
-				sorted = false;
-				list.setFirst(mid2);
-				mid2.setPrevious(null);
-				mid2.setNext(mid1);
-				mid1.setNext(after);
-				mid1.setPrevious(mid2);
-				after.setPrevious(mid1);
-				
-			}
-			
-			return sorted;
-		
-		} else {
-			
-			mid1 = node.getPrevious().getPrevious();
-			before = node.getPrevious().getPrevious().getPrevious();
+		boolean sorted2 = sorted;
 
+		if (node == list.getFirst()) {
+
+			return sorted2;
+		
 		}
 
-		if (after == last) {
+		Node preNode = node.getPrevious();
+		Node prePreNode = null;
+		Node nextNode = node.getNext();
 		
-			if (mid2.getN() > after.getN()) {
-			
-				mid2.setNext(null);
-				after.setPrevious(mid1);
-				mid1.setNext(after);
-				after.setNext(mid2);
-				mid2.setPrevious(after);
-				list.setLast(after);
-			
-			}
+		if (preNode != list.getFirst()) {
 		
-		} else if (mid1.getN() > mid2.getN()) {		
-		
+			prePreNode = node.getPreviousPrevious();
+
+		}
+				
+		if (node.getN() < preNode.getN()) {
+
 			sorted2 = false;
-			after.setPrevious(mid1);
-			before.setNext(mid2);
-			mid1.setPrevious(mid2);
-			mid2.setNext(mid1);
-			mid2.setPrevious(before);
-			mid1.setNext(after);
+			
+			if (preNode == list.getFirst()) {
+				
+				list.setFirst(node);
+			
+			} else {
+			
+				prePreNode.setNext(node);
+				node.setPrevious(prePreNode);
+
+			}
+			
+			preNode.setPrevious(node);
+			node.setNext(preNode);
+			
+			if (node == list.getLast()) {
+			
+				list.setLast(preNode);
+			
+			} else {
+			
+				nextNode.setPrevious(preNode);
+				preNode.setNext(nextNode);
+				
+			}
 					
-		} 		
+		}
 		
-		return sorted2 && sortRev(node.getPrevious(), sorted);
+		return sortRev(list, preNode, sorted2);
 	
-	}*/
+	}
 	
 }
