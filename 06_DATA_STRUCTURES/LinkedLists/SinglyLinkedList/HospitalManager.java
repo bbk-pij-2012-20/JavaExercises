@@ -1,4 +1,4 @@
-//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists
+//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/06_DATA_STRUCTURES/LinkedLists/SinglyLinkedList
 //Exercise 7.3 (Introduction to data structures & pointers)
 
 /*
