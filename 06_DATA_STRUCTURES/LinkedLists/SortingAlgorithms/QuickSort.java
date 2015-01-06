@@ -29,6 +29,8 @@ public class QuickSort {
 	private List lowerList = null;
 	private List higherList = null;
 	private List list = null;
+	private static final int LEFT_TO_RIGHT = 1;
+	private static final int RIGHT_TO_LEFT = -1;
 	
 	public QuickSort() {
 	
@@ -37,10 +39,17 @@ public class QuickSort {
 	}
 	
 	public static void main(String[] args) {
-	
+
 		QuickSort qs = new QuickSort();
 		qs.makeDLL();
-	
+		List.Node testNode1 = qs.list.new Node(1000);
+		List.Node testNode2 = qs.list.new Node(10);
+		qs.add(qs.list, testNode1);
+		qs.add(qs.list, testNode2);
+		qs.print();
+		qs.list.swap(testNode1, testNode2);
+		qs.print();
+		
 	}
 	
 	public void makeDLL() {
@@ -58,12 +67,15 @@ public class QuickSort {
 	
 	public void add(List list, List.Node node) {
 	
-		List.Node firstNode = list.getFirst();
-		
-		
-		if (firstNode.getNext() == null) {
+		if (list.getFirst() == null) {
 		
 			list.setFirst(node);
+			
+			if (list.length() == 1) {
+			
+				list.setLast(node);
+			
+			}
 		
 		} else {
 		
@@ -73,21 +85,25 @@ public class QuickSort {
 	
 	}
 	
-	/*public void sort(List list) {
+/*	public void sort(List list) {
 	
 		if (list.length() == 2) {
 		
-			if (list.getLeft().getN() > list.getRight.getN()) {
+			if (list.getFirst().getN() > list.getLast().getN()) {
 			
-				list.swap(list.getLeft().getN(), list.getRight.getN());
+				list.swap(list.getFirst(), list.getLast());
 				return;
 			
 			} 	
 		
+		} else {
+	
+			list.sort(list.getFirst(), list.getFirst(), list.getLast(), RIGHT_TO_LEFT);
+		
 		}
 
-	}*/
-	
+	}
+*/	
 	public void print() {
 	
 		if (list.getFirst() == null) {
@@ -96,6 +112,7 @@ public class QuickSort {
 		
 		} else {
 		
+			System.out.println();
 			list.print(list.getFirst());
 		
 		}
@@ -112,40 +129,38 @@ class List {
 	private Node rightOfPartition;
 	private Node pivot;
 	
-	public void setPivotPntr() {
-	
-		int i = 0;
-		
-		while (i < getRandomPartition()) {
-		
-			pivot = pivot.getNext();
-			i++;
-						
-		}
-	
-	}
-	// note the list not zero-indexed and I want any position except the first and last. 
-	private int getRandomPartition() {
-		
-		try {
-	
-			if (length() < 2) {
+	public List() {
+
+		pivot = first;
 			
-				throw new IndexOutOfBoundsException("list is less than 3 elements, therefore can't get a random midpoint");
-			
-			}
-		
-		} catch (IndexOutOfBoundsException e){ 
-		
-			System.out.println(e.getMessage());
-		
-		}
-			
-		Random r = new Random();
-		return r.nextInt(length() - 2) + 2;//because random.nextInt(5) gives anything from 0 to 5
-		
 	}
 	
+/*	public void sort(Node node, Node firstInPartition, Node lastInPartition, int direction) {// -1 means traversing to left, +1 to right
+	
+	
+		if (node == firstInPartition && node == lastInPartition) {
+		
+			return;
+		
+		}
+		
+		
+		if (direction == -1 && rightOfPartition == firstInPartition) {
+		
+			return;
+		
+		}
+	
+		if (direction == 1 && leftOfPartition == lastInPartition) {
+		
+			leftOfPartition
+		
+		}
+		
+		sort(node.getNext(), 
+	
+	}
+*/	
 	public int length() {
 	
 		int length = 0;
@@ -161,18 +176,93 @@ class List {
 		return length;
 	
 	}
-		
+	
+	
 	public void swap(Node node1, Node node2) {
 		
 		Node preNode1 = node1.getPrevious();
 		Node nextNode1 = node1.getNext();
 		Node preNode2 = node2.getPrevious();
 		Node nextNode2 = node2.getNext();		
+		Node newNode1 = node1;
+		Node newNode2 = node2;
+		
+		if (preNode1 == node2) {
+				
+			newNode2.setPrevious(node1);
+			newNode1.setNext(node2);
+			newNode2.setNext(nextNode1);
 			
-		preNode2.setNext(node1);
-		Node newNextNodeOfpreNode2 = preNode2.getNext();
-		newNextNodeOfpreNode2.setPrevious(preNode2);
+			if (nextNode1 != null) {
 			
+				nextNode1.setPrevious(newNode2);
+			
+			}
+			
+			newNode1.setPrevious(preNode2);
+			
+			if (preNode2 != null) {
+				
+				preNode2.setNext(node1);
+			
+			}
+		
+		} else if (preNode2 == node1) {
+				
+			newNode1.setPrevious(node2);
+			newNode2.setNext(node1);
+			newNode1.setNext(nextNode2);
+			
+			if (nextNode2 != null) {
+			
+				nextNode2.setPrevious(node1);
+			
+			}
+			
+			newNode2.setPrevious(preNode1);
+			
+			if (preNode1 != null) {
+			
+				preNode1.setNext(node2);
+			
+			}
+		
+		} else {
+
+			newNode2.setPrevious(preNode1);
+		
+			if (preNode1 != null) {
+		
+				preNode1.setNext(newNode2);
+		
+			}
+		
+			newNode2.setNext(nextNode1);
+		
+			if (nextNode1 != null) {
+		
+				nextNode1.setPrevious(newNode2);
+		
+			}
+		
+			newNode1.setPrevious(preNode2);
+		
+			if (preNode2 != null) {
+		
+				preNode2.setNext(newNode1);
+		
+			} 
+		
+			newNode1.setNext(nextNode2);
+		
+			if (nextNode2 != null) {
+			
+				nextNode2.setPrevious(newNode1);
+		
+			}
+
+		}
+	
 	}
 	
 	public void setFirst(Node node) {
@@ -190,6 +280,12 @@ class List {
 	public Node getLast() {
 	
 		return last;
+	
+	}
+	
+	public void setLast(Node node) {
+	
+		last = node;
 	
 	}
 	
@@ -228,6 +324,8 @@ class List {
 			if (next == null) {
 			
 				next = node;
+				node.previous = this;
+				last = node;
 			
 			} else {
 			
