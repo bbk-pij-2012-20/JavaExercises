@@ -10,12 +10,12 @@ Then create a Java class Target with the following methods:
 public enum Result {
 
 	HIT, 
-	FAIL LEFT, 
-	FAIL RIGHT,
-	FAIL HIGH,
-	FAIL LOW,
-	FAIL SHORT,
-	FAIL LONG,
-	OUT OF RANGE
+	FAIL_LEFT, 
+	FAIL_RIGHT,
+	FAIL_HIGH,
+	FAIL_LOW,
+	FAIL_SHORT,
+	FAIL_LONG,
+	OUT_OF_RANGE
 
 }
