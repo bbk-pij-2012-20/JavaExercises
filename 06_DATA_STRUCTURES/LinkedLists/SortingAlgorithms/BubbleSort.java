@@ -15,7 +15,15 @@ Try your method with different lists and see how long it takes to sort them. You
 System.currentTimeMillis() to print on the screen the current time (measured in milliseconds since 1st January
 1970).
 */
-// so I'll make an unsorted singly linked list first, then sort it.
+
+
+/*
+Bubble sort (like cocktail sort & quick sort) is an O(n^2) at worst, 
+
+- a 'comparison' sort.
+- a quadratic algorithm (like selection sort)
+
+*/
 public class BubbleSort {
 
 	private Node first = null;
