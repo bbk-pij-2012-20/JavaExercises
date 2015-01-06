@@ -1,4 +1,4 @@
-//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/06_DATA_STRUCTURES/LinkedLists
+//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/06_DATA_STRUCTURES/LinkedLists
 //Exercise 7.9 (Introduction to data structures & pointers)
 /*
 Create a static method that takes an array of integers and returns a linked list of 
