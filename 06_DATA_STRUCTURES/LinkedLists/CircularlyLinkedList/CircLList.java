@@ -14,8 +14,8 @@ How do you know that you have reached the end of the list when you never find a 
 */
 
 /*
-I've made a similar singly linked circular list, as first attempt (CircularLinkList.java)
-but this time I've used an inner Node class. So there's no need to pass the root node as 
+I'd previously made a similar singly linked circular list, which was my first attempt (CircularLinkList.java).
+But this time, I've used an inner Node class. So there's no need to pass the root node as 
 an argument to the Node class, the inner class can already see the enclosing class's 
 private members.
 */
