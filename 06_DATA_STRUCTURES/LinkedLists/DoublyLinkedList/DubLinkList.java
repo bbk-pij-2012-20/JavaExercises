@@ -1,4 +1,4 @@
-//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists/DoublyLinkedList
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/LinkedLists/DoublyLinkedList
 // Exercise 7.5 (Introduction to Data Structures. Linked Lists)
 /*
 A doubly-linked list is a dynamic list in which each element is connected to two other 
