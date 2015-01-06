@@ -88,7 +88,8 @@ public class ListWithInnerClass {
 		}
 		
 	}
-
+	
+	// INNER CLASS
 	private class Node {
 	
 		private String info = "";
