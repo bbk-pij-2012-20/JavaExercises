@@ -26,33 +26,47 @@ import java.util.Random;
 
 public class QuickSort {
 
-	private List lowerList = null;
-	private List higherList = null;
-	private List list = null;
-	private static final int LEFT_TO_RIGHT = 1;
-	private static final int RIGHT_TO_LEFT = -1;
+//	private List list = null;
 	
 	public QuickSort() {
 	
-		list = new List();
+//		list = new List();
 	
 	}
 	
 	public static void main(String[] args) {
 
 		QuickSort qs = new QuickSort();
-		qs.makeDLL();
-		List.Node testNode1 = qs.list.new Node(1000);
-		List.Node testNode2 = qs.list.new Node(10);
-		qs.add(qs.list, testNode1);
-		qs.add(qs.list, testNode2);
-		qs.print();
-		qs.list.swap(testNode1, testNode2);
-		qs.print();
-		
+		List list = new List();
+		System.out.print("Before adding nodes to list: ");
+		qs.print(list);
+		qs.makeDLL(list);
+		System.out.print("after making list: ");
+		qs.print(list);
+		List sortedList = qs.sort(list);
+		System.out.print("after sorting list: ");
+		qs.print(sortedList);
+/*		List.Node node1 = list.new Node(1);
+		List.Node node2 = list.new Node(2);
+		List.Node node3 = list.new Node(3);
+		List.Node node4 = list.new Node(4);						
+		qs.add(list, node1);
+		qs.add(list, node2);
+		qs.add(list, node3);
+		qs.add(list, node4);
+		System.out.print("\n\nafter adding nodes 1,2,3,4 to end of list: ");
+		qs.print(list);		
+		System.out.print("\n\nafter inserting node 4 next to node 1: ");
+		list.insert(node1, node4, list.getFirst(), list.getLast(), "next");
+		qs.print(list);
+		System.out.print("\n\nafter inserting node 1 previous to node 4: i.e. should be the same");
+		list.insert(node4, node1, list.getFirst(), list.getLast(), "previous");
+		qs.print(list);
+		System.out.println();
+*/		
 	}
 	
-	public void makeDLL() {
+	public void makeDLL(List list) {
 		
 		add(list, list.new Node(5));
 		add(list, list.new Node(67));
@@ -66,12 +80,15 @@ public class QuickSort {
 	}
 	
 	public void add(List list, List.Node node) {
-	
-		if (list.getFirst() == null) {
+
+		List.Node first = list.getFirst();
+		List.Node last = list.getLast();
+			
+		if (first == null) {
 		
 			list.setFirst(node);
 			
-			if (list.length() == 1) {
+			if (list.length(first, last) == 1) {
 			
 				list.setLast(node);
 			
@@ -79,32 +96,35 @@ public class QuickSort {
 		
 		} else {
 		
-			list.getFirst().add(node);
+			first.add(node);
 		
 		}
 	
 	}
 	
-/*	public void sort(List list) {
+	public List sort(List list) {
 	
-		if (list.length() == 2) {
+		List sortedList = list;
+		List.Node first = list.getFirst();
+		List.Node last = list.getLast();
+				
+		if (sortedList.length(first, last) == 2) {
 		
-			if (list.getFirst().getN() > list.getLast().getN()) {
+			if (sortedList.getFirst().getN() > sortedList.getLast().getN()) {
 			
-				list.swap(list.getFirst(), list.getLast());
-				return;
-			
+				sortedList.swap(sortedList.getFirst(), sortedList.getLast());
+							
 			} 	
+			
+			return sortedList;
 		
-		} else {
+		} 
+						     // currentNode,           pivot,                firstInPartition,      lastInPartition
+		return sortedList.sort(sortedList.getFirst(), sortedList.getLast(), sortedList.getFirst(), sortedList.getLast());
 	
-			list.sort(list.getFirst(), list.getFirst(), list.getLast(), RIGHT_TO_LEFT);
-		
-		}
-
 	}
-*/	
-	public void print() {
+
+	public void print(List list) {
 	
 		if (list.getFirst() == null) {
 		
@@ -123,53 +143,100 @@ public class QuickSort {
 
 class List {
 
-	private Node first;
-	private Node last;
-	private Node leftOfPartition;
-	private Node rightOfPartition;
-	private Node pivot;
+	private Node first, last;
 	
 	public List() {
+	
+		last = first = null;
+		
+	}
+	
+	public List sort(Node currentNode, Node pivot, Node firstInPartition, Node lastInPartition) {
+		
+		List sortedList = this;
+		Node firstInPartition_ = firstInPartition;
+		Node lastInPartition_ = lastInPartition;
+		Node[] firstLastInPartitions = {firstInPartition_, lastInPartition};
+		
+		if (currentNode_ == lastInPartition) {
+		
+			return sortedList;
+							
+		}
+				
+		boolean reachedEnd = false;
+		int listLength = length(firstLastInPartitions[0], firstLastInPartitions[1]);
+		int counter = 0;
+		
+		while (counter < listLength) {
+		
+			Node currentNode_ = currentNode;
+System.out.println("\ncurrentNode_ top of while : " + currentNode_.n);
+			if (currentNode_ != pivot && (currentNode_.n <= pivot.n)) {
 
-		pivot = first;
+				firstLastInPartitions = sortedList.insert(pivot, currentNode_, firstLastInPartitions[0], firstLastInPartitions[1], "previous");
+				
+			} else if (currentNode_ != pivot && (currentNode_.n > pivot.n)) {
+
+				firstLastInPartitions = sortedList.insert(pivot, currentNode_, firstLastInPartitions[0], firstLastInPartitions[1], "next");
+				
+			}
+
+			setFirst(firstLastInPartitions[0]);
+			setLast(firstLastInPartitions[1]);
+					
+			print(sortedList.getFirst());
+	
+			counter++;
+System.out.println("\ncurrentNode_ before : " + currentNode_.n);
+			currentNode_ = currentNode_.next;
+System.out.println("\ncurrentNode_ after : " + currentNode_.n);				
+		}
+        
+        Node pivotPart1 = null;
+        
+        if (pivot.previous != null) {
+        
+        	pivotPart1 = pivot.previous;
+        
+        } else {
+        
+        	pivotPart1 = pivot.next;
+        
+        }
+
+        Node pivotPart2 = null;
+
+        if (pivot.next != null) {
+        
+        	pivotPart2 = pivot.next;
+        
+        } else {
+        
+        	pivotPart2 = pivot.previous;
+        
+        }
+
+                           // currentNode,    pivot,          firstInPartition,         lastInPartition
+		sortedList.sort(firstLastInPartitions[0], pivotPart1, firstLastInPartitions[0], pivotPart1);
+		return sortedList.sort(pivotPart2, firstLastInPartitions[1], pivotPart2, firstLastInPartitions[1]);
 			
 	}
-	
-/*	public void sort(Node node, Node firstInPartition, Node lastInPartition, int direction) {// -1 means traversing to left, +1 to right
-	
-	
-		if (node == firstInPartition && node == lastInPartition) {
-		
-			return;
-		
-		}
-		
-		
-		if (direction == -1 && rightOfPartition == firstInPartition) {
-		
-			return;
-		
-		}
-	
-		if (direction == 1 && leftOfPartition == lastInPartition) {
-		
-			leftOfPartition
-		
-		}
-		
-		sort(node.getNext(), 
-	
-	}
-*/	
-	public int length() {
+
+	public int length(Node firstInPartition, Node lastInPartition) {
 	
 		int length = 0;
-		Node current = first;
+		Node current = firstInPartition;
+		if (current != null) {
 		
-		while (current != last) {
+			length = 1;
+		
+		}
+		
+		while (current != lastInPartition) {
 		
 			length++;
-			current = current.getNext();
+			current = current.next;
 			
 		}
 	
@@ -177,8 +244,128 @@ class List {
 	
 	}
 	
+   /**
+	*	Takes node2 and inserts it immediately up or downstream of node1.
+	*
+	*                           pivot, currentNode,     firstInPartition,       lastInPartition,     "next" or "previous"
+	*/
+	protected Node[] insert(Node pivot, Node nodeToMove, Node firstInPartition, Node lastInPartition, String nextOrPrevious) {
 	
-	public void swap(Node node1, Node node2) {
+		Node pivot_ = pivot;//pivot
+		Node nodeToMove_ = nodeToMove;
+		Node pivotGetNext = pivot.next;
+		Node pivotGetPrevious = pivot.previous;
+		Node nodeToMoveGetNext = nodeToMove.next;
+		Node nodeToMoveGetPrevious = nodeToMove.previous;
+		Node[] firstLastInPartitions = {firstInPartition, lastInPartition};
+
+		if (nextOrPrevious.equals("next")) { 
+
+			if (nodeToMove == firstInPartition) {//if nodeToMove is first, first must be reassigned.
+
+				firstLastInPartitions[0] = nodeToMove.next;
+				
+			}
+
+			if (pivot == lastInPartition) {//if pivot is last, last must be reassigned.
+			
+				firstLastInPartitions[1] = pivot;
+
+			}
+
+			if (nodeToMove == lastInPartition) {//if nodeToMove is last, last might need reassigning 
+
+				if (nodeToMove.previous != pivot) {
+			
+					firstLastInPartitions[1] = nodeToMove.previous;
+			
+				}
+			
+			}
+			
+			if (pivot != nodeToMove.previous) {
+
+				if (nodeToMove.previous != null) {
+			
+					nodeToMoveGetPrevious.setNext(nodeToMove.next);
+					
+				}
+			
+				if (nodeToMove.next != null) {
+			
+					nodeToMoveGetNext.setPrevious(nodeToMove.previous);
+			
+				} 
+			
+				if (pivot.next != null) {
+			
+					pivotGetNext.setPrevious(nodeToMove);
+			
+				}
+			
+				nodeToMove_.setNext(pivot.next);
+				pivot_.setNext(nodeToMove);
+				nodeToMove_.setPrevious(pivot);
+			
+			} 	
+		
+		} else if (nextOrPrevious.equals("previous")) {
+
+			if (nodeToMove == lastInPartition) {//if nodeToMove is last, last must be reassigned.
+
+				firstLastInPartitions[1] = nodeToMove.previous;
+
+			}
+
+			if (pivot == firstInPartition) {//if pivot is first, first must be reassigned.
+
+				firstLastInPartitions[0] = nodeToMove;
+				
+			}
+			
+			if (nodeToMove == firstInPartition) {//if nodeToMove is first, first might need reassigning.
+
+				if (nodeToMove.getNext() != pivot) {
+
+					firstLastInPartitions[0] = nodeToMove.next;
+
+				}
+				
+			}
+	
+			if (nodeToMove.next != pivot) {
+
+				if (nodeToMove.previous != null) {
+
+					nodeToMoveGetPrevious.setNext(nodeToMove.next);
+			
+				}
+
+				if (nodeToMove.next != null) {
+
+					nodeToMoveGetNext.setPrevious(nodeToMove.previous);
+			
+				}
+			
+				if (pivot.previous != null) {
+
+					pivotGetPrevious.setNext(nodeToMove);
+			
+				}
+			
+				nodeToMove_.setPrevious(pivot.previous);
+				pivot_.setPrevious(nodeToMove);
+				nodeToMove_.setNext(pivot);				
+	
+			}
+		
+		}
+		
+		return firstLastInPartitions;
+		
+	}
+	 
+	protected void swap(Node node1, Node node2) {
 		
 		Node preNode1 = node1.getPrevious();
 		Node nextNode1 = node1.getNext();
@@ -271,7 +458,7 @@ class List {
 
 	}
 	
-	public List.Node getFirst() {
+	public Node getFirst() {
 	
 		return first;
 	
@@ -297,11 +484,11 @@ class List {
 	
 	public void print(Node node) {
 		
-		System.out.print(node.getN() + " ");
+		System.out.print(node.n + " ");
 		
-		if (getNext(node) != null) {
+		if (node.next != null) {
 		
-			print(getNext(node));
+			print(node.next);
 			
 		}
 	
@@ -368,4 +555,3 @@ class List {
 	}
 	
 }
-
