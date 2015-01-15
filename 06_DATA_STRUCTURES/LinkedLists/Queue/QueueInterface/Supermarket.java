@@ -7,33 +7,51 @@ class Person from past days. For example, depending on your implementation, you 
 Person with or without internal pointers.
 Then create a class Supermarket that has two methods: addPerson(Person) and servePerson(). These
 methods must call the appropriate methods of PersonQueue.
+
+Implemented with linked list in class PersonQueueImpl and with array in class PersonQueueImpl2
 */
 
 public class Supermarket {
 
-	private PersonQueue pq = new PersonQueueImpl();
+//	private PersonQueue pq = new PersonQueueImpl();
+	private PersonQueue pq = new PersonQueueImpl2();
 		
 	public static void main(String[] args) {
-	
+
+/*
 		PersonQueueImpl pqi = new PersonQueueImpl();
 		PersonQueueImpl.Person p1 = pqi.new Person("John");
 		PersonQueueImpl.Person p2 = pqi.new Person("James");
 		PersonQueueImpl.Person p3 = pqi.new Person("Jill");
 		PersonQueueImpl.Person p4 = pqi.new Person("Jane");
+*/
+		
 		Supermarket s = new Supermarket();
+		PersonQueueImpl2 pqi2 = new PersonQueueImpl2();
+		
+		PersonQueueImpl2.Person p1 = pqi2.new Person("John");
+		PersonQueueImpl2.Person p2 = pqi2.new Person("James");
+		PersonQueueImpl2.Person p3 = pqi2.new Person("Jill");
+		PersonQueueImpl2.Person p4 = pqi2.new Person("Jane");
+
 		s.addPerson(p1);
 		s.addPerson(p2);
 		s.addPerson(p3);
 		s.addPerson(p4);
-		System.out.println("Whole queue: " + pqi.toString());
-		System.out.println(s.servePerson());
-		System.out.println(s.servePerson());
-		System.out.println(s.servePerson());
-		System.out.println(s.servePerson());
-		System.out.println(s.servePerson());
-			
+
+		System.out.println("Whole queue: " + s.pq.toString());
+
+		System.out.println("serving: " + s.servePerson());
+		System.out.println("serving: " + s.servePerson());
+		System.out.println("serving: " + s.servePerson());
+		System.out.println("serving: " + s.servePerson());
+		System.out.println("serving: " + s.servePerson());
+
+//		System.out.println("Whole queue: " + s.pq.toString());
+
 	}
-	
+
+/*	
 	public PersonQueueImpl.Person servePerson() {
 	
 		return pq.retrieve();		
@@ -45,5 +63,17 @@ public class Supermarket {
 		pq.insert(person);
 	
 	}
+*/	
+	public PersonQueueImpl2.Person servePerson() {
+	
+		return pq.retrieve();		
+	
+	}
+	
+	public void addPerson(PersonQueueImpl2.Person person) {
+
+		pq.insert(person);
+	
+	}	
 	
 }

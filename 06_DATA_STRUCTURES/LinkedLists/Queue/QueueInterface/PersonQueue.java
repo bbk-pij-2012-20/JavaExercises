@@ -10,14 +10,28 @@ methods must call the appropriate methods of PersonQueue.
 */
 public interface PersonQueue {
 
+//implemented by class PersonQueueImpl
+/*
 	/**
 	* Adds another person to the queue.
-	*/
+	*
 	void insert(PersonQueueImpl.Person person);
 
 	/**
 	* Removes a person from the queue.
-	*/
+	*
 	PersonQueueImpl.Person retrieve();
+*/	
 
+//implemented by class PersonQueueImpl2
+	/**
+	* Adds another person to the queue.
+	*/
+	void insert(PersonQueueImpl2.Person person);
+
+	/**
+	* Removes a person from the queue.
+	*/
+	PersonQueueImpl2.Person retrieve();
+	
 }
