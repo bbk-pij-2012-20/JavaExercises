@@ -25,7 +25,9 @@ if there are any in the queue. Inside each age category, the behaviour of the qu
 typical FIFO: first in, first out.
 */
 
-// PersonQueueImpl is implementation with singly-linked list, PersonQueueImpl2 is with array
+/*	PersonQueueImpl is implementation with singly-linked list, PersonQueueImpl2 is with array
+*	PriorityQueueImpl & PriorityQueueImpl2 are implemented with singly-linked lists
+*/
 public class Supermarket {
 
 //	private PersonQueue pq = new PersonQueueImpl();
