@@ -19,7 +19,6 @@ The topics are organised in the following 12 main subtopics:
 <li>Concurrency</li>
 <li>Network (with RMI)</li></ol>
 (A mixture of a few, simple but important Java basics are stored in one subdirectory).
-
 (note: the exercise numbering given above the class name in each java file corresponds to the original exercise sheets, and not to the folder numbers 1-13 given here)
 ---
 <h4> 'Programming in Java' & the conversion masters in Computer Science at Birkbeck College London 2013/4</h4>
