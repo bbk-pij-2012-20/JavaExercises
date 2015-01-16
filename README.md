@@ -18,7 +18,7 @@ The topics are organised in the following 12 main subtopics:
 <li>Input output</li>
 <li>Concurrency</li>
 <li>Network (with RMI)</li></ol>
-(A mixture of a few, simple but important Java basics are stored in one subdirectory).
+(A mixture of a few, simple but important Java basics are stored in one subdirectory).<br/>
 (note: the exercise numbering given above the class name in each java file corresponds to the original exercise sheets, and not to the folder numbers 1-13 given here)
 
 ---
