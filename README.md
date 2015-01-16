@@ -8,9 +8,9 @@ The topics are organised in the following 12 main subtopics:
 <li>Basic scripts #1</li>
 <li>Basic scripts #2</li>
 <li>Starting to encapsulate (in methods rather than as single scripts in main method)</li>
-<li>Arrays</li>
 <li>Recursion (and memoization)</li>
-<li>Data structures (including linked lists, maps & trees)</li>
+<li>Data structures (including arrays, linked lists & trees)</li>
+<li>Maps</li>
 <li>Inheritance (including ad hoc polymorphism)</li>
 <li>Generics (aka parametric polymorphism)</li>
 <li>JUnit & TDD</li>
