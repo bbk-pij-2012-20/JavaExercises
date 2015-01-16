@@ -4,16 +4,21 @@
 Use the interface PersonQueue that represents a queue of people waiting at the supermarket and then implement
 it. You can use the definition and the implementations of StringStack as a guide. You can reuse any version of
 class Person from past days. For example, depending on your implementation, you may want to use a version of
-Person with or without internal pointers.
-
-8.4.1 Implement the interface queue in a way that the person at the end (i.e. the person that is retrieved next time the
-method retrieve() is called) is always the oldest person.
+Person with or without internal pointers. 
+...
+8.4.1. Implement the interface queue in a way that the person at the end 
+(i.e. the person that is retrieved next time the method retrieve() is called) 
+is always the oldest person.
 */
 public class PriorityQueueImpl implements PersonQueue {
 
 	private Person front = null;
 	private Person back = null;
 	
+	/**
+	*	Insert() method's implementation inserts Persons in the queue by age.
+	*	(Thus, retrieve() method just stays the same as before).
+	*/
 	@Override
 	public void insert(Person person) {
 		
@@ -64,6 +69,10 @@ public class PriorityQueueImpl implements PersonQueue {
 
 	}
 	
+	/**
+	*	Needs to do nothing special, as insert() method does all the work in terms
+	*	of ordering the Persons by age.	
+	*/
 	@Override
 	public Person retrieve() {
 	
