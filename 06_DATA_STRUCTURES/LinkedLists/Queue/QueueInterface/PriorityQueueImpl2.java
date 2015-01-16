@@ -57,129 +57,103 @@ public class PriorityQueueImpl2 implements PersonQueue {
 	public Person retrieve() {
 	
 		Person toBeServed = null;
-		boolean finished = false;
-		
+
 		try {
 
 			if (front == null) {
 
 				throw new NullPointerException("Queue is empty: ");
 
-			} 
-			
-			if (noOver18sInQueue) {
+			} else if (noOver18sInQueue) {
 				
-				finished = true;
-				System.out.println("No over 18s in queue");
+				System.out.print("No over 18s inserted into queue: ");
 
-			} else if (front == back) {
-
-				toBeServed = front;
-				finished = true;	
-				front = back = null;
-
-			}
-
-			int ageLimit64 = 64;
-			int ageLimit17 = 17;
-			Person oldestOver64 = new Person("null", ageLimit64);
-			Person oldestOver17 = new Person("null", ageLimit17);
-			Person priorToOldestOver64 = null;
-			Person priorToOldestOver17 = null;
-			Person current = front;
-						
-			while (!finished && current.next != null) {
-								
-				if (front.age > oldestOver64.age) {
-				
-					oldestOver64 = front;
-					
-				} else if (front.age > oldestOver17.age) {
-				
-					oldestOver17 = front;
-					
-				}
-					
-				if (current.next.age > oldestOver64.age) {
-	
-					oldestOver64 = current.next;
-					priorToOldestOver64 = current;
-
-					if (current.next == back) {
-					
-						back = priorToOldestOver64;
-					
-					}					
-
-				} else if (current.next.age > oldestOver17.age) {
-	
-					oldestOver17 = current.next;
-					priorToOldestOver17 = current;
-					
-					if (current.next == back) {
-					
-						back = priorToOldestOver17;
-					
-					}
-					
-				}
-				
-				current = current.next;
-
-			}
+			} else {
 			
-			if (oldestOver64 == front) {
+				toBeServed = findOldestOlderThan(64);
+				toBeServed = toBeServed != null ? toBeServed : findOldestOlderThan(17);
 			
-				front = front.next;
-				
-			} else if (oldestOver17 == front) {
-			
-				front = front.next;
-			
-			}
-
-			try {
-	
-				if (oldestOver64.name == "null" && oldestOver17.name == "null") {
-				
-					throw new NullPointerException("Bug: there are no over 18s in queue, but this should have been caught earlier by the boolean member variable \'noOver18sQueue\'");
-
-				} else if (oldestOver64.name != "null") {
-
-					toBeServed = oldestOver64;
-			
-					if (priorToOldestOver64 != null) {
-				
-						priorToOldestOver64.next = oldestOver64.next;
-
-					}
-				
-				} else if (oldestOver17.name != "null") {
-			
-					toBeServed = oldestOver17;
-			
-					if (priorToOldestOver17 != null) {
-				
-						priorToOldestOver17.next = oldestOver17.next;
-
-					}
-
-				} 
-			
-			} catch (NullPointerException e) {
-		
-				System.out.print(e.getMessage());
-		
 			}
 			
 		} catch (NullPointerException e) {
 		
+			e.printStackTrace();
 			System.out.print(e.getMessage());
 		
 		}
-	
+
 		return toBeServed;
 	
+	}
+	
+	/**
+	*	finds oldest Person above the age limit specified
+	*/
+	private Person findOldestOlderThan(int ageLimit) {
+		
+		boolean finished = false;
+		Person oldest = null;
+		
+		if (front == back) {
+
+			if (front.age > ageLimit) {
+		
+				oldest = front; 	
+				front = back = null;
+			
+			}
+
+			finished = true;
+
+		}
+
+		int oldestAge = ageLimit;
+		Person pointsNextAtOldest = null;
+		Person current = front;
+		
+		if (front.age > oldestAge) {
+
+			oldest = front;
+			oldestAge = front.age;
+
+		} 
+	
+		while (!finished && current.next != null) {
+
+			if (current.next.age > oldestAge) {
+
+				oldest = current.next;
+				pointsNextAtOldest = current;
+				oldestAge = current.next.age;
+
+				if (current.next == back) {
+
+					back = pointsNextAtOldest;
+					
+				}					
+
+			} 
+			
+			current = current.next;
+
+		}
+
+		if (oldest != null) {
+		
+		 	if (oldest == front) {
+
+				front = front.next;
+			
+			} else {
+			
+				pointsNextAtOldest.next = oldest.next;
+						
+			}
+			
+		} 
+
+		return oldest;
+			
 	}
 	
 	@Override
