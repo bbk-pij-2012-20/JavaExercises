@@ -21,17 +21,41 @@ public interface PersonQueue {
 	* Removes a person from the queue.
 	*
 	PersonQueueImpl.Person retrieve();
-*/	
-
+*/		
+/*
 //implemented by class PersonQueueImpl2
 	/**
 	* Adds another person to the queue.
-	*/
+	*
 	void insert(PersonQueueImpl2.Person person);
 
 	/**
 	* Removes a person from the queue.
-	*/
+	*
 	PersonQueueImpl2.Person retrieve();
-	
+*/
+/*
+//implemented by class PriorityQueueImpl
+	/**
+	* Adds another person to the queue.
+	*
+	void insert(PriorityQueueImpl.Person person);
+
+	/**
+	* Removes a person from the queue.
+	*
+	PriorityQueueImpl.Person retrieve();
+*/
+
+//implemented by class PriorityQueueImpl2
+	/**
+	* Adds another person to the queue.
+	*/
+	void insert(PriorityQueueImpl2.Person person);
+
+	/**
+	* Removes a person from the queue.
+	*/
+	PriorityQueueImpl2.Person retrieve();
+
 }
