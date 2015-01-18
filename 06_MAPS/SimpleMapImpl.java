@@ -281,7 +281,7 @@ public class SimpleMapImpl implements SimpleMap {
 				
 					next = next.next;
 				
-				} else{
+				} else {
 				
 					next.remove(key);
 				
