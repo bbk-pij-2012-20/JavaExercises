@@ -193,13 +193,13 @@ public class SimpleMapImpl implements SimpleMap {
 	/**
 	*	inner key-value elements
 	*/
-	protected class KeyValueNode {
+	private class KeyValueNode {
 	
 		private int key;
 		private String name;
 		private KeyValueNode next;
 	
-		protected KeyValueNode(int key, String name) {
+		private KeyValueNode(int key, String name) {
 		
 			this.key= key;
 			this.name = name;
@@ -223,7 +223,7 @@ public class SimpleMapImpl implements SimpleMap {
 			
 		}
 		
-		protected void put(int key, String name) {
+		private void put(int key, String name) {
 		
 			if (next == null) {
 			
@@ -237,7 +237,7 @@ public class SimpleMapImpl implements SimpleMap {
 			
 		}
 		
-		protected String get(int key) {
+		private String get(int key) {
 		
 			String name = "";
 			
@@ -271,9 +271,7 @@ public class SimpleMapImpl implements SimpleMap {
 		
 		}
 		
-		protected void remove(int key) {
-		
-//			KeyValueNode current = this;
+		private void remove(int key) {
 			
 			if (next != null) {
 			
