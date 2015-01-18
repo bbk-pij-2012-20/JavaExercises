@@ -4,6 +4,10 @@
 /* 
 Create a class that implements the following interface (see bottom of page 
 for interface) of a simple map from integers to strings. 
+
+Hint: You can implement it with arrays or with linked lists. 
+You do not know in advance how many strings you will receive for every key.
+
 */
 /*
 // implemented with an array 
@@ -75,9 +79,11 @@ public class SimpleMapImpl implements SimpleMap {
 */
 
 /*
-*  The Map interface code provided. The exercise is to implement this (see above).
+*	The Map interface code provided (see bottom of page). 
+*	The exercise is to implement the interface.
+*	This is a single-key-to-single-value map, aka 'dictionary'.
+*	Below I've implemented it using a linked list. Above, as an array.
 */
-// implemented with a linked list
 public class SimpleMapImpl implements SimpleMap {
 
 	private KeyValueNode head;
