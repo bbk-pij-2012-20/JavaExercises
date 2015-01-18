@@ -7,8 +7,8 @@ for interface) of a simple map from integers to strings.
 
 Hint: You can implement it with arrays or with linked lists. 
 You do not know in advance how many strings you will receive for every key.
-
 */
+
 /*
 // implemented with an array 
 public class SimpleMapImpl implements SimpleMap {
