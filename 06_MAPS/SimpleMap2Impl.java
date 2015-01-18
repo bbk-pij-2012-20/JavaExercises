@@ -174,13 +174,13 @@ public class SimpleMap2Impl implements SimpleMap2 {
 	
 	}
 	
-	protected class KeyValueNode {
+	private class KeyValueNode {
 	
 		private String name;
 		private int key;
 		private KeyValueNode next;
 		
-		protected KeyValueNode(int key, String name) {
+		private KeyValueNode(int key, String name) {
 		
 			this.key = key;
 			this.name = name;
@@ -188,6 +188,7 @@ public class SimpleMap2Impl implements SimpleMap2 {
 		
 		}
 		
+		@Override
 		public String toString() {
 		
 			String list = key + ":" + name + " "; 
@@ -204,7 +205,7 @@ public class SimpleMap2Impl implements SimpleMap2 {
 		
 		}
 		
-		protected String put(int key, String name) {
+		private String put(int key, String name) {
 		
 			if (next == null) {
 			
@@ -219,7 +220,7 @@ public class SimpleMap2Impl implements SimpleMap2 {
 			
 		}
 		
-		protected String get(int key) {
+		private String get(int key) {
 		
 			if (next == null) {
 			
@@ -241,7 +242,7 @@ public class SimpleMap2Impl implements SimpleMap2 {
 		
 		}
 		
-		protected void remove(int key, String name) {
+		private void remove(int key, String name) {
 		
 			if (next == null) {
 			
