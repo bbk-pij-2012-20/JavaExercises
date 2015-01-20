@@ -2,11 +2,14 @@
 // Exercise 9.1 (Introduction to Trees)
 /*
 Complete the class IntegerTreeNode.
-From the notes, you already know what the member fields are and you have seen a possible implementation of
+9.1.1. From the notes, you already know what the member fields are and you have seen a possible implementation of
 methods add(int) and contains(int). Implement as well two methods getMax() and getMin() that returns the
 maximum and the minimum values stored in the tree.
 Compile the class and use it inside a script1 adding numbers in different orderings.
 
+Implement as well two methods getMax() and getMin() that returns the
+maximum and the minimum values stored in the tree.
+Compile the class and use it inside a script1 adding numbers in different orderings
 */
 public class IntegerTree {
 
@@ -23,7 +26,8 @@ public class IntegerTree {
 		tree.add(1);
 		System.out.println("contains(57) should return true: " + tree.contains(57));
 		System.out.println("contains(56) should return false: " + tree.contains(56));
-		
+		System.out.println("getMax() should give 57: " + tree.getMax());
+		System.out.println("getMin() should give 1: " + tree.getMin());		
 		
 	}
 	
@@ -32,13 +36,65 @@ public class IntegerTree {
 		if (root == null) {
 		
 			root = new IntegerTreeNode(n);
-					
+		
 		} else {
 		
 			root.add(n);
 		
 		}
+	
+	}
+	
+	public int getMax() {
 		
+		int max = 0;
+		
+		try {
+		
+			if (root == null) {
+		
+				throw new NullPointerException("no tree, therefore getMax() cannot return anything");
+			
+			} else if (root.right == null && root.left == null) {
+		
+				return root.n;
+				
+			}
+					
+		} catch (NullPointerException e) {
+		
+			System.out.println(e.getMessage());
+		
+		}
+		
+		return root.getMax();
+	
+	}
+
+	public int getMin() {
+		
+		int min = 0;
+		
+		try {
+		
+			if (root == null) {
+		
+				throw new NullPointerException("no tree, therefore getMin() cannot return anything");
+			
+			} else if (root.right == null && root.left == null) {
+		
+				return root.n;
+				
+			}
+					
+		} catch (NullPointerException e) {
+		
+			System.out.println(e.getMessage());
+		
+		}
+		
+		return root.getMin();
+				
 	}
 
 	public boolean contains(int n) {
@@ -69,6 +125,34 @@ public class IntegerTree {
 		
 			this.n = n;
 			left = right = null;
+		
+		}
+		
+		private int getMax() {
+		
+			if (right == null) {
+	
+				return n;
+					
+			} else {
+			
+				return right.getMax();
+			
+			}		
+		
+		}
+		
+		private int getMin() {
+		
+			if (left == null) {
+	
+				return n;
+					
+			} else {
+			
+				return left.getMin();
+			
+			}		
 		
 		}
 		
