@@ -1,4 +1,4 @@
- // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/05_DATA_STRUCTURES/TREES
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/05_DATA_STRUCTURES/TREES
 // Exercise 9.1 (Introduction to Trees)
 /*
 Complete the class IntegerTreeNode.
@@ -10,7 +10,11 @@ Compile the class and use it inside a script1 adding numbers in different orderi
 Implement as well two methods getMax() and getMin() that returns the
 maximum and the minimum values stored in the tree.
 Compile the class and use it inside a script1 adding numbers in different orderings
+
+9.1.2.
+Add a method toString() to the class. This methods must return a representation of your tree in String form,where every node is represented as a list in square brackets containing its value, the left branch, and the rightbranch; the left branch should be prefixed by “L” and the right branch by R, and an empty branch should be shownas an empty pair of square brackets. Some examples of outputs in Figure 1.After you have commited this version of toString(), make another version that returns a simplified representation,where every node is represented as a list in square brackets containing its value and its branches, but onlyif they are not empty; without using the “L” and “R” prefixes. Some examples of outputs in Figure 1.Check that both versions of the method work by adding several elements and printing the String representationof the tree.
 */
+
 public class IntegerTree {
 
 	private IntegerTreeNode root;
@@ -116,6 +120,8 @@ public class IntegerTree {
 		
 	}
 
+/*	
+	//“complete version”
 	@Override
 	public String toString() {
 	
@@ -126,6 +132,21 @@ public class IntegerTree {
 		} else {
 			
 			return "root[" + root.n + root.toString() + "]";
+			
+		}
+		
+	}
+*/
+	@Override
+	public String toString() {
+	
+		if (root == null) {
+		
+			return "empty tree";
+		
+		} else {
+			
+			return "[" + root.n + root.toString() + "]";
 			
 		}
 		
@@ -143,7 +164,9 @@ public class IntegerTree {
 			left = right = null;
 		
 		}
-		
+
+/*		
+		// “complete” version
 		@Override
 		public String toString() {
 			
@@ -174,7 +197,39 @@ public class IntegerTree {
 			}
 
 		}
+*/
+		// “simplified” version
+		@Override
+		public String toString() {
+			
+			if (left == null) {
+			
+				if (right == null) {
+
+					return " [] []";
+				
+				} else {
+
+					return " []" + " [" + right.n + right.toString() + "]";
+				
+				}
 		
+			} else {
+
+				if (right != null) {
+
+					return " [" + left.n + left.toString() + "]" + " [" + right.n + right.toString()+ "]";
+			
+				} else {
+
+					return " [" + left.n + left.toString() + "]"  + " []";
+
+				}
+
+			}
+
+		}
+
 		private int getMax() {
 		
 			if (right == null) {
