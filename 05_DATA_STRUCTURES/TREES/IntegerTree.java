@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/05_DATA_STRUCTURES/TREES
+ // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/05_DATA_STRUCTURES/TREES
 // Exercise 9.1 (Introduction to Trees)
 /*
 Complete the class IntegerTreeNode.
@@ -27,7 +27,8 @@ public class IntegerTree {
 		System.out.println("contains(57) should return true: " + tree.contains(57));
 		System.out.println("contains(56) should return false: " + tree.contains(56));
 		System.out.println("getMax() should give 57: " + tree.getMax());
-		System.out.println("getMin() should give 1: " + tree.getMin());		
+		System.out.println("getMin() should give 1: " + tree.getMin());
+		System.out.println("toString(): " + tree.toString());
 		
 	}
 	
@@ -115,6 +116,21 @@ public class IntegerTree {
 		
 	}
 
+	@Override
+	public String toString() {
+	
+		if (root == null) {
+		
+			return "empty tree";
+		
+		} else {
+			
+			return "root[" + root.n + root.toString() + "]";
+			
+		}
+		
+	}
+
 	private class IntegerTreeNode {
 	
 		private int n;
@@ -126,6 +142,37 @@ public class IntegerTree {
 			this.n = n;
 			left = right = null;
 		
+		}
+		
+		@Override
+		public String toString() {
+			
+			if (left == null) {
+			
+				if (right == null) {
+
+					return " L[] R[]";
+				
+				} else {
+
+					return " L[]" + " R[" + right.n + right.toString() + "]";
+				
+				}
+		
+			} else {
+
+				if (right != null) {
+
+					return " L[" + left.n + left.toString() + "]" + " R[" + right.n + right.toString()+ "]";
+			
+				} else {
+
+					return " L[" + left.n + left.toString() + "]"  + " R[]";
+
+				}
+
+			}
+
 		}
 		
 		private int getMax() {
