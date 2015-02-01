@@ -60,10 +60,14 @@ public class IntegerTree {
     System.out.println("getMin() should give 1: " + tree.getMin());
     System.out.println("toString(): " + tree.toString());
     System.out.println("depth(): " + tree.depth());
-  //  tree.remove(5);
-  //  System.out.println("toString(): " + tree.toString());
+    System.out.println("contains(5) should return true: " + tree.contains(5));
+//    tree.remove(5);
+    System.out.println("toString(): " + tree.toString());
+    System.out.println("contains(5) should return false: " + tree.contains(5));
+    System.out.println("contains(58) should return true: " + tree.contains(58));
     tree.remove(58);
     System.out.println("toString(): " + tree.toString());
+    System.out.println("contains(58) should return false: " + tree.contains(58));
 
   }
 
@@ -141,7 +145,7 @@ public class IntegerTree {
 
         throw new NullPointerException("no tree, therefore getMax() cannot return anything");
 
-      } else if (root.right == null && root.left == null) {
+      } else if (root.rightChild == null && root.leftChild == null) {
 
         return root.n;
 
@@ -170,7 +174,7 @@ public class IntegerTree {
 
         throw new NullPointerException("no tree, therefore getMin() cannot return anything");
 
-      } else if (root.right == null && root.left == null) {
+      } else if (root.rightChild == null && root.leftChild == null) {
 
         return root.n;
 
@@ -222,46 +226,51 @@ public class IntegerTree {
     IntegerTreeNode replacement = null;
     IntegerTreeNode replacementParent = null;
 
-    if (root.left != null) {
-
-      replacementParent = retrieveParentOfReplacementFrom("left", root.left, root);
-
+    if (root.leftChild != null) {
+System.out.println("should print here.........");
+      replacementParent = retrieveParentOfReplacementFrom("left", root.leftChild, root);
+System.out.println("replacementParent should be 5.....  " + replacementParent.n);
       if (replacementParent == root) {
-
-        replacement = replacementParent.left;
-        replacement.right = root.right;
+System.out.println("replacementParent is also root. so this should print");
+        replacement = replacementParent.leftChild;
+System.out.println("replacement is therefore 1 ....... " + replacement.n);
+System.out.println("replacement's old rightChild was null ....... " + replacement.rightChild);
+        replacement.rightChild = root.rightChild;
+System.out.println("replacement's new rightChild is therefore 42 ....... " + replacement.rightChild.n);
 
       } else {
-
-        replacement = replacementParent.right;
-        replacement.right = root.right;
-        replacementParent.right = replacement.left;
-        replacement.left = root.left;
+System.out.println("should not print - -- - - - -");
+        replacement = replacementParent.rightChild;
+        replacement.rightChild = root.rightChild;
+        replacementParent.rightChild = replacement.leftChild;
+        replacement.leftChild = root.leftChild;
 
       }
 
-    } else if (root.right != null) {
-
-      replacementParent = retrieveParentOfReplacementFrom("right", root.right, root);
+    } else if (root.rightChild != null) {
+System.out.println("should not print - -- - - - -");
+      replacementParent = retrieveParentOfReplacementFrom("right", root.rightChild, root);
 
       if (replacementParent == root) {
 
-        replacement = replacementParent.right;
-        replacement.left = root.left;
+        replacement = replacementParent.rightChild;
+        replacement.leftChild = root.leftChild;
 
       } else {
 
-        replacement = replacementParent.left;
-        replacement.left = root.left;
-        replacementParent.left = replacement.right;
-        replacement.right = root.right;
+        replacement = replacementParent.leftChild;
+        replacement.leftChild = root.leftChild;
+        replacementParent.leftChild = replacement.rightChild;
+        replacement.rightChild = root.rightChild;
 
       }
 
     }
-
+System.out.println("root still set to 5:   " + root.n);
     root = replacement;
-
+System.out.println("root now set to 1:   " + root.n);
+System.out.println("root.leftChild now null:   " + root.leftChild);
+System.out.println("root.rightChild now 42:   " + root.rightChild.n);
   }
 
   /**
@@ -274,25 +283,25 @@ public class IntegerTree {
 
     if (subtree.equals("left")) {
 
-      if (child.right == null) {
+      if (child.rightChild == null) {
 
         return parent;
 
       } else {
 
-        return retrieveParentOfReplacementFrom("left", child.right, child);
+        return retrieveParentOfReplacementFrom("left", child.rightChild, child);
 
       }
 
     } else {
 
-      if (child.left == null) {
+      if (child.leftChild == null) {
 
         return parent;
 
       } else {
 
-        return retrieveParentOfReplacementFrom("right", child.left, child);
+        return retrieveParentOfReplacementFrom("right", child.leftChild, child);
 
       }
 
@@ -333,49 +342,49 @@ public class IntegerTree {
   }
 
   /**
-  *  the node as an inner class
+  *  The node as an inner class
   */
   private class IntegerTreeNode {
 
     private int n;
-    private IntegerTreeNode left;
-    private IntegerTreeNode right;
+    private IntegerTreeNode leftChild;
+    private IntegerTreeNode rightChild;
     private int deepest;
 
     private IntegerTreeNode(int n) {
 
       this.n = n;
-      left = right = null;
+      leftChild = rightChild = null;
       deepest = 0;
 
     }
 
     /**
-    *  adds a new node with the passed integer
+    *  Adds a new node with the passed integer
     */
     private void add(int n) {
 
       if (n >= this.n) {
 
-        if (right == null) {
+        if (rightChild == null) {
 
-          right = new IntegerTreeNode(n);
+          rightChild = new IntegerTreeNode(n);
 
         } else {
 
-          right.add(n);
+          rightChild.add(n);
 
         }
 
       } else {
 
-        if (left == null) {
+        if (leftChild == null) {
 
-          left = new IntegerTreeNode(n);
+          leftChild = new IntegerTreeNode(n);
 
         } else {
 
-          left.add(n);
+          leftChild.add(n);
 
         }
 
@@ -388,7 +397,7 @@ public class IntegerTree {
   */
   private boolean contains(int n) {
 
-    if (right == null && left == null) {
+    if (rightChild == null && leftChild == null) {
 
       return false;
 
@@ -396,33 +405,33 @@ public class IntegerTree {
 
     if (n > this.n) {
 
-      if (right == null) {
+      if (rightChild == null) {
 
         return false;
 
-      } else if (right.n == n) {
+      } else if (rightChild.n == n) {
 
         return true;
 
       } else {
 
-        return right.contains(n);
+        return rightChild.contains(n);
 
       }
 
     } else {
 
-      if (left == null) {
+      if (leftChild == null) {
 
         return false;
 
-      } else if (left.n == n) {
+      } else if (leftChild.n == n) {
 
         return true;
 
       } else {
 
-        return left.contains(n);
+        return leftChild.contains(n);
 
       }
 
@@ -444,7 +453,7 @@ public class IntegerTree {
 
       }
 
-      if (left == null && right == null) {
+      if (leftChild == null && rightChild == null) {
 
         return root.deepest;
 
@@ -458,20 +467,20 @@ public class IntegerTree {
 
         }
 
-        if (left != null && right == null) {
+        if (leftChild != null && rightChild == null) {
 
-          return left.depth(depth_);
-
-        }
-
-        if (right != null && left == null) {
-
-          return right.depth(depth_);
+          return leftChild.depth(depth_);
 
         }
 
-        left.depth(depth_);
-        return right.depth(depth_);
+        if (rightChild != null && leftChild == null) {
+
+          return rightChild.depth(depth_);
+
+        }
+
+        leftChild.depth(depth_);
+        return rightChild.depth(depth_);
 
       }
 
@@ -482,13 +491,13 @@ public class IntegerTree {
     */
     private int getMax() {
 
-      if (right == null) {
+      if (rightChild == null) {
 
         return n;
 
       } else {
 
-        return right.getMax();
+        return rightChild.getMax();
 
       }
 
@@ -499,13 +508,13 @@ public class IntegerTree {
     */
     private int getMin() {
 
-      if (left == null) {
+      if (leftChild == null) {
 
         return n;
 
       } else {
 
-        return left.getMin();
+        return leftChild.getMin();
 
       }
 
@@ -518,33 +527,33 @@ public class IntegerTree {
     */
     private void remove(IntegerTreeNode node, int n) {
 
-      if (node.left != null) {
+      if (n < node.n) {
 
-        if (n < node.n) {
+        if (node.leftChild != null) {
 
-          if (n == node.left.n) {
+          if (n == node.leftChild.n) {
 
-            reorderTreeAfterRemoving(node.left, "left", node);
+            reorderTreeAfterRemoving(node.leftChild, "leftChild", node);
 
           } else {
 
-            remove(node.left, n);
+            remove(node.leftChild, n);
 
           }
 
         }
 
-      } else if (node.right != null) {
+      } else if (n > node.n) {
 
-        if (n > node.n) {
+        if (node.rightChild != null) {
 
-          if (n == node.right.n) {
+          if (n == node.rightChild.n) {
 
-            reorderTreeAfterRemoving(node.right, "right", node);
+            reorderTreeAfterRemoving(node.rightChild, "rightChild", node);
 
           } else {
 
-            remove(node.right, n);
+            remove(node.rightChild, n);
 
           }
 
@@ -559,57 +568,58 @@ public class IntegerTree {
     * These two should not be confused with the node that will replace the removed node,
     * and its parent node.
     */
-    private void reorderTreeAfterRemoving(IntegerTreeNode nodeToRemove, String childOf, IntegerTreeNode removeParent) {
+    private void reorderTreeAfterRemoving(IntegerTreeNode nodeToRemove, String leftOrRightChild, IntegerTreeNode parentOfNodeToRemove) {
 
       IntegerTreeNode replacement = null;
-      IntegerTreeNode replacementParent = null;
-      IntegerTreeNode removeParent_ = removeParent;
+      IntegerTreeNode parentOfReplacement = null;
+      IntegerTreeNode parentOfNodeToRemove_ = parentOfNodeToRemove;
+      // determining which subtree of nodeToRemove its replacement node will be found.
+      if (nodeToRemove.leftChild != null) {
 
-      if (nodeToRemove.left != null) {
+        parentOfReplacement = retrieveParentOfReplacementFrom("left", nodeToRemove.leftChild, nodeToRemove);
 
-        replacementParent = retrieveParentOfReplacementFrom("left subtree of", nodeToRemove, removeParent);
+        if (parentOfReplacement == nodeToRemove) {
 
-        if (replacementParent == nodeToRemove) {
-
-          replacement = nodeToRemove.left;
-          replacement.right = nodeToRemove.right;
+          replacement = nodeToRemove.leftChild;
+          replacement.rightChild = nodeToRemove.rightChild;
 
         } else {
 
-          replacement = replacementParent.right;
-          replacement.right = nodeToRemove.right;
-          replacementParent.right = replacement.left;
-          replacement.left = nodeToRemove.left;
+          replacement = parentOfReplacement.rightChild;
+          replacement.rightChild = nodeToRemove.rightChild;
+          parentOfReplacement.rightChild = replacement.leftChild;
+          replacement.leftChild = nodeToRemove.leftChild;
 
         }
 
-      } else if (nodeToRemove.right != null) {
+      } else if (nodeToRemove.rightChild != null) {
 
-        replacementParent = retrieveParentOfReplacementFrom("right subtree of", nodeToRemove, removeParent);
+        parentOfReplacement = retrieveParentOfReplacementFrom("right", nodeToRemove.rightChild, nodeToRemove);
 
-        if (replacementParent == nodeToRemove) {
+        if (parentOfReplacement == nodeToRemove) {
 
-          replacement = nodeToRemove.right;
-          replacement.left = nodeToRemove.left;
+          replacement = nodeToRemove.rightChild;
+          replacement.leftChild = nodeToRemove.leftChild;
 
         } else {
 
-          replacement = replacementParent.left;
-          replacement.left = nodeToRemove.left;
-          replacementParent.left = replacement.right;
-          replacement.right = nodeToRemove.right;
+          replacement = parentOfReplacement.leftChild;
+
+          replacement.leftChild = nodeToRemove.leftChild;
+          parentOfReplacement.leftChild = replacement.rightChild;
+          replacement.rightChild = nodeToRemove.rightChild;
 
         }
 
       }
 
-      if (childOf.equals("left")) {
+      if (leftOrRightChild.equals("leftChild")) {
 
-        removeParent_.left = replacement;
+        parentOfNodeToRemove_.leftChild = replacement;
 
-      } else if (childOf.equals("right")) {
+      } else if (leftOrRightChild.equals("rightChild")) {
 
-        removeParent_.right = replacement;
+        parentOfNodeToRemove_.rightChild = replacement;
 
       }
 
@@ -630,27 +640,28 @@ public class IntegerTree {
     */
     private IntegerTreeNode retrieveParentOfReplacementFrom(String subtree, IntegerTreeNode child, IntegerTreeNode parent) {
 
-      if (subtree.equals("left subtree of")) {
 
-        if (child.right == null) {
+      if (subtree.equals("left")) {
+
+        if (child.rightChild == null) {
 
           return parent;
 
         } else {
 
-          return retrieveParentOfReplacementFrom("left subtree of", child.right, child);
+          return retrieveParentOfReplacementFrom(subtree, child.rightChild, child);
 
         }
 
       } else {
 
-        if (child.left == null) {
+        if (child.leftChild == null) {
 
           return parent;
 
         } else {
 
-          return retrieveParentOfReplacementFrom("right subtree of", child.left, child);
+          return retrieveParentOfReplacementFrom(subtree, child.leftChild, child);
 
         }
 
@@ -663,27 +674,27 @@ public class IntegerTree {
     @Override
     public String toString() {
 
-      if (left == null) {
+      if (leftChild == null) {
 
-        if (right == null) {
+        if (rightChild == null) {
 
           return "L[]R[] ";
 
         } else {
 
-          return "L[]" + "R[" + right.n + right.toString() + "] ";
+          return "L[]" + "R[" + rightChild.n + rightChild.toString() + "] ";
 
         }
 
       } else {
 
-        if (right != null) {
+        if (rightChild != null) {
 
-          return "L[" + left.n + left.toString() + "] " + " R[" + right.n + right.toString()+ "] ";
+          return "L[" + leftChild.n + leftChild.toString() + "] " + " R[" + rightChild.n + rightChild.toString()+ "] ";
 
         } else {
 
-          return "L[" + left.n + left.toString() + "] "  + " R[] ";
+          return "L[" + leftChild.n + leftChild.toString() + "] "  + " R[] ";
 
         }
 
@@ -696,27 +707,27 @@ public class IntegerTree {
     @Override
     public String toString() {
 
-      if (left == null) {
+      if (leftChild == null) {
 
-        if (right == null) {
+        if (rightChild == null) {
 
           return "" + n + "[][]";
 
         } else {
 
-          return "" + n + "[]" + "[" + right.toString() + "]";
+          return "" + n + "[]" + "[" + rightChild.toString() + "]";
 
         }
 
       } else {
 
-        if (right != null) {
+        if (rightChild != null) {
 
-          return "" + n + "[" + left.toString() + "]" + "[" + right.toString() + "]";
+          return "" + n + "[" + leftChild.toString() + "]" + "[" + rightChild.toString() + "]";
 
         } else {
 
-          return "" + n + "[" + left.toString() + "]"  + "[]";
+          return "" + n + "[" + leftChild.toString() + "]"  + "[]";
 
         }
 
