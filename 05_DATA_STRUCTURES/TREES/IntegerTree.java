@@ -502,9 +502,9 @@ public class IntegerTree {
     private void buildBalancedSubtree(int indexOfParent, int indexOfLeftMargin, int indexOfRightMargin) {
 
       int lengthOfMarginSpecifiedSubarray = Math.abs(indexOfLeftMargin - indexOfRightMargin) + 1;
-System.out.print("\nlengthOfMarginSpecifiedSubarray: " + lengthOfMarginSpecifiedSubarray);
+
       if (lengthOfMarginSpecifiedSubarray == 3) {
-System.out.println("     SHOULD PRINT IF 3");
+
         leftChild = allNodesStore[indexOfLeftMargin];
         leftChild.leftChild = null;
         leftChild.rightChild = null;
@@ -513,18 +513,10 @@ System.out.println("     SHOULD PRINT IF 3");
         rightChild.rightChild = null;
 
       } else if (lengthOfMarginSpecifiedSubarray == 2) {
-System.out.println("SHOULD PRINT IF 2");
-System.out.println("====================================indexOfParent: " + indexOfParent);
-System.out.println("====================================indexOfRightMargin: " + indexOfRightMargin);
-System.out.println("====================================indexOfLeftMargin: " + indexOfLeftMargin);
+
         if (indexOfParent == indexOfRightMargin) {
-System.out.println("this.n should be 5 and 66 and 42" + this.n);
+
           leftChild = allNodesStore[indexOfLeftMargin];
-System.out.print("this.leftChild should be 1 and 58 and null: ");
-if (leftChild == null) {
-System.out.print(leftChild);
-} else {System.out.print(leftChild.n);}
-System.out.println("this.leftChild should be 1 and 58" + leftChild.n);
           leftChild.leftChild = null;
           leftChild.rightChild = null;
           rightChild = null;
@@ -539,16 +531,11 @@ System.out.println("this.leftChild should be 1 and 58" + leftChild.n);
         }
 
       } else {
-System.out.println("           SHOULD PRINT IF NOT 2 OR 3");
+
         int relativePositionOfLeftChild = -1 * ((Math.abs(indexOfParent - indexOfLeftMargin) + 1 ) / 2);
-System.out.println("...indexOfParent: " + indexOfParent + " ...indexOfLeftMargin: " + indexOfLeftMargin + " ...indexOfRightMargin: " + indexOfRightMargin);
         int relativePositionOfRightChild = (Math.abs(indexOfParent - indexOfRightMargin) + 1 ) / 2;
-System.out.println("relativePositionOfRightChild: " + relativePositionOfRightChild);
-System.out.println("relativePositionOfLeftChild: " + relativePositionOfLeftChild);
         int indexOfLeftChild = indexOfParent + relativePositionOfLeftChild;
         int indexOfRightChild = indexOfParent + relativePositionOfRightChild;
-System.out.println("indexOfRightChild: " + indexOfRightChild);
-System.out.println("indexOfLeftChild: " + indexOfLeftChild);
         leftChild = allNodesStore[indexOfLeftChild];
         rightChild = allNodesStore[indexOfRightChild];
         leftChild.buildBalancedSubtree(indexOfLeftChild, indexOfLeftMargin, indexOfParent - 1);
