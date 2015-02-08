@@ -36,13 +36,17 @@ the same number of nodes on both branches.
 public class IntegerTree {
 
   private IntegerTreeNode root;
+  private int deepest;
+  private int nodeCount;
+  private IntegerTreeNode[] allNodesStore;
 
   public static void main(String[] args) {
 
     IntegerTree tree = new IntegerTree();
-    System.out.println("root should be null at start: " + tree.root);
+    System.out.println("root should be empty at start: " + tree.toString());
+    System.out.println("nodeCount should be 0 at start: " + tree.nodeCount);
     tree.add(5);
-    System.out.println("root should now be 5: " + tree.root);
+    System.out.println("root should now be 5: " + tree.toString());
     tree.add(42);
     tree.add(6);
     tree.add(8);
@@ -60,25 +64,35 @@ public class IntegerTree {
     System.out.println("getMin() should give 1: " + tree.getMin());
     System.out.println("toString(): " + tree.toString());
     System.out.println("depth(): " + tree.depth());
-    System.out.println("contains(5) should return true: " + tree.contains(5));
-//    tree.remove(5);
-    System.out.println("toString(): " + tree.toString());
-    System.out.println("contains(5) should return false: " + tree.contains(5));
-    System.out.println("contains(58) should return true: " + tree.contains(58));
-    tree.remove(58);
-    System.out.println("toString(): " + tree.toString());
-    System.out.println("contains(58) should return false: " + tree.contains(58));
+//  System.out.println("...contains(58) should return true: " + tree.contains(58));
+//  tree.remove(58);
+//  System.out.println("...after removing 58 " + tree.toString());
+//  System.out.println("...contains(58) should return false: " + tree.contains(58));
+//  tree.rebalance();
+//  System.out.println("After rebalancing: " + tree.toString());
+    tree.countAllNodes();
+    System.out.println("nodeCount should be 12: " + tree.nodeCount);
+    tree.nodeCount = 0;
+    System.out.println("nodeCount reset to 0. root.countNodesInSubtree() should be 12: " + tree.root.countNodesInSubtree());
+    tree.nodeCount = 0;
+    System.out.println("nodeCount reset to 0. nodeCount root.left should be 1: " + tree.root.leftChild.countNodesInSubtree());
+    tree.nodeCount = 0;
+    System.out.println("nodeCount reset to 0. nodeCount root.left should be 10: " + tree.root.rightChild.countNodesInSubtree());
+//  System.out.println("NEW ROOT IS: " + tree.root.findNewRootOfBalancedSubtree().n);
+    tree.rebalance();
+    System.out.println("rebalanced tree: " + tree.toString());
 
   }
 
   public IntegerTree() {
 
     root = null;
+    deepest = nodeCount = 0;
 
   }
 
   /**
-  *  adds a new integer node with the integer passed
+  * Adds a new integer node with the integer passed
   */
   public void add(int n) {
 
@@ -94,8 +108,24 @@ public class IntegerTree {
 
   }
 
+  public void buildBalancedTree() {
+
+    int leftIndexOfSubtree, rightIndexOfSubtree = 0;
+    int indexOfNewRoot = (allNodesStore.length / 2) - 1;
+
+    leftIndexOfSubtree = 0;
+    rightIndexOfSubtree = indexOfNewRoot;
+    root = allNodesStore[indexOfNewRoot];
+    root.buildBalancedSubtree("left", indexOfNewRoot, leftIndexOfSubtree, rightIndexOfSubtree);
+
+    leftIndexOfSubtree = indexOfNewRoot + 1;
+    rightIndexOfSubtree = allNodesStore.length - 1;
+    root.buildBalancedSubtree("right", indexOfNewRoot, leftIndexOfSubtree, rightIndexOfSubtree);
+
+  }
+
   /**
-  *  returns true if tree contains the integer passed
+  * Returns true if tree contains the integer passed
   */
   public boolean contains(int n) {
 
@@ -110,6 +140,25 @@ public class IntegerTree {
     } else {
 
       return root.contains(n);
+
+    }
+
+  }
+
+  /**
+  * Returns the number of nodes in whole tree, starting with the root.
+  */
+  public int countAllNodes() {
+
+    nodeCount = 0;
+
+    if (root == null) {
+
+      return 0;
+
+    } else {
+
+      return root.countNodesInSubtree();
 
     }
 
@@ -143,7 +192,7 @@ public class IntegerTree {
 
       if (root == null) {
 
-        throw new NullPointerException("no tree, therefore getMax() cannot return anything");
+        throw new NullPointerException("NullPointerException: no tree, therefore getMax() cannot return anything");
 
       } else if (root.rightChild == null && root.leftChild == null) {
 
@@ -172,7 +221,7 @@ public class IntegerTree {
 
       if (root == null) {
 
-        throw new NullPointerException("no tree, therefore getMin() cannot return anything");
+        throw new NullPointerException("NullPointerException: no tree, therefore getMin() cannot return anything");
 
       } else if (root.rightChild == null && root.leftChild == null) {
 
@@ -190,6 +239,35 @@ public class IntegerTree {
 
   }
 
+  public void rebalance() {
+
+    try {
+
+      if (root == null) {
+
+        throw new IllegalArgumentException("empty tree - hence, nothing to rebalance");
+
+      } else if (root.countNodesInSubtree() < 2) {
+
+        throw new IllegalArgumentException("only a root and one child node - hence, nothing to rebalance");
+
+      }
+
+      allNodesStore = new IntegerTreeNode[countAllNodes()];
+      storeNodesInOrder();
+      buildBalancedTree();
+
+    } catch (IllegalArgumentException e) {
+
+      System.out.println(e.getMessage());
+
+    }
+
+  }
+
+  /**
+  * Removes node containing int n. Calls other functions to reorder the tree after removing the node.
+  */
   public boolean remove(int n) {
 
     boolean nodeRemove = true;
@@ -227,19 +305,16 @@ public class IntegerTree {
     IntegerTreeNode replacementParent = null;
 
     if (root.leftChild != null) {
-System.out.println("should print here.........");
+
       replacementParent = retrieveParentOfReplacementFrom("left", root.leftChild, root);
-System.out.println("replacementParent should be 5.....  " + replacementParent.n);
+
       if (replacementParent == root) {
-System.out.println("replacementParent is also root. so this should print");
+
         replacement = replacementParent.leftChild;
-System.out.println("replacement is therefore 1 ....... " + replacement.n);
-System.out.println("replacement's old rightChild was null ....... " + replacement.rightChild);
         replacement.rightChild = root.rightChild;
-System.out.println("replacement's new rightChild is therefore 42 ....... " + replacement.rightChild.n);
 
       } else {
-System.out.println("should not print - -- - - - -");
+
         replacement = replacementParent.rightChild;
         replacement.rightChild = root.rightChild;
         replacementParent.rightChild = replacement.leftChild;
@@ -248,7 +323,7 @@ System.out.println("should not print - -- - - - -");
       }
 
     } else if (root.rightChild != null) {
-System.out.println("should not print - -- - - - -");
+
       replacementParent = retrieveParentOfReplacementFrom("right", root.rightChild, root);
 
       if (replacementParent == root) {
@@ -266,11 +341,9 @@ System.out.println("should not print - -- - - - -");
       }
 
     }
-System.out.println("root still set to 5:   " + root.n);
+
     root = replacement;
-System.out.println("root now set to 1:   " + root.n);
-System.out.println("root.leftChild now null:   " + root.leftChild);
-System.out.println("root.rightChild now 42:   " + root.rightChild.n);
+
   }
 
   /**
@@ -309,7 +382,49 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
 
   }
 
-/*
+  /**
+  * Stores the root at correct index in allNodesStore.
+  * Stores the remaining nodes via IntegerTreeNode's storeNodesInOrderFrom(int,String).
+  */
+  public void storeNodesInOrder() {
+
+    int positionOfRoot = 0;
+
+    try {
+
+      if (root == null) {
+
+        throw new IllegalArgumentException("no tree - therefore can't store nodes");
+
+      }
+
+      if (root.leftChild != null) {
+
+        nodeCount = 0;
+        positionOfRoot = root.leftChild.countNodesInSubtree();
+        allNodesStore[positionOfRoot] = root;
+        root.leftChild.storeNodesInOrderFrom(positionOfRoot, "this is left");
+
+      } else {
+
+        allNodesStore[positionOfRoot] = root;
+
+      }
+
+      if (root.rightChild != null) {
+
+        root.rightChild.storeNodesInOrderFrom(positionOfRoot, "this is right");
+
+      }
+
+    } catch (IllegalArgumentException e) {
+
+      System.out.println(e.getMessage());
+
+    }
+
+  }
+
   //“complete version”
   @Override
   public String toString() {
@@ -320,12 +435,13 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
 
     } else {
 
-      return "root[" + root.n + root.toString(root) + "]";
+      return "ROOT [" + root.n + root.toString() + "]";
 
     }
 
   }
-*/
+/*
+  //"simple version"
   @Override
   public String toString() {
 
@@ -340,27 +456,25 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
     }
 
   }
-
+*/
   /**
-  *  The node as an inner class
+  * The node as an inner class
   */
   private class IntegerTreeNode {
 
     private int n;
     private IntegerTreeNode leftChild;
     private IntegerTreeNode rightChild;
-    private int deepest;
 
     private IntegerTreeNode(int n) {
 
       this.n = n;
       leftChild = rightChild = null;
-      deepest = 0;
 
     }
 
     /**
-    *  Adds a new node with the passed integer
+    * Adds a new node with the passed integer
     */
     private void add(int n) {
 
@@ -392,78 +506,176 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
 
     }
 
-  /**
-  *  returns true if tree contains the integer passed
-  */
-  private boolean contains(int n) {
+    private void buildBalancedSubtree(String leftOrRightSubtree, int parentPosition, int leftMarginOfSubtree, int rightMarginOfSubtree) {
 
-    if (rightChild == null && leftChild == null) {
+      int lengthOfSubtree = Math.abs(leftMarginOfSubtree - rightMarginOfSubtree) + 1;
+      int childNodeRelativePosition = lengthOfSubtree / 2;
+      int childNodePosition = 0;
 
-      return false;
+      if (lengthOfSubtree == 1) {
+
+          leftChild = null;
+          rightChild = null;
+
+      } else if (lengthOfSubtree == 2) {
+
+        if (leftOrRightSubtree.equals("left")) {
+
+          leftChild = allNodesStore[parentPosition - 1];
+          leftChild.leftChild = null;
+          leftChild.rightChild = null;
+
+        } else if (leftOrRightSubtree.equals("right")) {
+
+          rightChild = allNodesStore[parentPosition + 1];
+          rightChild.leftChild = null;
+          rightChild.rightChild = null;
+
+        }
+
+      } else if (lengthOfSubtree > 2) {
+
+        if (leftOrRightSubtree.equals("left")) {
+
+          childNodePosition = parentPosition - childNodeRelativePosition;
+          leftChild = allNodesStore[childNodePosition];
+
+        } else if (leftOrRightSubtree.equals("right")) {
+
+          childNodePosition = parentPosition + childNodeRelativePosition;
+          rightChild = allNodesStore[childNodePosition];
+
+        }
+
+        if (leftChild != null) {
+
+          leftChild.buildBalancedSubtree("left", childNodePosition, leftMarginOfSubtree, childNodePosition);
+
+        } // I THINK THE PROBLEM MAY BE WITH LEFT AND RIGHT MARGINS. I NEED TO WORK OUT
+        //  IF I WANT TO SPLIT MY SUBARRAYS AS 01234 56789 OR AS 012345 56789 AND THEN TO CHECK THAT I DID THE SAME IN THE INTERGER TREE BALANCE METHOD
+
+        if (rightChild != null) {
+
+          rightChild.buildBalancedSubtree("right", childNodePosition, childNodePosition, rightMarginOfSubtree);
+
+        }
+
+      }
 
     }
 
-    if (n > this.n) {
+    /**
+    * Returns true if tree contains the integer passed
+    */
+    private boolean contains(int n) {
+
+      if (rightChild == null && leftChild == null) {
+
+        return false;
+
+      }
+
+      if (n > this.n) {
+
+        if (rightChild == null) {
+
+          return false;
+
+        } else if (rightChild.n == n) {
+
+          return true;
+
+        } else {
+
+          return rightChild.contains(n);
+
+        }
+
+      } else {
+
+        if (leftChild == null) {
+
+          return false;
+
+        } else if (leftChild.n == n) {
+
+          return true;
+
+        } else {
+
+          return leftChild.contains(n);
+
+        }
+
+      }
+
+    }
+
+    /**
+    * Adds number of nodes from this node on down to the present value of 'nodeCount' in Tree.
+    */
+    private int countNodesInSubtree() {
+
+      if (this != null) {
+
+        nodeCount++;
+
+      }
 
       if (rightChild == null) {
 
-        return false;
+        if (leftChild == null) {
 
-      } else if (rightChild.n == n) {
+          return nodeCount;
 
-        return true;
+        } else {
 
-      } else {
+          return leftChild.countNodesInSubtree();
 
-        return rightChild.contains(n);
-
-      }
-
-    } else {
-
-      if (leftChild == null) {
-
-        return false;
-
-      } else if (leftChild.n == n) {
-
-        return true;
+        }
 
       } else {
 
-        return leftChild.contains(n);
+        if (leftChild == null) {
+
+          return rightChild.countNodesInSubtree();
+
+        } else {
+
+          leftChild.countNodesInSubtree();
+          return rightChild.countNodesInSubtree();
+
+        }
 
       }
 
     }
 
-  }
-
     /**
-    *   Calculates the depth of the tree that has at least a root.
-    *   (If only root, depth is zero).
+    * Calculates the depth of the tree that has at least a root.
+    * (If only root, depth is zero).
     */
     private int depth(int depth) {
 
       int depth_ = depth;
 
-      if (depth > root.deepest) {
+      if (depth > deepest) {
 
-        root.deepest = depth;
+        deepest = depth;
 
       }
 
       if (leftChild == null && rightChild == null) {
 
-        return root.deepest;
+        return deepest;
 
       } else {
 
         depth_++;
 
-        if (depth_ > root.deepest) {
+        if (depth_ > deepest) {
 
-          root.deepest = depth_;
+          deepest = depth_;
 
         }
 
@@ -487,7 +699,45 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
     }
 
     /**
-    *  finds the maximum integer in the tree
+    * Calcuates the difference between the number of nodes in the left subtree
+    * and right subtree of this node.
+    */
+    private int differenceOfLeftRightNodeCount() {
+
+      int difference = 0;
+
+      if (leftChild == null) {
+
+        if (rightChild == null) {
+
+          difference = 0;
+
+        } else {
+
+          difference = 0 - rightChild.countNodesInSubtree();
+
+        }
+
+      } else {
+
+        if (rightChild == null) {
+
+          difference = leftChild.countNodesInSubtree() - 0;
+
+        } else {
+
+          difference = leftChild.countNodesInSubtree() - rightChild.countNodesInSubtree();
+
+        }
+
+      }
+
+      return difference;
+
+    }
+
+    /**
+    * Finds the maximum integer in the tree
     */
     private int getMax() {
 
@@ -504,7 +754,7 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
     }
 
     /**
-    *  finds the minimum integer in the tree
+    * Finds the minimum integer in the tree
     */
     private int getMin() {
 
@@ -573,7 +823,7 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
       IntegerTreeNode replacement = null;
       IntegerTreeNode parentOfReplacement = null;
       IntegerTreeNode parentOfNodeToRemove_ = parentOfNodeToRemove;
-      // determining which subtree of nodeToRemove its replacement node will be found.
+      // Following condition determines which subtree (left or right) of nodeToRemove its replacement node will be retrieved from.
       if (nodeToRemove.leftChild != null) {
 
         parentOfReplacement = retrieveParentOfReplacementFrom("left", nodeToRemove.leftChild, nodeToRemove);
@@ -627,19 +877,16 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
 
     /**
     * Takes the node to be removed as the 'parent'. The first potential replacement node is
-    * the 'child' node (be it on left of right).
+    * the 'child' node (be it in left or right subtree).
     *
     * Retrieves the parent of the node that will replace the node to be removed.
     * (The parent is required because the pointer that the parent uses to point to the replacement
     * node will have to be reset to one of the replacement node's child nodes (before the replacement
-    * node can be relocated).
+    * node own pointers can be redirected).
+    * (This wouldn't be necessary if the tree was "threaded" (i.e. nodes point back upwards)).
     *
-    * This would not be necessary if the tree was a threaded tree structures (i.e. where nodes can point back up the tree)).
-    * Hence, if the left subtree is specifed, node retrieved should be that with the highest int n.
-    * If the right subtree is specified, node retrieved should be that with the lowerst int n.
     */
     private IntegerTreeNode retrieveParentOfReplacementFrom(String subtree, IntegerTreeNode child, IntegerTreeNode parent) {
-
 
       if (subtree.equals("left")) {
 
@@ -669,7 +916,69 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
 
     }
 
-/*
+    /**
+    * Stores child nodes of the root into an array, by their integers, n, in ascending numerical order.
+    */
+    private void storeNodesInOrderFrom(int positionOfParent, String thisIsLeftOrRightChild) {
+
+      nodeCount = 0;
+      int newLeftChildPosition = 0;
+      int newRightChildPosition = 0;
+      int indexPositionsToLeftOfParent = 1;
+      int indexPositionsToRightOfParent = 1;
+
+      if (thisIsLeftOrRightChild.equals("this is left")) {
+
+        if (rightChild != null) {
+
+          indexPositionsToLeftOfParent += rightChild.countNodesInSubtree();
+
+        }
+
+        newLeftChildPosition = positionOfParent - indexPositionsToLeftOfParent;
+        allNodesStore[newLeftChildPosition] = this;
+
+        if (leftChild != null) {
+
+          leftChild.storeNodesInOrderFrom(newLeftChildPosition, "this is left");
+
+        }
+
+        if (rightChild != null) {
+
+          rightChild.storeNodesInOrderFrom(newLeftChildPosition, "this is right");
+
+        }
+
+      }
+
+      if (thisIsLeftOrRightChild.equals("this is right")) {
+
+        if (leftChild != null) {
+
+          indexPositionsToRightOfParent += leftChild.countNodesInSubtree();
+
+        }
+
+        newRightChildPosition = positionOfParent + indexPositionsToRightOfParent;
+        allNodesStore[newRightChildPosition] = this;
+
+        if (leftChild != null) {
+
+          leftChild.storeNodesInOrderFrom(newRightChildPosition, "this is left");
+
+        }
+
+        if (rightChild != null) {
+
+          rightChild.storeNodesInOrderFrom(newRightChildPosition, "this is right");
+
+        }
+
+      }
+
+    }
+
     // “complete” version
     @Override
     public String toString() {
@@ -678,11 +987,11 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
 
         if (rightChild == null) {
 
-          return "L[]R[] ";
+          return "L[]R[]";
 
         } else {
 
-          return "L[]" + "R[" + rightChild.n + rightChild.toString() + "] ";
+          return "L[]" + "R[" + rightChild.n + rightChild.toString() + "]";
 
         }
 
@@ -690,19 +999,19 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
 
         if (rightChild != null) {
 
-          return "L[" + leftChild.n + leftChild.toString() + "] " + " R[" + rightChild.n + rightChild.toString()+ "] ";
+          return "L[" + leftChild.n + leftChild.toString() + "]" + "R[" + rightChild.n + rightChild.toString()+ "]";
 
         } else {
 
-          return "L[" + leftChild.n + leftChild.toString() + "] "  + " R[] ";
+          return "L[" + leftChild.n + leftChild.toString() + "]"  + "R[]";
 
         }
 
       }
 
     }
-*/
 
+/*
     // “simplified” version
     @Override
     public String toString() {
@@ -734,7 +1043,7 @@ System.out.println("root.rightChild now 42:   " + root.rightChild.n);
       }
 
     }
-
+*/
   }
 
 }
