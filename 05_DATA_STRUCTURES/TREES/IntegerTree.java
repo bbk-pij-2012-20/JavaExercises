@@ -78,7 +78,6 @@ public class IntegerTree {
     System.out.println("nodeCount reset to 0. nodeCount root.left should be 1: " + tree.root.leftChild.countNodesInSubtree());
     tree.nodeCount = 0;
     System.out.println("nodeCount reset to 0. nodeCount root.left should be 10: " + tree.root.rightChild.countNodesInSubtree());
-//  System.out.println("NEW ROOT IS: " + tree.root.findNewRootOfBalancedSubtree().n);
     tree.rebalance();
     System.out.println("rebalanced tree: " + tree.toString());
 
@@ -110,17 +109,11 @@ public class IntegerTree {
 
   public void buildBalancedTree() {
 
-    int leftIndexOfSubtree, rightIndexOfSubtree = 0;
+    int indexOfLeftMargin = 0;
+    int indexOfRightMargin = allNodesStore.length - 1;
     int indexOfNewRoot = (allNodesStore.length / 2) - 1;
-
-    leftIndexOfSubtree = 0;
-    rightIndexOfSubtree = indexOfNewRoot;
     root = allNodesStore[indexOfNewRoot];
-    root.buildBalancedSubtree("left", indexOfNewRoot, leftIndexOfSubtree, rightIndexOfSubtree);
-
-    leftIndexOfSubtree = indexOfNewRoot + 1;
-    rightIndexOfSubtree = allNodesStore.length - 1;
-    root.buildBalancedSubtree("right", indexOfNewRoot, leftIndexOfSubtree, rightIndexOfSubtree);
+    root.buildBalancedSubtree(indexOfNewRoot, indexOfLeftMargin, indexOfRightMargin);
 
   }
 
@@ -455,8 +448,8 @@ public class IntegerTree {
 
     }
 
-  }
-*/
+  }*/
+
   /**
   * The node as an inner class
   */
@@ -506,59 +499,60 @@ public class IntegerTree {
 
     }
 
-    private void buildBalancedSubtree(String leftOrRightSubtree, int parentPosition, int leftMarginOfSubtree, int rightMarginOfSubtree) {
+    private void buildBalancedSubtree(int indexOfParent, int indexOfLeftMargin, int indexOfRightMargin) {
 
-      int lengthOfSubtree = Math.abs(leftMarginOfSubtree - rightMarginOfSubtree) + 1;
-      int childNodeRelativePosition = lengthOfSubtree / 2;
-      int childNodePosition = 0;
+      int lengthOfMarginSpecifiedSubarray = Math.abs(indexOfLeftMargin - indexOfRightMargin) + 1;
+System.out.print("\nlengthOfMarginSpecifiedSubarray: " + lengthOfMarginSpecifiedSubarray);
+      if (lengthOfMarginSpecifiedSubarray == 3) {
+System.out.println("     SHOULD PRINT IF 3");
+        leftChild = allNodesStore[indexOfLeftMargin];
+        leftChild.leftChild = null;
+        leftChild.rightChild = null;
+        rightChild = allNodesStore[indexOfRightMargin];
+        rightChild.leftChild = null;
+        rightChild.rightChild = null;
 
-      if (lengthOfSubtree == 1) {
-
-          leftChild = null;
-          rightChild = null;
-
-      } else if (lengthOfSubtree == 2) {
-
-        if (leftOrRightSubtree.equals("left")) {
-
-          leftChild = allNodesStore[parentPosition - 1];
+      } else if (lengthOfMarginSpecifiedSubarray == 2) {
+System.out.println("SHOULD PRINT IF 2");
+System.out.println("====================================indexOfParent: " + indexOfParent);
+System.out.println("====================================indexOfRightMargin: " + indexOfRightMargin);
+System.out.println("====================================indexOfLeftMargin: " + indexOfLeftMargin);
+        if (indexOfParent == indexOfRightMargin) {
+System.out.println("this.n should be 5 and 66 and 42" + this.n);
+          leftChild = allNodesStore[indexOfLeftMargin];
+System.out.print("this.leftChild should be 1 and 58 and null: ");
+if (leftChild == null) {
+System.out.print(leftChild);
+} else {System.out.print(leftChild.n);}
+System.out.println("this.leftChild should be 1 and 58" + leftChild.n);
           leftChild.leftChild = null;
           leftChild.rightChild = null;
+          rightChild = null;
 
-        } else if (leftOrRightSubtree.equals("right")) {
+        } else if (indexOfParent == indexOfLeftMargin) {
 
-          rightChild = allNodesStore[parentPosition + 1];
+          leftChild = null;
+          rightChild = allNodesStore[indexOfRightMargin];
           rightChild.leftChild = null;
           rightChild.rightChild = null;
 
         }
 
-      } else if (lengthOfSubtree > 2) {
-
-        if (leftOrRightSubtree.equals("left")) {
-
-          childNodePosition = parentPosition - childNodeRelativePosition;
-          leftChild = allNodesStore[childNodePosition];
-
-        } else if (leftOrRightSubtree.equals("right")) {
-
-          childNodePosition = parentPosition + childNodeRelativePosition;
-          rightChild = allNodesStore[childNodePosition];
-
-        }
-
-        if (leftChild != null) {
-
-          leftChild.buildBalancedSubtree("left", childNodePosition, leftMarginOfSubtree, childNodePosition);
-
-        } // I THINK THE PROBLEM MAY BE WITH LEFT AND RIGHT MARGINS. I NEED TO WORK OUT
-        //  IF I WANT TO SPLIT MY SUBARRAYS AS 01234 56789 OR AS 012345 56789 AND THEN TO CHECK THAT I DID THE SAME IN THE INTERGER TREE BALANCE METHOD
-
-        if (rightChild != null) {
-
-          rightChild.buildBalancedSubtree("right", childNodePosition, childNodePosition, rightMarginOfSubtree);
-
-        }
+      } else {
+System.out.println("           SHOULD PRINT IF NOT 2 OR 3");
+        int relativePositionOfLeftChild = -1 * ((Math.abs(indexOfParent - indexOfLeftMargin) + 1 ) / 2);
+System.out.println("...indexOfParent: " + indexOfParent + " ...indexOfLeftMargin: " + indexOfLeftMargin + " ...indexOfRightMargin: " + indexOfRightMargin);
+        int relativePositionOfRightChild = (Math.abs(indexOfParent - indexOfRightMargin) + 1 ) / 2;
+System.out.println("relativePositionOfRightChild: " + relativePositionOfRightChild);
+System.out.println("relativePositionOfLeftChild: " + relativePositionOfLeftChild);
+        int indexOfLeftChild = indexOfParent + relativePositionOfLeftChild;
+        int indexOfRightChild = indexOfParent + relativePositionOfRightChild;
+System.out.println("indexOfRightChild: " + indexOfRightChild);
+System.out.println("indexOfLeftChild: " + indexOfLeftChild);
+        leftChild = allNodesStore[indexOfLeftChild];
+        rightChild = allNodesStore[indexOfRightChild];
+        leftChild.buildBalancedSubtree(indexOfLeftChild, indexOfLeftMargin, indexOfParent - 1);
+        rightChild.buildBalancedSubtree(indexOfRightChild, indexOfParent + 1, indexOfRightMargin);
 
       }
 
