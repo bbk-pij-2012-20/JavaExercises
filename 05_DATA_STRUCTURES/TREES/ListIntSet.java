@@ -24,20 +24,21 @@ public class ListIntSet implements IntSet {
 
   public static void main(String[] args) {
 
-    ListAsSet tree = new ListIntSet();
-    tree.add(6);
-    tree.add(56);
-    tree.add(2);
-    tree.add(95);
-    tree.add(635);
-    tree.add(8);
-    tree.add(2);
-    tree.add(6);
-    tree.add(46);
-    tree.add(16);
-    System.out.println("tree contains(635), should return true: " + tree.contains(635));
-    System.out.println("tree containsVerbose(635), should return true: " + tree.containsVerbose(635));
-    System.out.println("tree.toString(): " + tree.toString());
+    IntSet list = new ListIntSet();
+    list.add(6);
+    list.add(56);
+    list.add(2);
+    list.add(95);
+    list.add(635);
+    list.add(8);
+    list.add(2);
+    list.add(6);
+    list.add(46);
+    list.add(16);
+  //  System.out.println("linked list contains(635), should return true: " + list.contains(635));
+    System.out.println("linked list containsVerbose(635), should return true: ");
+    System.out.printf("Result is %s\n", list.containsVerbose(635)? "true" : "false");
+    System.out.println("list.toString(): " + list.toString());
 
   }
 
@@ -46,14 +47,14 @@ public class ListIntSet implements IntSet {
 
     if (root == null) {
 
-      System.out.println("..adding a root to empty tree. int: " + n);
+      System.out.println("..adding a root to empty linked list. int: " + n);
       root = new IntegerNode(n);
 
     } else {
 
       if (contains(n)) {
 
-        System.out.println("Tree already has this int (" + n + "). Thus, duplicate not added.");
+        System.out.println("List already has this int (" + n + "). Thus, duplicate not added.");
 
       } else {
 
@@ -98,7 +99,7 @@ public class ListIntSet implements IntSet {
 
     } else {
 
-      System.out.println("checking root: " + root.n);
+      System.out.println("...checking root: " + root.n);
 
       if (root.n == n) {
 
@@ -121,7 +122,7 @@ public class ListIntSet implements IntSet {
 
     if (root == null) {
 
-      result = "empty tree, toString returns nothing";
+      result = "empty list, toString returns nothing";
 
     } else {
 
@@ -150,19 +151,15 @@ public class ListIntSet implements IntSet {
     */
     private void add(int n) {
 
-      if (n > this.n) {
+      if (next == null) {
 
-        if (next == null) {
+        System.out.println("...adding int " + n);
+        next = new IntegerNode(n);
+        next.previous = this;
 
-          System.out.println("...adding int " + n + " to rightChild.");
-          next = new IntegerNode(n);
-          next.previous = this;
+      } else {
 
-        } else {
-
-          next.add(n);
-
-        }
+        next.add(n);
 
       }
 
@@ -170,43 +167,19 @@ public class ListIntSet implements IntSet {
 
     private boolean contains(int n) {
 
-      if (n > root.n) {
+      if (next == null) {
 
-        if (rightChild == null) {
-
-          return false;
-
-        } else {
-
-          if (rightChild.n == n) {
-
-            return true;
-
-          } else {
-
-            return rightChild.contains(n);
-
-          }
-
-        }
+        return false;
 
       } else {
 
-        if (leftChild == null) {
+        if (next.n == n) {
 
-          return false;
+          return true;
 
         } else {
 
-          if (leftChild.n == n) {
-
-            return true;
-
-          } else {
-
-            return leftChild.contains(n);
-
-          }
+          return next.contains(n);
 
         }
 
@@ -216,54 +189,23 @@ public class ListIntSet implements IntSet {
 
     private boolean containsVerbose(int n) {
 
-      if (n > root.n) {
+      if (next == null) {
 
-        if (rightChild != null) {
-
-          System.out.println("\'containsVerbose(" + n + ")\' method checking rightChild: " + rightChild.n);
-
-          if (rightChild.n == n) {
-
-            return true;
-
-          } else {
-
-            return rightChild.containsVerbose(n);
-
-          }
-
-        } else {
-
-          return false;
-
-        }
-
-      } else if (n < root.n) {
-
-        if (leftChild != null) {
-
-          System.out.println("\'containsVerbose(" + n + ")\' method checking leftChild: " + leftChild.n);
-
-          if (leftChild.n == n) {
-
-            return true;
-
-          } else {
-
-            return leftChild.containsVerbose(n);
-
-          }
-
-        } else {
-
-          return false;
-
-        }
+        return false;
 
       } else {
-        // This is just for compiler. The containsVerbose(n) method in
-        // the outerClass already returns true if the root has the specified int.
-        return false;
+
+        System.out.println("\'containsVerbose(" + n + ")\' method ...checking 'next': " + next.n);
+
+        if (next.n == n) {
+
+          return true;
+
+        } else {
+
+          return next.containsVerbose(n);
+
+        }
 
       }
 
@@ -274,15 +216,9 @@ public class ListIntSet implements IntSet {
 
       String result = "" + n;
 
-      if (leftChild != null) {
+      if (next != null) {
 
-        result += ", " + leftChild.toString();
-
-      }
-
-      if (rightChild != null) {
-
-        result += ", " + rightChild.toString();
+        result += ", " + next.toString();
 
       }
 
