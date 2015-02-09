@@ -1,21 +1,11 @@
 <h1>JavaExercises</h1>
 
 
+
 These are a series of coding exercises that formed the majority part (Oct-Dec 2014) of the 'Programming in Java' module run by Dr Keith L Mannock, Sokratis Karkalas and Dr Sergio G Santos at Birkbeck College London. (The questions were put together by Dr Santos, 2012). They constitute more than 200 hours of coding & learning time. These Java exercises were followed up by two programming courseworks: https://github.com/bbk-pij-2012-20/ContactManager & https://github.com/bbk-pij-2012-20/Quiz
 =======
-<h1>Tree data structure</h1>
-
-Trees are widely used and effective when storing large numbers of elements.
-One might consider a tree to be something like a number of linked list all connected together.
-Recursion is well suited to traversal of trees.
-
-These exercises cover the basic principles of a tree data structure. Each element contains an integer and
-the elements (or 'nodes') are sorted accordingly.
-The trees are made up of a 'root node' which is the parent node for all the remaining nodes in that tree.
-Each node (including the root) has two child nodes. A node that has no child nodes e known as le
 
 <ol>The topics are organised in the following main subtopics:
-
 
 <li>Basic scripts #1</li>
 <li>Basic scripts #2</li>
