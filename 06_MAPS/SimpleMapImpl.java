@@ -1,9 +1,16 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/DataStructures/Maps
-// Exercise 8.5.2: Intro to Map data structures 
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/06_MAPS
+// Exercise 8.5.2 (Introduction to Maps)
  
-/* Create a class that implements the following interface (see bottom) of a simple map from 
-integers to strings. */
+/* 
+Create a class that implements the following interface (see bottom of page 
+for interface) of a simple map from integers to strings. 
 
+Hint: You can implement it with arrays or with linked lists. 
+You do not know in advance how many strings you will receive for every key.
+*/
+
+/*
+// implemented with an array 
 public class SimpleMapImpl implements SimpleMap {
 	
 	private String[] nameArray = new String[200];
@@ -69,11 +76,225 @@ public class SimpleMapImpl implements SimpleMap {
 	}
 	
 }
+*/
 
 /*
-*  The Map interface code provided. The exercise is to implement this (see above).
+*	The Map interface code provided (see bottom of page). 
+*	The exercise is to implement the interface.
+*	This is a single-key-to-single-value map, aka 'dictionary'.
+*	Below I've implemented it using a linked list. Above, as an array.
 */
+public class SimpleMapImpl implements SimpleMap {
+
+	private KeyValueNode head;
+	
+	public static void main(String[] args) {
+	
+		SimpleMap sm = new SimpleMapImpl();
+		System.out.println("Not put anything in list, so \'isEmpty()\' should be true: " + sm.isEmpty() + "\n");
+		sm.put(2, "Bob");
+		sm.put(324, "Mic");
+		sm.put(453, "Jac");
+		sm.put(194, "Dean");
+		sm.put(606, "Terri");
+		System.out.println("5 KVNodes added to list, so \'isEmpty()\' should be false =>> " + sm.isEmpty());
+		System.out.println("\nLIST - HEAD =>>   " + sm.toString() + "\n");
+		System.out.print("Get 194 ");
+		System.out.println("..should be Dean =>> " + sm.get(194));
+		System.out.println("\nLIST - HEAD =>>   " + sm.toString() + "\n");
+		System.out.print("...removing KVNode 194...");
+		sm.remove(194);
+		System.out.print("Get(194) ..should give null =>> ");
+		System.out.println(sm.get(194));
+		System.out.print("...removing KVNode 606...");
+		sm.remove(606);
+		System.out.println("\nLIST - HEAD =>   " + sm.toString() + "\n");
+		System.out.print("...removing KVNode 2...");
+		sm.remove(2);
+		System.out.println("\nLIST - HEAD =>   " + sm.toString() + "\n");
+				
+	}
+	
+	@Override
+	public String toString() {
+
+		if (head == null) {
+		
+			return "nothing to print - empty list";
+	
+		} else {
+		
+			return head.toString();
+		
+		}
+	
+	}
+
+	@Override
+	public void put(int key, String name) {
+	
+		if (head == null) {
+		
+			head = new KeyValueNode(key, name);
+		
+		} else {
+		
+			head.put(key, name);
+		
+		}	
+	
+	}
+	
+	@Override
+	public String get(int key) {
+		
+		if (head.key == key) {
+			
+			return head.name;
+			
+		} else {
+			
+			return head.get(key);
+			
+		}
+	
+	}
+	
+	@Override
+	public void remove(int key) {
+	
+		if (head.key == key) {
+		
+			head = head.next; 
+		
+		} else {
+		
+			head.remove(key);
+		
+		}
+	
+	}
+	
+	@Override
+	public boolean isEmpty() {
+	
+		if (head == null) {
+		
+			return true;
+		
+		} else {
+		
+			return false;
+			
+		}
+			
+	}
+
+	/**
+	*	inner key-value elements
+	*/
+	private class KeyValueNode {
+	
+		private int key;
+		private String name;
+		private KeyValueNode next;
+	
+		private KeyValueNode(int key, String name) {
+		
+			this.key= key;
+			this.name = name;
+		
+		}
+		
+		@Override
+		public String toString() {
+		
+			String list = key + ":" + name;
+			
+			if (next == null) {
+			
+				return list;  
+			
+			} else {
+			
+				return list +  " | " + next.toString();
+		
+			}
+			
+		}
+		
+		private void put(int key, String name) {
+		
+			if (next == null) {
+			
+				next = new KeyValueNode(key, name);
+			
+			} else {
+			
+				next.put(key, name);
+			
+			}
+			
+		}
+		
+		private String get(int key) {
+		
+			String name = "";
+			
+			try {
+			
+				if (next.key != key) {
+			
+					if (next == null) {
+	
+						throw new NullPointerException();
+					
+					} else {
+			
+						return next.get(key);
+			
+					}
+					
+				} else {
+									
+					name = next.name;
+				
+				}
+		
+			} catch (NullPointerException e) {
+			
+				System.out.println(e.getMessage());
+			
+			}
+			
+			return name;
+		
+		}
+		
+		private void remove(int key) {
+			
+			if (next != null) {
+			
+				if (next.key == key) {
+				
+					next = next.next;
+				
+				} else {
+				
+					next.remove(key);
+				
+				}
+			
+			}
+		
+		}
+		
+	}
+
+}
+
 interface SimpleMap { 
+
 	/**
 	 * Puts a new String in the map. 
 	 *
