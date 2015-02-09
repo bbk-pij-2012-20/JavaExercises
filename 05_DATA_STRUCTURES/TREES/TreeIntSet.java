@@ -47,13 +47,14 @@ public class TreeIntSet implements TreesAsSets {
 
     if (root == null) {
 
+      System.out.println("..adding a root to empty tree. int: " + n);
       root = new IntegerTreeNode(n);
 
     } else {
 
       if (contains(n)) {
 
-        System.out.println("Tree already has this int. No further action taken.");
+        System.out.println("Tree already has this int (" + n + "). Thus, duplicate not added.");
 
       } else {
 
@@ -154,6 +155,7 @@ public class TreeIntSet implements TreesAsSets {
 
         if (rightChild == null) {
 
+          System.out.println("...adding int " + n + " to rightChild.");
           rightChild = new IntegerTreeNode(n);
 
         } else {
@@ -166,6 +168,7 @@ public class TreeIntSet implements TreesAsSets {
 
         if (leftChild == null) {
 
+          System.out.println("...adding int " + n + " to leftChild.");
           leftChild = new IntegerTreeNode(n);
 
         } else {
@@ -230,7 +233,7 @@ public class TreeIntSet implements TreesAsSets {
 
         if (rightChild != null) {
 
-          System.out.println("checking rightChild: " + rightChild.n);
+          System.out.println("\'containsVerbose(" + n + ")\' method checking rightChild: " + rightChild.n);
 
           if (rightChild.n == n) {
 
@@ -252,7 +255,7 @@ public class TreeIntSet implements TreesAsSets {
 
         if (leftChild != null) {
 
-          System.out.println("checking leftChild: " + leftChild.n);
+          System.out.println("\'containsVerbose(" + n + ")\' method checking leftChild: " + leftChild.n);
 
           if (leftChild.n == n) {
 
