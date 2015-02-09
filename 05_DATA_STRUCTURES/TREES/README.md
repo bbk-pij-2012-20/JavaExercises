@@ -1,3 +1,4 @@
+<h1>Tree data structure</h1>
 
 Trees are widely used and effective when storing large numbers of elements.
 One might consider a tree to be something like a number of linked list all connected together.
