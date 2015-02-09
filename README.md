@@ -4,7 +4,7 @@
 
 
 
-</br>The topics are organised in the following main subtopics:
+<br/>The topics are organised in the following main subtopics:
 <ol>
 <li>Basic scripts #1</li>
 <li>Basic scripts #2</li>
