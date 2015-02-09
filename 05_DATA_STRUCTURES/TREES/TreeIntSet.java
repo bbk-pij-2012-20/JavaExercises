@@ -16,16 +16,16 @@ Create a class TreeIntSet that implements this interface based on a tree structu
 
 9.2.3.
 Create a class ListIntSet that implements this interface based on a linked list structure.
-
+(This is saved in a separate file called 'ListIntSet').
 */
 
-public class TreeIntSet implements TreesAsSets {
+public class TreeIntSet implements IntSet {
 
   private IntegerTreeNode root;
 
   public static void main(String[] args) {
 
-    TreesAsSets tree = new TreeIntSet();
+    IntSet tree = new TreeIntSet();
     tree.add(6);
     tree.add(56);
     tree.add(2);
@@ -307,7 +307,7 @@ public class TreeIntSet implements TreesAsSets {
 
 }
 
-interface TreesAsSets {
+interface IntSet {
 
   /**
   * Adds a new int to the set; if it is there already, nothing happens.
