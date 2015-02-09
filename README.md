@@ -13,9 +13,8 @@ the elements (or 'nodes') are sorted accordingly.
 The trees are made up of a 'root node' which is the parent node for all the remaining nodes in that tree.
 Each node (including the root) has two child nodes. A node that has no child nodes e known as le
 
-<ol>
-The topics are organised in the following main subtopics:
-==========
+<ol>The topics are organised in the following main subtopics:
+
 <li>Basic scripts #1</li>
 <li>Basic scripts #2</li>
 <li>Starting to encapsulate (in methods rather than as single scripts in main method)</li>
