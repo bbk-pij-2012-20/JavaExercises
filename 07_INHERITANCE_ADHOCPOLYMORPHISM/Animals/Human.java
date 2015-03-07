@@ -1,4 +1,4 @@
-//cd
+//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/07_INHERITANCE_ADHOCPOLYMORPHISM/Animal
 //Exercise 10: Introduction to inheritance (aka ad hoc polymorphism).
 
 public class Human extends Animal {
