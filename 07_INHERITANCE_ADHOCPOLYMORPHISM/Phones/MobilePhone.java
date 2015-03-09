@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/07_INHERITANCE_ADHOCPOLYMORPHISM/Phones
-// Exercise 10.1 - 10.4 continued... Introducing ad hoc polymorphism (aka inheritance) and casting.
+// Exercise 10.1 - 10.4: Introducing ad hoc polymorphism (aka inheritance).
 
 /*
 10.1:

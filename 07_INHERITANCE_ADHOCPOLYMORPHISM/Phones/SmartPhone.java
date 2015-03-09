@@ -1,5 +1,5 @@
-//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/07_INHERITANCE_ADHOCPOLYMORPHISM/Phones
-// Exercise 10.1 - 10.2 continued... (Introducing ad hoc polymorphism (aka inheritance) and casting.)
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/07_INHERITANCE_ADHOCPOLYMORPHISM/Phones
+// Exercise 10.1 - 10.4 continued... (Introducing ad hoc polymorphism (aka inheritance) and casting.)
 /*
 10.1:
 Then create a class SmartPhone that extends MobilePhone and adds methods for browseWeb(String) and
@@ -35,10 +35,9 @@ script you wrote in the former exercise still works. Why does this happen?
 What are the minimal changes that you need to make on class SmartPhone so
 that the script still works?
 10.4.2 Reducing visibility
-Some parents are concerned that their children spend too much time playing
-with their smartphones. Create a class RestrictedSmartPhone that overrides
-playGame(String) to make it private and thus non-visible to external classes
-and scripts. Is this possible? Why?
+Create a class RestrictedSmartPhone that overrides playGame(String) to make it
+private and thus non-visible to external classes and scripts.
+Is this possible? Why?
 */
 
 public class SmartPhone extends MobilePhone {
@@ -72,7 +71,7 @@ public class SmartPhone extends MobilePhone {
   */
   public void browseWebFor(String searchString) {
 
-    System.out.println("browsing the web for: " + searchString);
+    System.out.println("browsing the web for.... " + searchString);
 
   }
 
@@ -90,7 +89,7 @@ public class SmartPhone extends MobilePhone {
   * @param game name string of game to play.
   */
   @Override
-  public void playGame(String game) {
+  protected void playGame(String game) {
 
     super.playGame(game);
 

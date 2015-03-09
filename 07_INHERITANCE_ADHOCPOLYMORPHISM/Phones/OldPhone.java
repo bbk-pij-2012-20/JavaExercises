@@ -1,5 +1,5 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/07_INHERITANCE_ADHOCPOLYMORPHISM/Phones
-// Exercise 10. Introducing ad hoc polymorphism (aka inheritance) and casting.
+// Exercise 10.1 - 10.3: Introducing ad hoc polymorphism (aka inheritance).
 /*
 10.1:
 Create a class OldPhone that implements the following interface.
@@ -69,6 +69,12 @@ public class OldPhone implements Phone {
   * @return phone's brandname string.
   */
   public String getBrand() {
+
+    if (brand == null) {
+
+      brand = "no brand was given";
+
+    }
 
     return brand;
 
