@@ -1,28 +1,78 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/Inheritance_AdhocPolymorphism/Phones
-// Exercise 10.1 continued... (Introducing ad hoc polymorphism (aka inheritance) and casting.)
+//cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/07_INHERITANCE_ADHOCPOLYMORPHISM/Phones
+// Exercise 10.1 - 10.2 continued... (Introducing ad hoc polymorphism (aka inheritance) and casting.)
 /*
+10.1:
 Then create a class SmartPhone that extends MobilePhone and adds methods for browseWeb(String) and
 findPosition(), the latter returning a (fictitious) GPS-found position.
 
 Create a small script called PhoneLauncher in which you create a SmartPhone and use all its methods, including
 those inherited from its ancestor classes.
 
-Exercise 10.2:
+10.2:
 Modify your class SmartPhone so that it overrides the method call(String) inherited from OldPhone.
 If the string parameter starts with “00”, the method should output
 “Calling <number> through the internet to save money”; otherwise, the method should do the same
 as the original method (hint: use super).
 
+10.3:
+Add the following field, constructor, and method to OldPhone:
+private String brand = null;
+public OldPhone(String brand) {
+  this.brand = brand;
+}
+public String getBrand() {
+  return brand;
+}
+// ... there is no setter for brand
+Add the appropriate constructors to MobilePhone and SmartPhone in order
+to be able to call the method getBrand() from an object of class SmartPhone
+and obtain the right answer, i.e. the brand provided in the constructor.
+
+10.4:
+10.4.1 Increasing visibility
+Change the visibility of playGame(String) to private and check whether the
+script you wrote in the former exercise still works. Why does this happen?
+What are the minimal changes that you need to make on class SmartPhone so
+that the script still works?
+10.4.2 Reducing visibility
+Some parents are concerned that their children spend too much time playing
+with their smartphones. Create a class RestrictedSmartPhone that overrides
+playGame(String) to make it private and thus non-visible to external classes
+and scripts. Is this possible? Why?
 */
 
 public class SmartPhone extends MobilePhone {
 
   /**
+  * Contructor.
+  * @param brand brandname string of the phone.
+  */
+  public SmartPhone(String brand) {
+
+    super(brand);//for Ex 10.3
+
+  }
+
+  /**
+  * Zero-arg constructor.
+  */
+  public SmartPhone() {}
+
+  /**
+  * @returns phone's brandname string.
+  */
+  public String getBrand() {//for Ex 10.3
+
+    return super.getBrand();
+
+  }
+
+  /**
   * Pretends to browse the web
   */
-  public void browseWeb(String searchStr) {
+  public void browseWebFor(String searchString) {
 
-    System.out.println("browsing the web for: " + searchStr);
+    System.out.println("browsing the web for: " + searchString);
 
   }
 
@@ -31,7 +81,71 @@ public class SmartPhone extends MobilePhone {
   */
   public String findPosition() {
 
-    return "XYZ";
+    return "Latitute: xyz, Longitude: abc (aka Costa, Northwood)";
+
+  }
+
+  /**
+  * Plays game.
+  * @param game name string of game to play.
+  */
+  @Override
+  public void playGame(String game) {
+
+    super.playGame(game);
+
+  }
+
+  /**
+  * Prints statement if number starts with 00 (international), otherwise
+  * upcasts to call(number) in OldPhone.
+  * @param number the number string being called.
+  */
+  @Override //for Ex 10.2
+  public void call(String number) {
+
+    if (number == null) {
+
+      System.out.println("no number was given");
+
+    } else {
+
+      if (number.trim().charAt(0) == '+') {
+
+        number = number.substring(1);
+
+      }
+
+      if (!isNumeric(number)) {
+
+        System.out.println("You must enter a numberic value");
+
+      } else {
+
+        if (number.substring(0,2).equals("00")) {
+
+          System.out.println("Calling " + number + " through the internet to save money");
+
+        } else {
+
+          super.call(number);
+
+        }
+
+      }
+
+    }
+
+  }
+
+ /**
+  * Returns true specified string is a number. Done using using regular expression.
+  * (http://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-a-numeric-type-in-java)
+  */
+  public boolean isNumeric(String number) {
+
+    return number.matches("d+(\\.\\d+)?");  //matches a number with optional '-' and decimal.
+//NEED TO WORK OUT HOW TO WRITE IN THIS REGULAR EXPRESSION SINGLE BLANK SPACES ANYWHERE BETWEEN THE NUMBERS
 
   }
 
