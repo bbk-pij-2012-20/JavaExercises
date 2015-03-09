@@ -21,7 +21,7 @@ public class PhoneLauncherPSVM {
 
   //  Phone phone = new OldPhone();
   //  phone.call("0207 342 436");
-
+/*
     MobilePhone mobile = new MobilePhone();
     mobile.call("1_0207 342 436");
     mobile.call("2_0208 111 245");
@@ -37,10 +37,32 @@ public class PhoneLauncherPSVM {
     mobile.call("12_3356 452 230");
     mobile.call("13_2346 334 32400");
     mobile.call("14_34678 222 540");
-
     mobile.printLastNumbers();
+*/
+    OldPhone old_Mobile = new MobilePhone("Eriksson");
+    System.out.println("Brand is: " + old_Mobile.getBrand());
+//  oldMobile.playGame("kickoff on mobile phone, (OldPhone .. = new MobilePhone())");
+//  this won't compile (playGame() still public)
 
-  //  Phone iPhone = new SmartPhone();
+//NB: THE METHOD CALL IN SMART PHONE IS NOT COMPLETED YET (NEED TO COMPLETE THE REG EXPRESSION)
+    OldPhone old_Smart = new SmartPhone("iPhone");
+    old_Smart.call("0207 342 436");
+    old_Smart.call("0208 111 245");
+    old_Smart.call("001923 234 209");
+    old_Smart.call("+002323 2334 21109");
+    old_Smart.call("+07989 203 4593");
+    System.out.println("Brand is: " + old_Smart.getBrand());
+//  iPhone.playGame("speedball on smart phone, (OldPhone .. = new SmartPhone())");
+//  this won't compile (playGame() still public)
+
+    MobilePhone mobile_Smart = new SmartPhone("Nokia");
+    mobile_Smart.playGame("pacman on mobile (Mobile .. = new SmartPhone())");
+
+    SmartPhone smart_Smart = new SmartPhone("iPhone2");
+    smart_Smart.browseWebFor("chocolate");
+    smart_Smart.findPosition();
+    System.out.println("Brand is: " + smart_Smart.getBrand());
+    smart_Smart.playGame("tictactoe on smart phone, (SmartPhone .. = new SmartPhone())");
 
   }
 
