@@ -115,9 +115,9 @@ public class SmartPhone extends MobilePhone {
 
       }
 
-      if (!isNumeric(number)) {
+      if (isNumeric(number) == false) {
 
-        System.out.println("You must enter a numberic value");
+        System.out.println(number + " is not numeric.. Please enter a numberic value.");
 
       } else {
 
@@ -138,13 +138,13 @@ public class SmartPhone extends MobilePhone {
   }
 
  /**
-  * Returns true specified string is a number. Done using using regular expression.
-  * (http://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-a-numeric-type-in-java)
+  * Returns true specified string is a number with the following pattern:
+  * 1 or more digits, followed by nothing or, 1 or more digits that may or may
+  * not be preceded by a single white space.
   */
   public boolean isNumeric(String number) {
 
-    return number.matches("d+(\\.\\d+)?");  //matches a number with optional '-' and decimal.
-//NEED TO WORK OUT HOW TO WRITE IN THIS REGULAR EXPRESSION SINGLE BLANK SPACES ANYWHERE BETWEEN THE NUMBERS
+    return number.matches("\\d+((\\s)?\\d+)*");
 
   }
 
