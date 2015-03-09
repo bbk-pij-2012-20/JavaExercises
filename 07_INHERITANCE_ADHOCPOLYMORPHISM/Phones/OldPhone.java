@@ -66,7 +66,7 @@ public class OldPhone implements Phone {
   public OldPhone(){}
 
   /**
-  * @returns phone's brandname string.
+  * @return phone's brandname string.
   */
   public String getBrand() {
 

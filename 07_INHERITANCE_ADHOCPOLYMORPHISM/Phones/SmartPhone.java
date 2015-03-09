@@ -59,7 +59,7 @@ public class SmartPhone extends MobilePhone {
   public SmartPhone() {}
 
   /**
-  * @returns phone's brandname string.
+  * @return phone's brandname string.
   */
   public String getBrand() {//for Ex 10.3
 

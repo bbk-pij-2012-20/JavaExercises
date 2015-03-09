@@ -28,9 +28,8 @@ script you wrote in the former exercise still works. Why does this happen?
 What are the minimal changes that you need to make on class SmartPhone so
 that the script still works?
 10.4.2 Reducing visibility
-Some parents are concerned that their children spend too much time playing
-with their smartphones. Create a class RestrictedSmartPhone that overrides
-playGame(String) to make it private and thus non-visible to external classes
+Create a class RestrictedSmartPhone that overrides playGame(String) to make it
+private and thus non-visible to external classes
 and scripts. Is this possible? Why?
 */
 import java.util.ArrayDeque;
@@ -59,7 +58,7 @@ public class MobilePhone extends OldPhone {
   public MobilePhone() {}
 
   /**
-  * @returns phone's brandname string.
+  * @return phone's brandname string.
   */
   public String getBrand() {// for Ex 10.3
 
