@@ -1,7 +1,8 @@
 <h1>Ad hoc polymorphism (aka inheritance)</h1>
 
-Ad hoc polymorphism is practised here, the use of the Java Interface, Abstract Classes and
-(Concrete) Classes.
+Ad hoc polymorphism, the use of the Java Interface, Abstract Classes and (Concrete) Classes.
+
+There were 8 exercises (plus a couple of very simple ones in the notes which are included ('Animals' and 'People')).
 
 Exercise 10.1-10.4:
 Phones exercise demonstrates the use of Interface and Concrete classes to add increasing
