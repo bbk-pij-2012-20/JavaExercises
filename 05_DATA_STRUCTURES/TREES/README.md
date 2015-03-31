@@ -1,14 +1,14 @@
-<h1>Tree data structure</h1>
+<h1>Ad hoc polymorphism (aka inheritance)</h1>
 
-Trees are widely used and effective when storing large numbers of elements.
-One might consider a tree to be something like a number of linked list all connected together.
-Recursion is well suited to traversal of trees.
+Ad hoc polymorphism is practised here, the use of the Java Interface, Abstract Classes and
+(Concrete) Classes.
 
-These exercises cover the basic principles of a tree data structure. Each element contains an integer and
-the elements (or 'nodes') are sorted accordingly.
-The trees are made up of a 'root node' which is the parent node for all the remaining nodes in that tree.
-Each node (including the root) has two child nodes. (A node that has no child nodes is known as a 'leaf'.)
+Exercise 10.8:
+The Noah's Ark exercise allowed me to understand the interplay between minimising code repetition and the creating interfaces and classes to aid the semantics and abstraction of
+the model.
+For example, I could have made the 5 animal classes (Amphibia, Arthropoda etc) concrete instead of abstract classes. I could have left out the abstract makeSound() method but
+chose to include it, thereby making the clsses abstract, purely to emphasise that there is likely to be similarities in the sort of noises made by each of the 5 animal classes.
+It also allowed me to experience creating a mixture of interface, abstract and concrete classes.
 
-As the nodes have two child nodes, they form what is called a 'Binary Tree'.
-The nodes in my Binary Tree are ordered (at the time of adding them) according the value of their integer.
-Thus this Binary Tree is also called a 'Binary Search Tree'.
+It also served as an exercise in how to annotate the package and import for each of the classes which were subdivided into subfolders. In fact, this was problematic from the
+text editor, but easily done in Eclipse. 
