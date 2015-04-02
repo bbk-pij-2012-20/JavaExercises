@@ -1,35 +1,31 @@
 <h1>Parametric polymorphism (aka generics)</h1>
 
-Ad hoc polymorphism, the use of the Java Interface, Abstract Classes and (Concrete) Classes.
+6 exercises on type-casting and the parametric polymorphism.
 
-There were 8 exercises (plus a couple of very simple ones in the notes which are included ('Animals' and 'People')).
+Exercise 11.1:
+The complete code for a simle class called 'Comparator' is given. It has three methods that essentially do the same thing. Each method, however, deals with a different
+type (either strings, integers or doubles).
+The exercise demonstrates how type-casting can help reduce code repetition.
+My first solution 'Comparator1' class achieves this which one method replacing three.
+However, the type-casting must be done before the parameters can be passed to the one method, because the method only takes strings.
+Thus, the type-casting is down at compile time, in contrast to how this would be achieved by use of Generics.
+So, the second solution, 'Comparator2' class, uses parametric polymorphism that allows one method to take any type (string, double or int) and return the same type.
+The advantage of this is that method is far more flexible than that in 'Comparator1' in that the type it takes does not have to be 'hard-coded'
 
-Exercise 10.1-10.4:
-Phones exercise demonstrates the use of Interface and Concrete classes to add increasing
-functionality. It also demonstrates that subclasses can not use visibility modifiers
-(public, default, protected, private) to restrict functionality, subclasses must always have equal or greater visibility.
+Exercise 11.2:
+This involves demonstrating the rules of upcasting and downcasting, hence has some overlap with inheritance (i.e. the previous set of exercises) and in fact re-uses
+the code from the Phones inheritance exercise (Ex 10.1-10.4 in subdirectory labelled "07_INHERITANCE_ADHOCPOLYMORPHISM").
 
-Exercise 10.5:
-Musical Instruments exercise demonstrates multiple inheritance, which is possible in Java 7 only
-when inheriting from interfaces.
+We were prompted from this point onwards to start using TDD, but I chose to keep this separate and include it in the TDD directory (in subdirectory labelled "09_JUNIT_TDD")
 
-Exercise 10.6:
-Teaching staff exercise demonstrates a bit of constructor chaining.
+Exercise 11.3:
+The doubly-linked list, re-used from the previous data structurs exercise (Ex 7.5 in subdirectory labelled "05_DATA_STRUCTURES"), is editted to be a generic doubly-linked list.
 
-Exercise 10.7:
-Shows effect of keyword Final on a class. It prevents the class being derived.
+Exercise 11.4:
+The generic doubly-linked list from Ex 11.3 is subclassed and converted into a sorted list by overriding the relevant method(s).
 
-Exercise 10.8:
-The Noah's Ark exercise allowed me to understand the interplay between minimising code repetition and the creating interfaces and classes to aid the semantics and abstraction of
-the model.
-For example, I could have made the 5 animal classes (Amphibia, Arthropoda etc) concrete instead of abstract classes. I could have left out the abstract makeSound() method but
-chose to include it, thereby making the classes abstract, purely to emphasise that there is likely to be similarities in the sort of noises made by each of the 5 animal classes.
-It also allowed me to experience creating a mixture of interface, abstract and concrete classes.
+Exercise 11.5:
+Building a generic stack, using bounded types.
 
-I noticed also that by applying the object-oriented principle that derived classes should not reduce functionality of superclass(es), code reptition is again sacrificed. This was in the
-case of reproduce() method which is calls layEggs() in all animal classes except Mammalia.
-Thus code repetition could have been reduced by moving the layEggs() method up to Vertebrata
-and then overriding the method to call giveBirth() in mammalia.
-
-As some of the previous ones, this also served as an exercise in how to annotate the 'packages' and 'imports' for each of the classes which were subdivided into subfolders.
-(In fact, this was problematic from the text editor, but easily done in Eclipse.)
+Exercise 11.6:
+Building a generic map, including a generic hash table.

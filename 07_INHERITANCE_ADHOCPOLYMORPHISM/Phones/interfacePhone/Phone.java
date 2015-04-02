@@ -1,7 +1,7 @@
 //cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/07_INHERITANCE_ADHOCPOLYMORPHISM/Phones
 // Exercise 10.1: Introducing ad hoc polymorphism (aka inheritance).
 
-package interfacePhone;
+package interfacePhone.sub;
 
 /**
 * A phone makes calls

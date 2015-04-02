@@ -4,7 +4,7 @@
 public class Kid implements Person {
 
 	private int position;
-	private Brain brain;
+	private String brain;
 
 	/**
 	*	Move a distance in a straight line, given in meters
@@ -39,11 +39,11 @@ public class Kid implements Person {
 	private String getUnderstoodWords(String text) {
 
 		String result = "";
-		String[] words = brain.divideIntoWords(text);
+		String[] words = brain.substring(0,2);
 
 		for (int i = 0; i < words.length; i++) {
 
-			if (brain.isKnown(words[i])) {
+			if (brain.equals(words[i])) {
 
 				result = result + words[i];
 				// if not, ignore it
