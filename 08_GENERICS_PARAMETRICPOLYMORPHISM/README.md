@@ -10,7 +10,7 @@ My first solution 'Comparator1' class achieves this which one method replacing t
 However, the type-casting must be done before the parameters can be passed to the one method, because the method only takes strings.
 Thus, the type-casting is down at compile time, in contrast to how this would be achieved by use of Generics.
 So, the second solution, 'Comparator2' class, uses parametric polymorphism that allows one method to take any type (string, double or int) and return the same type.
-The advantage of this is that method is far more flexible than that in 'Comparator1' in that the type it takes does not have to be 'hard-coded'
+The advantage of this is that method is far more flexible than that in 'Comparator1' in that the type it takes does not have to be 'hard-coded', but it does need to be given when calling the method, so it can be checked by the compiler.
 
 Exercise 11.2:
 This involves demonstrating the rules of upcasting and downcasting, hence has some overlap with inheritance (i.e. the previous set of exercises) and in fact re-uses
