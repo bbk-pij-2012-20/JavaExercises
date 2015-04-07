@@ -95,6 +95,20 @@ public class SmartPhone extends MobilePhone {
 
   }
 
+  @Override
+  public void ringAlarm() {
+
+    super.ringAlarm("bang shebang");
+
+  }
+
+  @Override
+  public void printLastNumbers() {
+
+    super.printLastNumbers();
+
+  }
+
   /**
   * Prints statement if number starts with 00 (international), otherwise
   * upcasts to call(number) in OldPhone.
@@ -142,7 +156,7 @@ public class SmartPhone extends MobilePhone {
   * 1 or more digits, followed by nothing or, 1 or more digits that may or may
   * not be preceded by a single white space.
   */
-  public boolean isNumeric(String number) {
+  private boolean isNumeric(String number) {
 
     return number.matches("\\d+((\\s)?\\d+)*");
 
