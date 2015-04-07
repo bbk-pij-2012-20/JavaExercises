@@ -48,7 +48,7 @@ public class SmartPhone extends MobilePhone {
   */
   public SmartPhone(String brand) {
 
-//    super(brand);//for Ex 10.3
+//    super(brand); I commented this out cos this constructor chain is done automatically!!
 
   }
 
