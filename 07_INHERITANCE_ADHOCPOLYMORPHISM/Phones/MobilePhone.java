@@ -61,6 +61,9 @@ public class MobilePhone extends OldPhone {
 
   }
 
+  /**
+  * Initialises list of numbers with preset limit.
+  */
   public void initList() {
 
     mostRecentlyCalledNumbersList = new ArrayDeque<>(CALLS_STORE_LIMIT);
