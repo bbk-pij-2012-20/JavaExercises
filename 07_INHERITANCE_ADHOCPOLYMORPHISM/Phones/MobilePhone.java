@@ -47,15 +47,25 @@ public class MobilePhone extends OldPhone {
   */
   public MobilePhone(String brand) {// for Ex 10.3
 
-    super(brand);
-    mostRecentlyCalledNumbersList = new ArrayDeque<>(CALLS_STORE_LIMIT);
+//    super(brand);
+    initList();
 
   }
 
   /**
   * Zero-arg constructor.
   */
-  public MobilePhone() {}
+  public MobilePhone() {
+
+    initList();
+
+  }
+
+  public void initList() {
+
+    mostRecentlyCalledNumbersList = new ArrayDeque<>(CALLS_STORE_LIMIT);
+
+  }
 
   /**
   * @return phone's brandname string.

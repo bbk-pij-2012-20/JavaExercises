@@ -44,7 +44,7 @@ to be able to call the method getBrand() from an object of class SmartPhone
 and obtain the right answer, i.e. the brand provided in the constructor.
 */
 
-import interfacePhone.sub.Phone;
+import interfacePhone.Phone;
 //import interfacePhone.Phone;
 
 public class OldPhone implements Phone {

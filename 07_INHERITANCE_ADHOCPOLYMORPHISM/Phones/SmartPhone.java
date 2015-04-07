@@ -48,7 +48,7 @@ public class SmartPhone extends MobilePhone {
   */
   public SmartPhone(String brand) {
 
-    super(brand);//for Ex 10.3
+//    super(brand);//for Ex 10.3
 
   }
 
@@ -80,7 +80,7 @@ public class SmartPhone extends MobilePhone {
   */
   public String findPosition() {
 
-    return "Latitute: xyz, Longitude: abc (aka Costa, Northwood)";
+    return "Latitude: xyz, Longitude: abc (aka Costa, Northwood)";
 
   }
 
@@ -96,9 +96,9 @@ public class SmartPhone extends MobilePhone {
   }
 
   @Override
-  public void ringAlarm() {
+  public void ringAlarm(String noise) {
 
-    super.ringAlarm("bang shebang");
+    super.ringAlarm(noise);
 
   }
 
