@@ -1,11 +1,11 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/08_GENERICS_PARAMETRICPOLYMORPHISM/Generics_Ex3_DLL
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/08_GENERICS_PARAMETRICPOLYMORPHISM/Generics_Ex4_Sorted
 // Exercise 11.3: Intro to parametric polymorphism (aka Generics).
 /*
 Modify the doubly-linked list that you have created in past weeks to make it generic,
 i.e. to allow it to have values of its elements of any type.
 */
 
-//This is the Doubly-linked list (from Ex 7.5), AFTER editting to generic format.
+//copied from Generics_Ex3_DLL
 public class GenericDoublyLinkedList<T> {
 
 	GenericNode<T> root;
