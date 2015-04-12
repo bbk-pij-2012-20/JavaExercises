@@ -62,10 +62,10 @@ public class GenericDoublyLinkedList<T> {
 
 class GenericNode<T> {
 
-	private int number;
-	private T name;
-	private GenericNode<T> previousNode;
-	private GenericNode<T> nextNode;
+	protected int number;
+	protected T name;
+	protected GenericNode<T> previousNode;
+	protected GenericNode<T> nextNode;
 
 	public GenericNode(int number, T name){
 
