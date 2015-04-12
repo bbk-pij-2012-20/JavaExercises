@@ -5,7 +5,9 @@
 Look at the following code. Is there anything you can do to make this code better?
 Hint: you may need to convert between types (e.g. casting).
 
-Here is my 2nd solution showing type-casting at run-time (using generics).
+Here is a 3nd solution, which is essentially the same as Comparator2 but shows that
+you can position the generic syntax (T extends Comparable<T>>) with a generic method
+rather than having to place it at the class name, as shown for Comparator2.
 */
 
 public class Comparator3 {

@@ -5,7 +5,8 @@
 Look at the following code. Is there anything you can do to make this code better?
 Hint: you may need to convert between types (e.g. casting).
 
-Here is my 2nd solution showing type-casting at run-time (using generics).
+Here is my 2nd solution using generics so that getMax can be reused with different types.
+It still requires strings to be parsed to numbers. 
 */
 
 public class Comparator2<T extends Comparable<T>> {
