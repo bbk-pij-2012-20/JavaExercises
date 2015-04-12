@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/08_GENERICS_PARAMETRICPOLYMORPHISM/Generics_Ex3
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/08_GENERICS_PARAMETRICPOLYMORPHISM/Generics_Ex3_DLL
 // Exercise 11.3: Intro to parametric polymorphism (aka Generics).
 /*
 Modify the doubly-linked list that you have created in past weeks to make it generic,
