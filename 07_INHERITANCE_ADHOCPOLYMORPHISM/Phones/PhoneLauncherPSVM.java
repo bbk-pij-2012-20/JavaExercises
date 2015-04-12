@@ -13,7 +13,7 @@ public class PhoneLauncher {
     // your code creating and using SmartPhone here...
   }
 */
-import interfacePhone.sub.Phone;
+import interfacePhone.Phone;
 
 public class PhoneLauncherPSVM {
 
