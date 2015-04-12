@@ -46,7 +46,7 @@ public class Comparator2<T extends Comparable<T>> {
 	public static void main(String[] args) {
 
 		Comparator2<String> compStr = new Comparator2<>();
-  	String n1Str = "323";//lexicographical ordering doesn't correspond to numerical ordering
+		String n1Str = "323";//lexicographical ordering doesn't correspond to numerical ordering
 		String n2Str = "34";
 
 		Comparator2<Double> compDou = new Comparator2<>();
@@ -55,7 +55,7 @@ public class Comparator2<T extends Comparable<T>> {
 
 		Comparator2<Integer> compInt = new Comparator2<>();
 		Integer n1Int = 123;
-    Integer n2Int = 321;
+		Integer n2Int = 321;
 
 		System.out.println("(doubles) max of: " + n1Dou + " and " + n2Dou + " = " + compDou.getMax(n1Dou, n2Dou));
 		System.out.println("(Strings) max of: " + n1Str + " and " + n2Str + " = " + compStr.getMax(n1Str, n2Str));

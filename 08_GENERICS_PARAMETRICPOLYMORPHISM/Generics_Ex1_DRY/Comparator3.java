@@ -53,7 +53,7 @@ public class Comparator3 {
 		Double n2Dou = 4.0;
 
 		Integer n1Int = 123;
-    Integer n2Int = 321;
+		Integer n2Int = 321;
 
 		System.out.println("(doubles) max of: " + n1Dou + " and " + n2Dou + " = " + comp3.getMax(n1Dou, n2Dou));
 		System.out.println("(Strings) max of: " + n1Str + " and " + n2Str + " = " + comp3.getMax(n1Str, n2Str));
