@@ -23,12 +23,10 @@ public class GenericDLLPSVM {
 		GenericNode<Integer> integerRootNode = new GenericNode<>(0,0);
 		GenericNode<Integer> integerNode2 = new GenericNode<>(1,2);
 		GenericNode<Integer> integerNode3 = new GenericNode<>(2,3);
-
 		numberList.addNode(integerRootNode);
 		numberList.addNode(integerNode2);
 		numberList.addNode(integerNode3);
 		numberList.deleteNode(integerNode2);
-
 		numberList.displayNodes();
 
 	}
