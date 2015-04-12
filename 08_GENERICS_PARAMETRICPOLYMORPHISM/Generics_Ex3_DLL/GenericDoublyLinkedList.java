@@ -8,7 +8,7 @@ i.e. to allow it to have values of its elements of any type.
 //This is the Doubly-linked list (from Ex 7.5), AFTER editting to generic format.
 public class GenericDoublyLinkedList<T> {
 
-	GenericNode<T> root;
+	private GenericNode<T> root;
 
 	public void addNode(GenericNode<T> newOne) {
 
