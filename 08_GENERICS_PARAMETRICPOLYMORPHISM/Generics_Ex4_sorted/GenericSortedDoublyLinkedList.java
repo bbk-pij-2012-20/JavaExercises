@@ -6,8 +6,6 @@ i.e. to allow it to have values of its elements of any type.
 */
 
 //This is the Doubly-linked list (from Ex 7.5), AFTER editting to generic format.
-import Generics_Ex3_DLL.GenericDoublyLinkedList;
-import Generics_Ex3_DLL.GenericNode;
 
 public class GenericSortedDoublyLinkedList<T> extends GenericDoublyLinkedList<T> {
 

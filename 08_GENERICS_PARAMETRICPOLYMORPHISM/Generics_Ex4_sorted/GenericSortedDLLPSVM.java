@@ -4,8 +4,6 @@
 Modify the doubly-linked list that you have created in past weeks to make it generic,
 i.e. to allow it to have values of its elements of any type.
 */
-import Generics_Ex3_DLL.GenericDoublyLinkedList;
-import Generics_Ex3_DLL.GenericNode;
 
 public class GenericSortedDLLPSVM {
 
@@ -25,12 +23,10 @@ public class GenericSortedDLLPSVM {
 		GenericNode<Integer> integerRootNode = new GenericSortedNode<>(0,0);
 		GenericNode<Integer> integerNode2 = new GenericSortedNode<>(1,5);
 		GenericNode<Integer> integerNode3 = new GenericSortedNode<>(2,2);
-
 		numberList.addNode(integerRootNode);
 		numberList.addNode(integerNode2);
 		numberList.addNode(integerNode3);
 		numberList.deleteNode(integerNode2);
-
 		numberList.displayNodes();
 
 	}
