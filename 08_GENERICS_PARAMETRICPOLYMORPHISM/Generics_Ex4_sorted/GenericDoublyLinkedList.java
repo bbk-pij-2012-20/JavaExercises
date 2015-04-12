@@ -8,7 +8,7 @@ i.e. to allow it to have values of its elements of any type.
 //copied from Generics_Ex3_DLL
 public class GenericDoublyLinkedList<T> {
 
-	GenericNode<T> root;
+	protected GenericNode<T> root;
 
 	public void addNode(GenericNode<T> newOne) {
 
