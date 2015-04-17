@@ -20,19 +20,19 @@ System.out.println("0 < " + smallHash + " < 1000");
 public class HashUtilities {
 
 	public static void main(String[] args) {
-	
+
 		HashUtilities hUtil = new HashUtilities();
 		System.out.println("Input a word, to get its hashcode");
 		int hash = System.console().readLine().hashCode();
 		System.out.println("hashcode is: " + hash);
 		System.out.println("short hashcode is: " + hUtil.shortH(hash));
-	
+
 	}
 
 	private int shortH(int hash) {
 
-		return 1 + (Math.abs(hash) % 1000);
+		return 1 + (Math.abs(hash) % 999); //in this way the value will be BETWEEN 0 and 1000 (i.e. 1-999)
 
 	}
-	
+
 }
