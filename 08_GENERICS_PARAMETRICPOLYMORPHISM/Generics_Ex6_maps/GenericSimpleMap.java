@@ -9,6 +9,7 @@ Each key can only be linked to one value.
 For simplicity, assume that your map can hold a maximum of 1000 pairs.
 This way, you can use the hashing method you developed in past weeks and base your map on
 an array.
+
 */
 
 public class GenericSimpleMap<K,V> {
