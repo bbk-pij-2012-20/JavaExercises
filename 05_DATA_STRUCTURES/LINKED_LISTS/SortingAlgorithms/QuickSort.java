@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/06_DATA_STRUCTURES/LinkedLists/SortingAlgorithms
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/05_DATA_STRUCTURES/LINKED_LISTS/SortingAlgorithms
 // Exercise 7.13 (Using data structures & pointers to implement Sorting Algorithms). Difficulty level: very.
 /*
 This is a popular sorting algorithm that is very fast in most situations. Once you have finished all the other exercises,
@@ -9,7 +9,11 @@ use lists of some length.
 
 /*
 like bubble sort & cocktail sort, quick sort is at worst O(n^2). (n is number of elements).
-However, quick sort typically acts more like an O(n log n) algorithm. 
+However, quick sort typically acts more like an O(n log n) algorithm.
+Reason for this better performance is that quick sort is comparing and moving values very efficiently without shifting,
+which means it will only be comparing numbers once. So in essence each comparison will reduce the possible final sorted
+list in half, or in other words, to log (n!) which is n log (n)
+
 
 Also known as a partition-exchange sort
 
@@ -24,13 +28,13 @@ Steps in quick sort:
 public class QuickSort {
 
 //	private List list = null;
-	
+
 	public QuickSort() {
-	
+
 //		list = new List();
-	
+
 	}
-	
+
 	public static void main(String[] args) {
 
 		QuickSort qs = new QuickSort();
@@ -48,13 +52,13 @@ public class QuickSort {
 /*		List.Node node1 = list.new Node(1);
 		List.Node node2 = list.new Node(2);
 		List.Node node3 = list.new Node(3);
-		List.Node node4 = list.new Node(4);						
+		List.Node node4 = list.new Node(4);
 		qs.add(list, node1);
 		qs.add(list, node2);
 		qs.add(list, node3);
 		qs.add(list, node4);
 		System.out.print("\n\nafter adding nodes 1,2,3,4 to end of list: ");
-		qs.print(list);		
+		qs.print(list);
 		System.out.print("\n\nafter inserting node 4 next to node 1: ");
 		list.insert(node1, node4, list.getFirst(), list.getLast(), "next");
 		qs.print(list);
@@ -62,18 +66,18 @@ public class QuickSort {
 		list.insert(node4, node1, list.getFirst(), list.getLast(), "previous");
 		qs.print(list);
 		System.out.println();
-*/		
+*/
 	}
-	
+
 	public void makeDLL(List list) {
-		
+
 		add(list, list.new Node(5));
 		add(list, list.new Node(67));
-		add(list, list.new Node(2));		
+		add(list, list.new Node(2));
 		add(list, list.new Node(985));
 		add(list, list.new Node(36));
 		add(list, list.new Node(56));
-		add(list, list.new Node(1));		
+		add(list, list.new Node(1));
 		add(list, list.new Node(34));
 		add(list, list.new Node(10));
 		add(list, list.new Node(2));
@@ -87,67 +91,67 @@ public class QuickSort {
 	}
 
 	/**
-	*	Directly adds node to empty list. Sets pointers to 
+	*	Directly adds node to empty list. Sets pointers to
 	*	For lists larger than two nodes, calls sort method in List to sort list recursively by quicksort
 	*/
 	public void add(List list, List.Node node) {
 
 		if (list.getFirst() == null) {
-		
+
 			list.pointFirstAt(node);
 			list.pointLastAt(node);
 
 		} else {
-		
+
 			list.getFirst().add(node);
-		
+
 		}
-	
+
 	}
-	
+
 	/**
 	*	For lists larger than two nodes, calls sort method in List to sort list recursively by quicksort
 	*/
 	public void sort(List list) {
-	
+
 		List sortedList = list;
-		
+
 		try {
-			
+
 			if (list.listLength() < 2) {
-			
+
 				throw new IllegalArgumentException("...can't sort a list with only 1 node!");
-			
+
 			}
-		
+
 			sortedList.sort(sortedList.getFirst(), sortedList.getLast(), 0, 0);
-		
+
 		} catch (IllegalArgumentException e) {
-		
+
 			System.out.println(e.getMessage());
-		
-		}		
+
+		}
 
 	}
 
 	/**
-	*	Directly prints "empty" for empty list. 
+	*	Directly prints "empty" for empty list.
 	*	For non-empty lists, prints by calling print method in List.
 	*/
 	public void print(List list) {
-	
+
 		if (list.getFirst() == null) {
-		
+
 			System.out.println("List is empty");
-		
+
 		} else {
-		
+
 			System.out.println(list.toString());
-		
+
 		}
 
 	}
-	
+
 }
 
 /**
@@ -156,11 +160,11 @@ public class QuickSort {
 class List {
 
 	private Node first, last;
-	
+
 	public List() {
-	
+
 		last = first = null;
-		
+
 	}
 
 	/**
@@ -171,7 +175,7 @@ class List {
 		if (first == null || last == null || first == last) {
 
 			return;
-							
+
 		}
 
 
@@ -195,78 +199,78 @@ class List {
 				currentNodePtr = currentNodePtr.next;
 				firstLast = insert(pivot, currentNode, firstLast[0], firstLast[1], "next");
 				comparisonsMadeWithPivot++;
-											
+
 			} else if (currentNode == pivot) {
-			
+
 				currentNodePtr = currentNodePtr.next;
-			
+
 			}
 
 			currentNode = currentNodePtr;
 
-		}  
-		
+		}
+
 		pivot.sorted = true;
 		Node firstLeft = firstLast[0];
 		Node lastLeft = pivot.previous;
 
 		if (firstLeft == lastLeft) {
-		
+
 			firstLeft.sorted = lastLeft.sorted = true;
 			firstLeft = lastLeft = null;
-		
+
 		}
-	
+
 		if (lastLeft == null) {
-		
+
 			firstLeft = null;
-		
+
 		}
-		
+
 		Node firstRight = pivot.next;
 		Node lastRight = firstLast[1];
-		
+
 		if (firstRight == lastRight) {
-		
+
 			firstRight.sorted = lastRight.sorted = true;
 			firstRight = lastRight = null;
-		
+
 		}
-		
+
 		if (firstRight == null) {
-		
+
 			lastRight = null;
-			
+
 		}
-		
+
 		while (lastLeft != null && lastLeft != firstLeft && lastLeft.sorted != false) {
 
 			lastLeft = lastLeft.previous;
-			
-		} 
+
+		}
 
 		while (firstLeft != null && lastLeft != firstLeft && firstLeft.sorted != false) {
-		
+
 			firstLeft = firstLeft.next;
-		
-		} 
+
+		}
 
 /*if (firstLeft ==null) {
-	
+
 	System.out.println("firstLeft is dull");
-		
+
 	if (lastLeft ==null) {
-		
+
 		System.out.println("lastLeft is dull too");
 
 	}
-	
+
 } else if (lastLeft ==null) {
-	
+
 	System.out.println("lastLeft is dull");
-		
+
 	if (firstLeft ==null) {
-		
+
 		System.out.println("firstLeft is dull too");
 
 	}
@@ -274,41 +278,41 @@ class List {
 } else if (lastLeft != null && firstLeft != null) {
 
 	System.out.println("passdeduchypanylefthandside: "+toString(firstLeft, lastLeft));
-	
+
 }
 System.out.println("APRES insert() action:BUT AFTER THE WHILES does firstLeft become 10 ??? It should still be 7 or is the toString not working properly?: " + firstLeft.n + "  and lastLeft: " + lastLeft.n);
 */
 		int nLL = nL + 1;
 		sort(firstLeft, lastLeft, nLL, nR);
-		
+
 		while (lastRight != null && lastRight != firstRight && lastRight.sorted != false) {
 
 			lastRight = lastRight.previous;
-			
-		} 
+
+		}
 
 		while (firstRight != null && lastRight != firstRight && firstRight.sorted != false) {
-		
+
 			firstRight = firstRight.next;
-		
-		} 
+
+		}
 
 /*if (firstRight ==null) {
-	
+
 	System.out.println("firstRight is dull");
-		
+
 	if (lastRight ==null) {
-		
+
 		System.out.println("lastRight is dull too");
 
 	}
-	
+
 } else if (lastRight ==null) {
-	
+
 	System.out.println("lastRight is dull");
-		
+
 	if (firstRight ==null) {
-		
+
 		System.out.println("firstRight is dull too");
 
 	}
@@ -329,9 +333,9 @@ System.out.println();
 	*	Calculates the length of list starting from first to last nodes in list.
 	*/
 	public int listLength() {
-		
+
 		return listLengthBetween(getFirst(), getLast());
-		
+
 	}
 
 	/**
@@ -341,155 +345,155 @@ System.out.println();
 
 		int length = 0;
 		Node current = first;
-		
+
 		if (current != null) {
-		
+
 			length = 1;
-		
+
 		}
-		
+
 		while (current != last && current.next != null) {
-		
+
 			length++;
 			current = current.next;
-			
+
 		}
 
 		return length;
-	
+
 	}
 
 	/**
 	*	Returns string representation of list from start to end.
-	*/	
+	*/
 	@Override
 	public String toString() {
-		
+
 		if (getFirst() == null) {
-			
-			return "List is empty"; 
-			
+
+			return "List is empty";
+
 		} else {
 
 			return toString(getFirst());
 
 		}
-	
+
 	}
-		
+
 	/**
 	*	Returns string representation of list, but only starting from node passed to it.
 	*/
 	public String toString(Node node) {
-		
+
 		Node currentLastInList = node;
-		
+
 		while (currentLastInList.next != null) {
-		
+
 			currentLastInList = currentLastInList.next;
-		
+
 		}
-		
+
 		return toString(node, currentLastInList);
-			
+
 	}
-	
+
 	/**
 	*	Returns string representation of list, starting from and ending at the nodes passed to it.
 	*/
 	public String toString(Node node, Node node2) {
 
 		if (node == node2) {
-		
+
 			return "" + node2.n;
-		
+
 		} else {
-				
+
 			return node.n + " " + toString(node.next, node2);
-			
+
 		}
-				
+
 	}
-	
+
 	/**
 	*	Takes nodeToMove and inserts it immediately up or downstream of pivot.
 	*
 	*                           pivot,   currentNode,     firstInPartition,       lastInPartition,     "next" or "previous"
 	*/
 	public Node[] insert(Node pivot, Node nodeToMove, Node first, Node last, String nextOrPrevious) {
-	
+
 		Node pivot_ = pivot;
 		Node nodeToMove_ = nodeToMove;
 		Node[] firstLast = {first, last};
 
-		if (nextOrPrevious.equals("next")) { 
+		if (nextOrPrevious.equals("next")) {
 
 			if (nodeToMove == first) {//if nodeToMove is first, first must be reassigned.
 
 				firstLast[0] = nodeToMove.next;
-				
-				if (first == getFirst()) {//this would change the position of the 
-				
+
+				if (first == getFirst()) {//this would change the position of the
+
 					pointFirstAt(nodeToMove.next);
-				
+
 				}
-				
+
 			}
 
 			if (pivot == last) {//if pivot is last, last must be reassigned.
-			
+
 				firstLast[1] = nodeToMove;
-				
+
 		/*		if (last == getLast()) {
-				
+
 					pointLastAt(nodeToMove);
-				
+
 				}*/
-				
+
 			}
 
-			if (nodeToMove == last) {//if nodeToMove is last, last might need reassigning 
+			if (nodeToMove == last) {//if nodeToMove is last, last might need reassigning
 
 				if (nodeToMove.previous != pivot) {
-			
+
 					firstLast[1] = nodeToMove.previous;
-			
+
 			/*		if (last == getLast()) {
-				
+
 						pointLastAt(nodeToMove.previous);
-				
+
 					}*/
-						
+
 				}
-						
+
 			}
-			
+
 			if (pivot.next != nodeToMove) {
 
 				if (nodeToMove.previous != null) {
-			
+
 					nodeToMove.getPrevious().setNextTo(nodeToMove.next);
-					
+
 				}
-			
+
 				if (nodeToMove.next != null) {
-			
+
 					nodeToMove.getNext().setPreviousTo(nodeToMove.previous);
-			
-				} 
-			
-				if (pivot.next != null) {
-			
-					pivot.getNext().setPreviousTo(nodeToMove);
-			
+
 				}
-			
+
+				if (pivot.next != null) {
+
+					pivot.getNext().setPreviousTo(nodeToMove);
+
+				}
+
 				nodeToMove_.setNextTo(pivot.next);
 				pivot_.setNextTo(nodeToMove);
 				nodeToMove_.setPreviousTo(pivot);
-			
-			} 	
-		
+
+			}
+
 		} else if (nextOrPrevious.equals("previous")) {
 
 			if (nodeToMove == last) {//if nodeToMove is last, last must be reassigned.
@@ -497,9 +501,9 @@ System.out.println();
 				firstLast[1] = nodeToMove.previous;
 
 		/*		if (last == getLast()) {
-				
+
 					pointLastAt(nodeToMove.previous);
-				
+
 				}*/
 
 			}
@@ -507,15 +511,15 @@ System.out.println();
 			if (pivot == first) {//if pivot is first, first must be reassigned.
 
 				firstLast[0] = nodeToMove;
-	
+
 				if (first == getFirst()) {
-				
+
 					pointFirstAt(nodeToMove);
-				
+
 				}
-						
+
 			}
-			
+
 			if (nodeToMove == first) {//if nodeToMove is first, first might need reassigning.
 
 				if (nodeToMove.getNext() != pivot) {
@@ -523,233 +527,233 @@ System.out.println();
 					firstLast[0] = nodeToMove.next;
 
 					if (first == getFirst()) {
-				
+
 						pointFirstAt(nodeToMove.next);
-				
+
 					}
 
 				}
-				
+
 			}
-	
+
 			if (pivot.previous != nodeToMove) {
 
 				if (nodeToMove.previous != null) {
 
 					nodeToMove.getPrevious().setNextTo(nodeToMove.next);
-			
+
 				}
 
 				if (nodeToMove.next != null) {
 
 					nodeToMove.getNext().setPreviousTo(nodeToMove.previous);
-			
+
 				}
-			
+
 				if (pivot.previous != null) {
 
 					pivot.getPrevious().setNextTo(nodeToMove);
-			
+
 				}
-			
+
 				nodeToMove_.setPreviousTo(pivot.previous);
 				pivot_.setPreviousTo(nodeToMove);
-				nodeToMove_.setNextTo(pivot);				
-	
+				nodeToMove_.setNextTo(pivot);
+
 			}
-		
+
 		}
 
 		return firstLast;
-		
+
 	}
 	/* NOT USING THIS METHOD IN THIS VERSION
-	*	
+	*
 	Swaps position of two nodes passed to it. (Incomplete as it does reassign first & last yet)
 	*	(This method may not be used at all though)
 	*
 	protected void swap(Node node1, Node node2) {
-		
+
 		Node preNode1 = node1.getPrevious();
 		Node nextNode1 = node1.getNext();
 		Node preNode2 = node2.getPrevious();
-		Node nextNode2 = node2.getNext();		
+		Node nextNode2 = node2.getNext();
 		Node newNode1 = node1;
 		Node newNode2 = node2;
-		
+
 		if (preNode1 == node2) {
-				
+
 			newNode2.setPreviousTo(node1);
 			newNode1.setNextTo(node2);
 			newNode2.setNextTo(nextNode1);
-			
+
 			if (nextNode1 != null) {
-			
+
 				nextNode1.setPreviousTo(newNode2);
-			
+
 			}
-			
+
 			newNode1.setPreviousTo(preNode2);
-			
+
 			if (preNode2 != null) {
-				
+
 				preNode2.setNextTo(node1);
-			
+
 			}
-		
+
 		} else if (preNode2 == node1) {
-				
+
 			newNode1.setPreviousTo(node2);
 			newNode2.setNextTo(node1);
 			newNode1.setNextTo(nextNode2);
-			
+
 			if (nextNode2 != null) {
-			
+
 				nextNode2.setPreviousTo(node1);
-			
+
 			}
-			
+
 			newNode2.setPreviousTo(preNode1);
-			
+
 			if (preNode1 != null) {
-			
+
 				preNode1.setNextTo(node2);
-			
+
 			}
-		
+
 		} else {
 
 			newNode2.setPreviousTo(preNode1);
-		
+
 			if (preNode1 != null) {
-		
+
 				preNode1.setNextTo(newNode2);
-		
+
 			}
-		
+
 			newNode2.setNextTo(nextNode1);
-		
+
 			if (nextNode1 != null) {
-		
+
 				nextNode1.setPreviousTo(newNode2);
-		
+
 			}
-		
+
 			newNode1.setPreviousTo(preNode2);
-		
+
 			if (preNode2 != null) {
-		
+
 				preNode2.setNextTo(newNode1);
-		
-			} 
-		
+
+			}
+
 			newNode1.setNextTo(nextNode2);
-		
+
 			if (nextNode2 != null) {
-			
+
 				nextNode2.setPreviousTo(newNode1);
-		
+
 			}
 
 		}
-	
+
 	}*/
-	
+
 	public void pointFirstAt(Node node) {
-	
+
 		first = node;
 
 	}
-	
+
 	public Node getFirst() {
-	
+
 		return first;
-	
+
 	}
 
 	public Node getLast() {
-	
+
 		return last;
-	
+
 	}
-	
+
 	public void pointLastAt(Node node) {
-	
+
 		last = node;
-	
+
 	}
-	
+
 	public Node getNext(Node node) {
-	
+
 		return node.getNext();
-	
+
 	}
 
 	/**
 	*	Inner Node class
 	*/
    	protected class Node {
-	
+
 		private Node next;
 		private Node previous;
 		private int n;
 		private boolean sorted = false;
-			
+
 		protected Node(int n) {
-		
+
 			this.n = n;
-		
+
 		}
-		
+
 		/**
 		*	Used at beginning when building the list.
 		*/
 		public void add(Node node) {
-		
+
 			if (next == null) {
-			
+
 				next = node;
 				node.previous = this;
 				last = node;
-			
+
 			} else {
-			
+
 				next.add(node);
-			
+
 			}
-		
+
 		}
-		
+
 		public Node getNext() {
-		
+
 			return next;
-		
+
 		}
-		
+
 		public Node getPrevious() {
-		
+
 			return previous;
-		
+
 		}
-		
+
 		public void setNextTo(Node node) {
-		
+
 			next = node;
-		
+
 		}
-		
+
 		public void setPreviousTo(Node node) {
-	
+
 			previous = node;
-		
+
 		}
-		
+
 		public int getN() {
-		
+
 			return n;
-		
+
 		}
-	
+
 	}
-	
+
 }
