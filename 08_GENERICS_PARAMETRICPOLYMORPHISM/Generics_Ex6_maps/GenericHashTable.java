@@ -5,13 +5,10 @@
 Create a generic map (with methods for putting a key–value pair, getting the value for a key,
 and removing a key).
 The key and the value may be any type, and they may be different.
-
 Under each key, the hash table can store any number of values associated to that key.
-
 For simplicity, assume that your map can hold a maximum of 1000 pairs.
 This way, you can use the hashing method you developed in past weeks and base your map on an array.
 */
-
 
 /**
  * The Generic hashtable made here has an array of 1000 elements to hold key-value pairs.
