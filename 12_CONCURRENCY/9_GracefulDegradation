@@ -1,0 +1,9 @@
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY
+// Exercise 18.1: Introduction to concurrency
+
+/*
+Think of three examples of concurrent applications that you use every week and that
+benefit from graceful degradation, i.e. becoming gradually more slow under high
+load rather than crashing unexpectedly. Once you have thought of three examples,
+check them with one of your colleagues. Have you thought of the same examples?
+*/
