@@ -15,6 +15,21 @@ in order. MODE 1: Each iteration of run()'s (though not sure how run()
 gets called at all) for-loop is printed in random order, and this occurs
 for each iteration of the for-loop in PSVM() which is also randomly ordered.
 
+An important distinction then is highlighted by this exercise:
+
+The start() method creates a new thread, that executes the run() method.
+The run() method just executes in the current thread, without starting a new thread.
+
+MY understanding is that because multi-threading is organised by algorithm(s)
+that are executed at the level of the computer's operating system (which are
+not made visible to the Java code utilising it) and because the resources
+(i.e. CPU) that the threads are being allocated to are shared with a bunch
+of other processes running in the OS of the computer, that are themselves
+non-deterministic, multi-threading is by definition non-deterministic.
+So, if some threads are executing in a non-deterministic fashion, then they
+are likely to be using concurrency. If concurrency is being used, then
+the threads will be executed non-determinstically.
+
 Hence mode 0 gives deterministic code, mode 1 is non-deterministic.
 
 */
