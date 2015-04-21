@@ -14,6 +14,9 @@ COUNT) and this occurs for each iteration of the for-loop in PSVM(), also
 in order. MODE 1: Each iteration of run()'s (though not sure how run()
 gets called at all) for-loop is printed in random order, and this occurs
 for each iteration of the for-loop in PSVM() which is also randomly ordered.
+
+Hence mode 0 gives deterministic code, mode 1 is non-deterministic.
+
 */
 public class TextLoop implements Runnable {
 
@@ -61,6 +64,8 @@ public class TextLoop implements Runnable {
         Runnable runnable = new TextLoop("Thread " + i);
         Thread thread = new Thread(runnable);
         thread.start();
+// this seems to call run(), which is overridden here in TextLoop to the code
+// above (lines 29-38).
 
       }
 
