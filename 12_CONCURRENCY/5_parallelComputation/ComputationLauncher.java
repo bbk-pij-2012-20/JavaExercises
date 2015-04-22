@@ -1,11 +1,11 @@
 /**
  * This class launched two heavy computations
- * sequentially first, then in parallel. 
- * Assuming there is more than one processor in 
+ * sequentially first, then in parallel.
+ * Assuming there is more than one processor in
  * the machine, parallel computations finish
  * earlier.
  */
-public class ComputationLauncher {   
+public class ComputationLauncher {
     /**
      * How many numbers to process? If too low, there is no noticeable
      * difference.
@@ -13,8 +13,8 @@ public class ComputationLauncher {
      public static final int COUNT = 40000000;
 
     /*
-     * The computations to be performed. Stored as fields so 
-     * both methods (sequential and parallel) act on exactly 
+     * The computations to be performed. Stored as fields so
+     * both methods (sequential and parallel) act on exactly
      * the same data
      */
     private Computation c1 = null;
@@ -29,22 +29,22 @@ public class ComputationLauncher {
 	  ComputationLauncher c = new ComputationLauncher();
 	  c.launch();
     }
-   
+
     private double[] createArray(int size) {
 	  double[] result = new double[size];
-	  for (int i = 0; i < result.length; i++) 
+	  for (int i = 0; i < result.length; i++)
 		{
 		    result[i] = Math.random();
 		}
 	  return result;
     }
-   
+
     private void launch() {
 	  // Uncomment the following line to know how many processors your machine has
 	  // System.out.println("#CPU: " + Runtime.getRuntime().availableProcessors());
 	  long start, stop;
 	  c1 = new Computation(createArray(COUNT/2));
-	  c2 = new Computation(createArray(COUNT/2));	
+	  c2 = new Computation(createArray(COUNT/2));
 	  start = System.currentTimeMillis();
 	  sequentialComputations();
 	  stop = System.currentTimeMillis();
@@ -54,7 +54,7 @@ public class ComputationLauncher {
 	  stop = System.currentTimeMillis();
 	  System.out.println("Time with threads: " + (stop - start) + "ms");
     }
-   
+
     private void sequentialComputations() {
 	  c1.run();
 	  c2.run();
@@ -62,7 +62,7 @@ public class ComputationLauncher {
 	  double result2 = c2.getResult();
 	  System.out.println("Result: " + (result1 + result2));
     }
-   
+
     private void parallelComputations() {
 	  Thread t1 = new Thread(c1);
 	  t1.start();

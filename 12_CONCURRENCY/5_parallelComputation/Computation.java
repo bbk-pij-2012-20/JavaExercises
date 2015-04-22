@@ -9,7 +9,7 @@ public class Computation implements Runnable {
      */
     private double result = 0;
 
-    /** 
+    /**
      * True when the computation result is ready, false otherwise.
      */
     private boolean resultReady = false;
@@ -27,15 +27,15 @@ public class Computation implements Runnable {
     public Computation(double[] data) {
 	  this.numbers = data;
     }
-   
+
     /**
      * Runs the computation.
      */
     public void run() {
 	  synchronized (this) {
 		double result = 0.0;
-    
-		// A new Random is created here because Math.random() is 
+
+		// A new Random is created here because Math.random() is
 		// synchronised, which leads to no improvement being seen
 		Random r = new Random(-1);
 		for (int i = 0; i < numbers.length; i++) {
@@ -51,7 +51,7 @@ public class Computation implements Runnable {
     }
 
     /**
-     * Returns the result of the computation if it is ready. 
+     * Returns the result of the computation if it is ready.
      * If it is not, it blocks until it is.
      *
      * @return the result of the computation.
