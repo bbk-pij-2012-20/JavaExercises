@@ -136,11 +136,11 @@ public class GenericSimpleMap<K,V> {
   }
 
   /**
-  * converts the key object into an integer within range 1 - 1000
+  * converts the key object into an integer within range 0 - 999 (inclusive)
   */
   private int getNewHash(K key) {
 
-    return 1 + (Math.abs(key.hashCode()) % 1000);
+    return Math.abs(key.hashCode()) % 1000;
 
   }
 
