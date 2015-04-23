@@ -21,27 +21,82 @@ Note that several tasks may end in between two user inputs.
 */
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ResponsiveUI {
 
-  private int numberOftasks = 10;
-  private String task = "";
-  private Task task;
-  private List<Task> newlyFinished = new ArrayList<>();
+  private int numberOfTasks = 0;
+  private List<String> finishedTasksList = null;
+  private List<String> newlyFinishedTasksList = null;
+  private Timer timer = null;
+
+  public ResponsiveUI() {
+
+    numberOfTasks = 10;
+    finishedTasksList = new ArrayList<>();
+    newlyFinishedTasksList = new ArrayList<>();
+
+  }
 
   public static void main(String[] args) {
 
-    for (int i = 0; i < numberOfTasks; i++) {
+    ResponsiveUI rui = new ResponsiveUI();
 
-      System.out.println("Enter the duration (in ms) of task" + i + ": ");
-      Runnable task = new Task(Integer.parseInt(System.console.readLine()));
-      Thread taskThread = new Thread(task, i, newlyFinished);
+    for (int taskNumber = 1; taskNumber < rui.numberOfTasks; taskNumber++) {
+
+      System.out.print("Enter the duration (in ms) of task" + taskNumber + ": ");
+      String input = System.console().readLine();
+      Long duration = Long.parseLong(input);
+      Runnable task = new Task(duration, taskNumber, rui.newlyFinishedTasksList);
+      Thread taskThread = new Thread(task);
       taskThread.start();
+
+      if (!rui.newlyFinishedTasksList.isEmpty()) {
+
+        System.out.print("Finished tasks: " + rui.newlyFinishedTasksList + "\n");
+        rui.finishedTasksList.addAll(rui.newlyFinishedTasksList);
+        rui.newlyFinishedTasksList.clear();
+
+      }
 
     }
 
-    //some timer task that periodically checks which are the newly finished tasks
+    if (rui.finishedTasksList.size() < 10) {
 
+      rui.checkForUnfinished();
+
+    } else if (rui.finishedTasksList.size() == 10) {
+
+      rui.timer.cancel();
+      System.exit(0);
+
+    }
+
+  }
+
+  public void checkForUnfinished() {
+
+    TimerTask timerTask = new TimerTask() {
+
+      public void run() {
+
+        if (finishedTasksList.size() < 10 && !newlyFinishedTasksList.isEmpty()) {
+
+          System.out.print("Finished tasks: " + newlyFinishedTasksList + "\n");
+          finishedTasksList.addAll(newlyFinishedTasksList);
+          newlyFinishedTasksList.clear();
+
+        }
+
+      }
+
+
+    };
+
+    int millisecsBetweenChecking = 1000; //i.e. it checks once per second
+    timer = new Timer();
+    timer.schedule(timerTask, 0, millisecsBetweenChecking);
 
   }
 
@@ -49,25 +104,31 @@ public class ResponsiveUI {
 
 class Task implements Runnable {
 
-  private int millisecs;
+  private long endTime;
   private int taskNumber;
-  private List<Task> newlyFinished;
+  private List<String> newlyFinishedTaskList;
 
-  public Task(int millisecs, int taskNumber, List<Task> newlyFinished) {
+  public Task(long duration, int taskNumber, List<String> newlyFinishedTaskList) {
 
-    this.millisecs = millisecs;
+    endTime = System.currentTimeMillis() + duration;
     this.taskNumber = taskNumber;
-    this.newlyFinished = newlyFinished;
+    this.newlyFinishedTaskList = newlyFinishedTaskList;
 
   }
 
   public void run() {
 
-    //timer task for millisecs.
+    while (System.currentTimeMillis() <= endTime) {}
 
-    //at end of run, newlyFinished.add(this);
+    newlyFinishedTaskList.add(this.getTaskNumber() + ", ");
+    return;
 
   }
 
+  public int getTaskNumber() {
+
+    return taskNumber;
+
+  }
 
 }
