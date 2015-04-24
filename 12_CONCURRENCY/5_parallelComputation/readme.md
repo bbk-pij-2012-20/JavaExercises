@@ -14,8 +14,9 @@ if your machine had four processors? You can see how many processors (or cores)
 your machine has by reading the value of:
 Runtime.getRuntime().availableProcessors();
 
+----
+My Notes:
 
-My Notes:----------------------------------------------------------------------<br/>
 Difference between a wait() and sleep() (from StackOverFlow):
 A wait() can be "woken up" by another process calling notify() on the 'monitor' which
 is being waited on whereas a sleep() cannot. Also a wait() (and notify()) must happen
