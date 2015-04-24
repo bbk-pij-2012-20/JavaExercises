@@ -1,3 +1,4 @@
+<h3>Exercise 17.5 'Parallel computation'</h3>
 Look at the attached program ComputationLauncher for an example of a heavy
 computation being performed in sequence or in parallel using more than one
 processor at the same time.
