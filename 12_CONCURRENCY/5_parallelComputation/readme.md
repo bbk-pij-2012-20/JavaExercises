@@ -12,13 +12,10 @@ Time with threads: 6326ms<br/>
 Make sure you understand how the program works. How would you modify the program
 if your machine had four processors? You can see how many processors (or cores)
 your machine has by reading the value of:
-
 Runtime.getRuntime().availableProcessors();
 
-I've left the teacher code (ComputationLauncher and Computation) as is, and put my
-modified versions below, so that both sets of code, before and after, can be seen)
 
-Notes:
+My Notes:--------------
 Difference between a wait() and sleep() (from StackOverFlow):
 A wait() can be "woken up" by another process calling notify() on the 'monitor' which
 is being waited on whereas a sleep() cannot. Also a wait() (and notify()) must happen
