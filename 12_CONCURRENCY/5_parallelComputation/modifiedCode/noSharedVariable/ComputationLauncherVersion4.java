@@ -6,7 +6,7 @@
  * Assuming there is more than one processor in the machine, parallel computations
  * finish earlier.
  */
-public class ComputationLauncherVersion5 {
+public class ComputationLauncherVersion4 {
 
   /**
   * How many numbers to process? If too low, there is no noticeable
@@ -24,12 +24,12 @@ public class ComputationLauncherVersion5 {
   //private Computation c2 = null;
 
   //arrays of Computation and Thread, so degree of parallelism is determined at runtime
-  private Computation[] computations = null;
+  private ComputationVersion4[] computations = null;
   private Thread[] threads = null;
 
   public ComputationLauncherVersion4() {
 
-    computations = new Computation[NUMBER_OF_CPUs];
+    computations = new ComputationVersion4[NUMBER_OF_CPUs];
     threads = new Thread[NUMBER_OF_CPUs];
 
   }
@@ -59,7 +59,7 @@ public class ComputationLauncherVersion5 {
       //The i passed to Computation's constructor is the thread#, this is so that
       //this Computation's result will know which thread it belongs to, hence
       //it's not a shared variable as in versions 1-4.
-      computations[i] = new Computation(createArray(COUNT / NUMBER_OF_CPUs), NUMBER_OF_CPUs, i);
+      computations[i] = new ComputationVersion4(createArray(COUNT / NUMBER_OF_CPUs), NUMBER_OF_CPUs, i);
       threads[i] = new Thread(computations[i]);
 
     }

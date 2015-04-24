@@ -2,7 +2,7 @@
 // Exercise 17.5: Introduction to concurrency
 
 /*
-ComputationVersions 1-4 are identical to each other. Only this version is different.
+Computation versions 1-3 are identical to each other. Only this version is different.
 
 Differences are:
 - result as a double is not a shared variable as it is in versions 1-4.
@@ -21,7 +21,7 @@ import java.util.*;
 /**
  * A class that performs a costly computation
  */
-public class ComputationVersion5 implements Runnable {
+public class ComputationVersion4 implements Runnable {
 
   /*
   * The result of the computation.
@@ -50,7 +50,7 @@ public class ComputationVersion5 implements Runnable {
   *
   * @param data an array of doubles to perform the computation
   */
-  public ComputationVersion5(double[] data, int numOfCPUs, int thread) {
+  public ComputationVersion4double[] data, int numOfCPUs, int thread) {
 
     this.numbers = data;
     result = new double[numOfCPUs];
