@@ -4,10 +4,10 @@ processor at the same time.
 
 In an old machine with two processors, the output looks like:
 
-Result: 7.999582837247596E14
-Time without threads: 11110ms
-Result: 7.999582837247596E14
-Time with threads: 6326ms
+Result: 7.999582837247596E14<br/>
+Time without threads: 11110ms<br/>
+Result: 7.999582837247596E14<br/>
+Time with threads: 6326ms<br/>
 
 Make sure you understand how the program works. How would you modify the program
 if your machine had four processors? You can see how many processors (or cores)
