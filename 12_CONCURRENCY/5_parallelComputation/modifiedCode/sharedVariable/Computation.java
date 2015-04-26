@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation/modifiedCode/sharedVariable
 // Exercise 17.5: Introduction to concurrency
 
 import java.util.*;

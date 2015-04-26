@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation/modifiedCode/noSharedVariable
 // Exercise 17.5: Introduction to concurrency
 
 /*
@@ -50,7 +50,7 @@ public class ComputationVersion4 implements Runnable {
   *
   * @param data an array of doubles to perform the computation
   */
-  public ComputationVersion4double[] data, int numOfCPUs, int thread) {
+  public ComputationVersion4(double[] data, int numOfCPUs, int thread) {
 
     this.numbers = data;
     result = new double[numOfCPUs];
@@ -81,7 +81,7 @@ public class ComputationVersion4 implements Runnable {
     }
 
 //  this.result = result; // commented out
-    result[thread] = result; // added in
+    this.result[thread] = result; // added in
 //  this.resultReady = true; // commented out
 //  notifyAll();// commented out
 
@@ -95,7 +95,7 @@ public class ComputationVersion4 implements Runnable {
   *
   * @return the result of the computation.
   */
-  public double getResult() {// synchronized removed
+  public double getResult(int thread) {// synchronized removed & parameter int thread added in
 
 //  while (!resultReady) {// commented out
     while (result[thread] == 0.0) {//added in

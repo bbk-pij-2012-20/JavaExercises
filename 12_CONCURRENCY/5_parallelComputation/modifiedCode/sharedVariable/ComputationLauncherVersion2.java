@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation/modifiedCode/sharedVariable
 // Exercise 17.5: Introduction to concurrency
 
 /**
@@ -41,27 +41,31 @@ public class ComputationLauncherVersion2 {
 
     // Uncomment the following line to know how many processors your machine has
     // System.out.println("#CPU: " + Runtime.getRuntime().availableProcessors());
-    long start, stop;
+    long start, stop, startNs, stopNs;
 
     c1 = new Computation(createArray(COUNT / NUMBER_OF_CPUs));
     c2 = new Computation(createArray(COUNT / NUMBER_OF_CPUs));
     c3 = new Computation(createArray(COUNT / NUMBER_OF_CPUs));// added
     c4 = new Computation(createArray(COUNT / NUMBER_OF_CPUs));// added
 
-    //  start = System.currentTimeMillis();
-    start = System.nanoTime();
+    start = System.currentTimeMillis();
+    startNs = System.nanoTime();
     sequentialComputations();
-    //  stop = System.currentTimeMillis();
-    stop = System.nanoTime();
-    //  System.out.println("Time without threads: " + (stop - start) + " ms");
-    System.out.println("Time without threads: " + (stop - start) + " ns");
-    //  start = System.currentTimeMillis();
-    start = System.nanoTime();
+    stop = System.currentTimeMillis();
+    stopNs = System.nanoTime();
+    System.out.println("Time without threads: " + (stop - start) + " ms");
+    System.out.println("Time without threads: " + (stopNs - startNs) + " ns");
+    long durationSeqNs = stopNs - startNs;
+
+    start = System.currentTimeMillis();
+    startNs = System.nanoTime();
     parallelComputations();
-    //  stop = System.currentTimeMillis();
-    stop = System.nanoTime();
-    //	System.out.println("Time with threads: " + (stop - start) + " ms");
-    System.out.println("Time with threads: " + (stop - start) + " ns");
+    stop = System.currentTimeMillis();
+    stopNs = System.nanoTime();
+    System.out.println("Time with threads: " + (stop - start) + " ms");
+    System.out.println("Time with threads: " + (stopNs - startNs) + " ns");
+
+    System.out.println("Using multithreading (using 4 threads, declared at compile time) is atleast: " + (durationSeqNs / (stopNs - startNs)) + " times faster than a single thread");
 
   }
 
