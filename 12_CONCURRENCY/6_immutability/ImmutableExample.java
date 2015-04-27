@@ -1,202 +1,265 @@
-import java.util.Date;  
-import java.util.StringTokenizer;  
-import java.util.Random; 
+// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/6_immutability
+// Exercise 17.6: Introduction to concurrency
+/*
+Look at the attached program ImmutableExample. Read it carefully.
+Do you see any flaws? If yes, what whould you change to make the program work
+without problems? What whould you change to make the IDCard class immutable?
+*/
+/*
+My Notes:
+Date is mutable.
+
+*/
+
+import java.util.Date;
+import java.util.StringTokenizer;
+import java.util.Random;
 import java.awt.image.BufferedImage;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class ImmutableExample
-{
-    public static void main(String[] args)
-    {
-        String name = DataGenerator.getNextName();
-        Date dateOfBirth = DataGenerator.getNextDate();
-        BufferedImage photo = DataGenerator.getNextPhoto();
-            
-        MutableIDCard id = new MutableIDCard(name,dateOfBirth,photo);
+public class ImmutableExample {
 
-        Runnable officer = new Officer(id);
-        Runnable citizen = new Citizen(id);
+  public static void main(String[] args) {
 
-        Thread t1 = new Thread(officer);
-        Thread t2 = new Thread(citizen);
-                  
-        t1.start();
-        t2.start();
-    }
+    String name = DataGenerator.getNextName();
+    Date dateOfBirth = DataGenerator.getNextDate();
+    BufferedImage photo = DataGenerator.getNextPhoto();
+    MutableIDCard id = new MutableIDCard(name, dateOfBirth, photo);
+    Runnable officer = new Officer(id);
+    Runnable citizen = new Citizen(id);
+    Thread t1 = new Thread(officer);
+//    Thread t2 = new Thread(citizen);
+//    Thread t3 = new Thread(citizen);
+    t1.start();
+//    t2.start();
+//    t3.start();
+
+  }
+
 }
 
-class DataGenerator
-{
-    private static StringTokenizer names = new StringTokenizer("John,Mary,Lisa",",");
-    private static StringTokenizer dates = new StringTokenizer("23/6/1971,12/3/1985,9/8/2002",",");
+class DataGenerator {
 
-    public synchronized static String getNextName()
-    {
-        if (names.hasMoreElements())
-        {
-            return (String)names.nextElement();
-        }
-            
-        return "Not a name";
-    }
-      
-    public synchronized static Date getNextDate()
-    {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String txtDate="1/1/1970";
-            
-        if(dates.hasMoreElements())
-        {
-            txtDate=(String)dates.nextElement();
-        }
+  private static StringTokenizer names = new StringTokenizer("John,Mary,Lisa",",");
+  private static StringTokenizer dates = new StringTokenizer("23/6/1971,12/3/1985,9/8/2002",",");
 
-        try
-        {
-            return dateFormat.parse(txtDate);
-        }
-        catch (ParseException e) 
-        {
-		return new Date();
-	  }            
+  public synchronized static String getNextName() {//synchronized
+
+    if (names.hasMoreElements()) {
+
+      return (String)names.nextElement();
+
     }
-      
-    public synchronized static BufferedImage getNextPhoto()
-    {
-        return new BufferedImage(30, 30, BufferedImage.TYPE_INT_RGB);
+
+    return "Not a name";
+
+  }
+
+  public synchronized static Date getNextDate() {//synchronized
+
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    String txtDate = "1/1/1970";
+
+    if (dates.hasMoreElements()) {
+
+      txtDate = (String)dates.nextElement();
+
     }
+
+    try {
+
+      return dateFormat.parse(txtDate);
+
+    } catch (ParseException e) {
+
+      return new Date();
+
+    }
+
+  }
+
+  public synchronized static BufferedImage getNextPhoto() {//synchronized
+
+    return new BufferedImage(30, 30, BufferedImage.TYPE_INT_RGB);
+
+  }
+
 }
 
-class MutableIDCard
-{
-    private String name;
-    private Date dateOfBirth;
-    private BufferedImage photo;
+class MutableIDCard {
 
-    public MutableIDCard(String name,Date dateOfBirth,BufferedImage photo)
-    {
-        this.name=name;
-        this.dateOfBirth=dateOfBirth;
-        this.photo=photo;
+  private String name;
+  private Date dateOfBirth;
+  private BufferedImage photo;
+
+  /**@author Sam Wright !
+  * This constructor creates a deep copy of the given MutableIDCard.
+  *
+  * @param id The MutableIDCard to copy.
+  *
+  public MutableIDCard(MutableIDCard id) {
+
+    set(String.valueOf(id.getName()),
+        (Date) id.getDateOfBirth().clone(),
+          id.photo.getSubimage(0, 0, id.photo.getWidth(), id.photo.getHeight()));
+
+  }*/
+
+  public MutableIDCard(String name, Date dateOfBirth, BufferedImage photo) {
+
+    this.name = name;
+    this.dateOfBirth = dateOfBirth;
+    this.photo = photo;
+
+  }
+
+  public void set(String name, Date dateOfBirth, BufferedImage photo) {
+
+    check(name, dateOfBirth, photo);
+
+    synchronized(this) {
+
+      this.name = name;
+      this.dateOfBirth = dateOfBirth;
+      this.photo = photo;
+
     }
 
-    public void set(String name,Date dateOfBirth,BufferedImage photo)
-    {
-        check(name,dateOfBirth,photo);
-            
-        synchronized(this)
-        {
-            this.name = name;
-            this.dateOfBirth = dateOfBirth;
-            this.photo = photo;
-        }
-    }
-      
-    public synchronized String getName()
-    {
-        return name;
+  }
+
+  public synchronized String getName() {//synchronized
+
+    return name;
+
+  }
+
+  public synchronized Date getDateOfBirth() {//synchronized
+
+    return dateOfBirth;
+
+  }
+
+  public synchronized BufferedImage getPhoto() {//synchronized
+
+    return photo;
+
+  }
+
+  public void check(String name, Date dateOfBirth, BufferedImage photo) {
+
+    if (name == null || name.equals("")){
+
+      throw new IllegalArgumentException();
+
     }
 
-    public synchronized Date getDateOfBirth()
-    {
-        return dateOfBirth;
+    if (dateOfBirth == null) {
+
+      throw new IllegalArgumentException();
+
     }
 
-    public synchronized BufferedImage getPhoto()
-    {
-        return photo;
+    long age = getAge(dateOfBirth);
+
+    if (dateOfBirth == null || age <= 0) {
+
+      throw new IllegalArgumentException();
+
     }
 
-    public void check(String name,Date dateOfBirth,BufferedImage photo)
-    {
-        if (name==null || name.equals(""))
-        {
-            throw new IllegalArgumentException();
-        }
-            
-        if (dateOfBirth==null)
-        {
-            throw new IllegalArgumentException();
-        }
-            
-        long age=getAge(dateOfBirth);
-            
-        if (dateOfBirth==null || age<=0)
-        {
-            throw new IllegalArgumentException();
-        }
-            
-        if (photo==null)
-        {
-            throw new IllegalArgumentException();
-        }     
+    if (photo == null) {
+
+      throw new IllegalArgumentException();
+
     }
-      
-    private long getAge(Date dateOfBirth)
-    {
-        long now = new Date().getTime();
-        long age = now - dateOfBirth.getTime();
-        return age;
-    }
+
+  }
+
+  private long getAge(Date dateOfBirth) {
+
+    long now = new Date().getTime();
+    long age = now - dateOfBirth.getTime();
+    return age;
+
+  }
+
 }
 
-class Citizen implements Runnable
-{
-    private MutableIDCard id;
-      
-    public Citizen(MutableIDCard id)
-    {
-        this.id = id;
-    }
-      
-    public void run()
-    {
-        Random r = new Random();
+class Citizen implements Runnable {
 
-        try
-        {
-            Thread.sleep(r.nextInt(2000));
-        }
-        catch (InterruptedException e)
-	  {
-		e.printStackTrace();
-	  }
+  private MutableIDCard id;
 
-        String message = "";
-        message += "the name on this id is "+id.getName()+"\n";
-        message += "and the date of birth is "+id.getDateOfBirth();
-            
-        System.out.println(message);
+  public Citizen(MutableIDCard id) {
+
+    this.id = id;
+
+/*@author Sam Wright !
+  Now the constructor takes a defensive copy of ID
+*
+    this.id = new MutableIDCard(id);
+    */
+  }
+
+  public void run() {
+
+    Random r = new Random();
+
+    try {
+
+      Thread.sleep(r.nextInt(2000));
+
+    } catch (InterruptedException e) {
+
+      e.printStackTrace();
+
     }
+
+    String message = "";
+    message += "the name on this id is " + id.getName() + "\n";
+    message += "and the date of birth is " + id.getDateOfBirth();
+
+    System.out.println(message);
+
+  }
+
 }
 
-class Officer implements Runnable
-{
-    private MutableIDCard id;
-      
-    public Officer(MutableIDCard id)
-    {
-        this.id=id;
-    }
-      
-    public void run()
-    {
-        Random r=new Random();
+class Officer implements Runnable {
 
-        try
-        {
-            Thread.sleep(r.nextInt(2000));
-        }
-        catch (InterruptedException e)
-	  {
-		e.printStackTrace();
-	  }
-            
-        String name = DataGenerator.getNextName();
-        Date dateOfBirth = DataGenerator.getNextDate();
-        BufferedImage photo = DataGenerator.getNextPhoto();
-            
-        id.set(name, dateOfBirth, photo);
+  private MutableIDCard id;
+
+  public Officer(MutableIDCard id) {
+
+    this.id = id;
+
+/*@author Sam Wright !
+  Now the constructor takes a defensive copy of ID
+*
+    this.id = new MutableIDCard(id);
+*/
+  }
+
+  public void run() {
+
+    Random r = new Random();
+
+    try {
+
+      Thread.sleep(r.nextInt(2000));
+
+    } catch (InterruptedException e) {
+
+      e.printStackTrace();
+
     }
+
+    String name = DataGenerator.getNextName();
+    Date dateOfBirth = DataGenerator.getNextDate();
+    BufferedImage photo = DataGenerator.getNextPhoto();
+    id.set(name, dateOfBirth, photo);
+
+  }
+
 }
