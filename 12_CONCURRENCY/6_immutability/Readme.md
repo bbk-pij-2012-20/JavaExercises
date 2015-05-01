@@ -12,15 +12,17 @@ DataGenerator, MutableIDClass). Read it carefully.
 
 --
 
-The code compiles. So there are no compilation flaws.
+The code compiles, (so there are no compilation 'flaws').
 
 Running the code gives the following output, (which is clearly non-deterministic):
 
 the name on this id is Mary
 and the date of birth is Tue Mar 12 00:00:00 GMT 1985
+
 run again:
 the name on this id is John
 and the date of birth is Wed Jun 23 00:00:00 GMT 1971
+
 run again:
 the name on this id is Mary
 and the date of birth is Tue Mar 12 00:00:00 GMT 1985
@@ -48,38 +50,14 @@ what effects they seem to have.
 There are essentially two overall approaches one could take with concurrently
 run threads that involve (a) shared variable(s).
 
-1. Mutable objects that are shared are kept as mutable.
+1. Mutable objects that are shared are kept as mutable, but protected with locks.
 
-When this is the case, there should be mechanisms put in place to make the
-mutable object(s) 'thread-safe'.
+A relatively simple way to achieve thread-saftey with locks is by use of the
+'synchronized' keyword.
 
-These include placing locks on sections of code, the most simple way to achieve
-this is by use of the 'synchronized' keyword.
-
-It can also involve the requirement to make 'defensive copies' of mutable
+This is simply but might also require making 'defensive copies' of mutable
 objects that are initialised in more than one thread.
 
-
-Broadly-speaking, this seems to be the approach taken in the example teacherCode.
-However, if one introduces the use of defensive copying in a new constructor in
-MutableIDCard, the output changes. Where as the output of the unchanged
-teacherCode varies between John and Mary, a modified form that includes the
-creation of defensive copies seems to always have the same output, namely John.
-
-MutableIDCard is the object that gets shared between different threads. It is
-vulnerable because it has two mutable fields: Date and BufferedImage.
-
-It also has a mutator in the form of set(String, Date, BufferedImage) (which
-has public access). The teacherCode wraps the assignments to the MutableIDCard
-fields in a synchronized block. The accessors in MutableIDCard are also
-synchronized.
-
-Another class DataGenerator uses synchronized to lock its (static) getters.
-This means the three DataGenerator accessors calls in the PSVM right at the
-start of the execution will be called by one thread at a time.. I think ..
-
-
-----
 
 2. Objects that are shared are made immutable.
 
@@ -97,10 +75,42 @@ Paraphrasing the five rules:
      return the object reference from an accessor.
   . Make defensive copies in constructors, accessors, and readObject methods.
 
+--
+
+Broadly-speaking, the teacherCode appears to be applying the first approach,
+namely to keep mutable objects mutable but maintain thread-safety with use of
+synchronized keyword.
+
+However, if one modifies the teacherCode by introducing the use of defensive
+copying (to a new constructor in MutableIDCard), the code produces a different
+output.
+Whereas the output used to flip non-deterministically between John and Mary,
+the modified code that includes the creation of defensive copies seems to always
+have the same output, (namely John).
+
+MutableIDCard is the mutable object that gets shared between different threads.
+It is mutable because it has two mutable fields: Date and BufferedImage.
+
+It also has a mutator in the form of set(String, Date, BufferedImage) (which
+has public access).
+
+The teacherCode wraps the assignments to the MutableIDCard fields in a
+synchronized block. The accessors in MutableIDCard are also synchronized.
+
+DataGenerator class also uses synchronized to lock its (static) getters.
+This means the three DataGenerator accessors calls in the PSVM right at the
+start of the execution will be called by one thread at a time.. I think ..
+
+---
+
+Approach no2, making MutableIDCard immutable.
+
+
+
 
 ----
 
-Use of Volatile?
+How about using volatile keyword instead of final?
 
 Of the two threads (Citizen and Officer), only Officer calls the mutator, hence
 only one thread writes to this variable while the other only reads from it. As
