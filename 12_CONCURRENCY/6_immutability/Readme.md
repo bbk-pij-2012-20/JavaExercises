@@ -1,13 +1,15 @@
 ImmutableExample exercise 17.6
+----
 
 With regards to the example code supplied by the teacher, the exercise states
 the following:
 "Look at the example program of 5 classes (ImmutableExamplePSVM, Officer, Citizen,
 DataGenerator, MutableIDClass). Read it carefully.
 - Do you see any flaws?
-- If yes, what whould you change to make the program work without problems?
+- If yes, what would you change to make the program work without problems?
 - What would you change to make the IDCard class immutable?"
-----
+
+
 
 The code compiles. So there are no compilation flaws.
 
