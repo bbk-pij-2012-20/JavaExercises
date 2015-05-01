@@ -7,25 +7,7 @@ DataGenerator, MutableIDClass). Read it carefully.
 - If yes, what whould you change to make the program work without problems?
 - What would you change to make the IDCard class immutable?
 */
-/* ANS:
-The code compiles. So there are no compilation flaws.
-Running the code gives the following output, in a non-deterministic way:
-the name on this id is Mary
-and the date of birth is Tue Mar 12 00:00:00 GMT 1985
-run again:
-the name on this id is John
-and the date of birth is Wed Jun 23 00:00:00 GMT 1971
-run again:
-the name on this id is Mary
-and the date of birth is Tue Mar 12 00:00:00 GMT 1985
-etc. the output is always either Mary or John. The DOB for either never changes.
-Lisa never seems to appear.
-
-So, I guess really depends on what the code is intended to do. If it is intended
-that Officer flips the identity of the output in a non-deterministic manner, then
-there is nothing wrong with it.
-If it isn't, then this is the flaw. .. !?
-*/
+//see Readme file for answers & discussion.
 
 import java.util.Date;
 import java.util.StringTokenizer;
