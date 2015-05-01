@@ -1,5 +1,32 @@
 <h1>Concurrency</h1>
 
+In Java, light-weight processes (aka threads) are able to enhance program
+performance by executing discrete tasks within a program in different order,
+on different processors.
+This allows utilises sharing of memory, for those threads that are using
+shared variables. Each thread has its own memory stack but shares the heap with
+other threads such that objects within the heap can be read and written to by
+different threads.
+
+To make these activities thread-safe, three of Java's mechanisms are briefly
+explored in these exercises:
+
+1. Monitors (synchronized)
+2. Wait sets (wait(), notify())
+3. the Java.util.concurrency package (executors)
+
+Each object in Java is associated with a monitor which can be locked and
+unlocked by a thread. The monitor is an implementation of synchronization in
+Java. Synchronization is one of the mechanisms for inter-thread communication in
+Java. If a resource already has a lock on it, the thread trying to place a lock
+on it must wait until the other thread unlocks, thereby facilitating exclusive
+access to that resource.
+
+Each object also has an associated 'wait set', which are a set of threads. This
+is empty when thread is first created. Methods that act on the wait set are
+wait(), notify() and notifyAll().
+
+
 14 exercises (17.1-17.8 and 18.1-18.6)
 
 Exercise 17.1:
