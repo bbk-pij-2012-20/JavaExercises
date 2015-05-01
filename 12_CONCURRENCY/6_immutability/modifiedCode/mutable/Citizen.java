@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/6_immutability/modifiedCode/mutable
+// cd ~/Desktop/all_pooled/computing/CODING/JavaExercises/12_CONCURRENCY/6_immutability/modifiedCode/mutable
 // Exercise 17.6: Introduction to concurrency
 /*
 I think Citizen & Officer can be refered to as 'clients' of the mutable class
@@ -7,6 +7,7 @@ neither can obtain references to the mutable fields of MutableIDCard (which
 include Date and BufferedImage). Hence I am creating a 'defensive copy' of
 MutableIDCard in the constructor. (Is this correct?)
 */
+import java.util.Random;
 
 public class Citizen implements Runnable {
 

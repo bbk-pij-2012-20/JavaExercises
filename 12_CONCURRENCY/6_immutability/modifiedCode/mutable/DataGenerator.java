@@ -1,5 +1,11 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/6_immutability/modifiedCode/mutable
+// cd ~/Desktop/all_pooled/computing/CODING/JavaExercises/12_CONCURRENCY/6_immutability/modifiedCode/mutable
 // Exercise 17.6: Introduction to concurrency
+
+import java.util.StringTokenizer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.awt.image.BufferedImage;
 
 public class DataGenerator {//same as teacherCode
 

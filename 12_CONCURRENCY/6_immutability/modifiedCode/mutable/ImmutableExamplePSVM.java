@@ -1,13 +1,8 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/6_immutability/modifiedCode/mutable
+// cd ~/Desktop/all_pooled/computing/CODING/JavaExercises/12_CONCURRENCY/6_immutability/modifiedCode/mutable
 // Exercise 17.6: Introduction to concurrency
 
 import java.util.Date;
-import java.util.StringTokenizer;
-import java.util.Random;
 import java.awt.image.BufferedImage;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class ImmutableExamplePSVM { //teacherCode but with defensive & deep copies of mutable objects
 
