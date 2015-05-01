@@ -1,20 +1,14 @@
 // cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/6_immutability/modifiedCode/immutable
 // Exercise 17.6: Introduction to concurrency
 
-/*I think Citizen can be refered to as a 'client' of the mutable class
-(MutableIDCard), so according to rule#5 (see readme), I should make sure that
-it cannot obtain references to the mutable fields of MutableIDCard (which
-include Date and BufferedImage). Hence I am creating a 'defensive copy' of
-MutableIDCard in the constructor of Citizen.
-
-*/
+/*Applying Bloch's 5 rules (see readme) to make the mutable object immutable*/
 public class Citizen implements Runnable {
 
-  private MutableIDCard id;
+  private final MutableIDCard id;// made immutable with 'final' keyword
 
   public Citizen(MutableIDCard id) {
 
-    this.id = new MutableIDCard(id);// now it has a defensive copy
+    this.id = id;
 
   }
 
