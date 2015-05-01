@@ -12,8 +12,8 @@ To make these activities thread-safe, three of Java's mechanisms are briefly
 explored in these exercises:
 
 1. Monitors (synchronized)
-2. Wait sets (wait(), notify())
-3. the Java.util.concurrency package (executors)
+2. Wait sets (wait( ), notify( ))
+3. the Java.util.concurrency package (here we look at Executors)
 
 Each object in Java is associated with a monitor which can be locked and
 unlocked by a thread. The monitor is an implementation of synchronization in
