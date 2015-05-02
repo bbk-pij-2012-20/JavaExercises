@@ -7,8 +7,6 @@ DataGenerator, MutableIDClass). Read it carefully.
 - If yes, what whould you change to make the program work without problems?
 - What would you change to make the IDCard class immutable?
 */
-//see Readme file for answers & discussion.
-
 import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.Random;
@@ -17,8 +15,19 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-/*This is identical to the teacherCode but with all the '' keywords
-removed just to see what happens!*/
+/**
+* This is identical to the teacherCode but with all the 'synchronized' keywords
+* removed just to see what happens!
+*
+* It compiles. It runs without exceptions.
+* It does the same as the original code, i.e. John or Mary are printed out in
+* a non-deterministic manner.
+* So, nothing dramatic happens when you remove the locks.
+* As with the original code, running the program 20 times in a row did not
+* yield an incorrect name-DOB association so the absence of 'thread-safety'
+* does not appear to result in data corruption (via race conditions), but this
+* cannot be entirely ruled out. I remain unsure about this.
+*/
 public class ImmutableExample
 {
   public static void main(String[] args)
