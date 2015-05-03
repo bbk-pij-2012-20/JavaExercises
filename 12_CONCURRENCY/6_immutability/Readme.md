@@ -43,10 +43,9 @@ to generate incorrect information.
 
 So, it seems to be thread-safe, and non-deterministic... I guess..?
 
-----
-
-<h3>How I changed the teacherCode.</h3>
 -
+
+<h3>How I changed the teacherCode:</h3>
 
 I now consider the possible changes to the code that can be made and discuss
 what effects they seem to have.
@@ -70,12 +69,12 @@ This approach might also require making 'defensive copies' of mutable objects th
 </ol>
 How to make objects immutable is described by Bloch (Effective Java, 2nd Ed 2008).
 Paraphrasing the five rules:
-
-1. don’t provide any mutators.
-2. make the class final.
-3. make all fields final.
-4. make all fields private.
-5. ensure exclusive access to any mutable components:
+<ul>
+<li>don’t provide any mutators.</li>
+<li>make the class final.</li>
+<li>make all fields final.</li>
+<li>make all fields private.</li>
+<li>ensure exclusive access to any mutable components:</li>
   . If your class has any fields that refer to mutable objects, ensure that
      clients of the class cannot obtain references to these objects.
   . Never initialise such a field to a client-provided object reference or
