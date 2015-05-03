@@ -41,7 +41,7 @@ If it isn't, then this is the flaw...
 The names and DOBs are never mixed up so the threads do not appear to conflict
 to generate incorrect information.
 
-So, it seems to be thread-safe, and non-deterministic.
+So, it seems to be thread-safe, and non-deterministic... I guess..?
 
 ----
 
