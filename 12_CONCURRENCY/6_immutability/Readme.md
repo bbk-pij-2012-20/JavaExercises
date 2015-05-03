@@ -110,7 +110,8 @@ In order to take a different approach (such as described above as no.2), I make 
 The mutable fields of Date and BufferedImage are made final.
 
 The synchronized keywords are removed from MutableIDCard and DataGenerator.
-The mutator in MutableIDCard is completely commented out and the call to the mutator in Officer is replaced with creation of a new MutableIDCard object.
+
+The mutator in MutableIDCard is completely commented out and the call to the corresponding mutator in Officer is replaced with creation of a new MutableIDCard object.
 
 -
 
