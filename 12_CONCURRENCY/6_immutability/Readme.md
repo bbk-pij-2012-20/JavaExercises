@@ -109,7 +109,7 @@ have the same output, (namely John).
 
 ---
 
-Approach no2, making MutableIDCard immutable.
+Approach no.2, making MutableIDCard immutable.
 
 The mutable fields of Date and BufferedImage are made final.
 
