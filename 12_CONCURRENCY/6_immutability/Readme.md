@@ -75,11 +75,7 @@ Paraphrasing the five rules:
 <li>make all fields final.</li>
 <li>make all fields private.</li>
 <li>ensure exclusive access to any mutable components:</li>
-  . If your class has any fields that refer to mutable objects, ensure that
-     clients of the class cannot obtain references to these objects.
-  . Never initialise such a field to a client-provided object reference or
-     return the object reference from an accessor.
-  . Make defensive copies in constructors, accessors, and readObject methods.
+  "If your class has any fields that refer to mutable objects, ensure that clients of the class cannot obtain references to these objects. Never initialise such a field to a client-provided object reference or return the object reference from an accessor. Make defensive copies in constructors, accessors, and readObject methods."
 
 --
 
@@ -109,11 +105,11 @@ have the same output, (namely John).
 
 ---
 
-Approach no.2, making MutableIDCard immutable.
+In order to take a different approach (such as described above as no.2), I make the mutable objects immutable, as follows:
 
 The mutable fields of Date and BufferedImage are made final.
 
-The synchronized keywords and block are removed from MutableIDCard and
+The synchronized keywords are removed and the synchronized block are removed from MutableIDCard and
 DataGenerator.
 
 
