@@ -87,13 +87,6 @@ Broadly-speaking, the teacherCode appears to be applying the first approach,
 namely to keep mutable objects mutable but maintain thread-safety with use of
 synchronized keyword.
 
-However, if one modifies the teacherCode by introducing the use of defensive
-copying (to a new constructor in MutableIDCard), the code produces a different
-output.
-Whereas the output used to flip non-deterministically between John and Mary,
-the modified code that includes the creation of defensive copies seems to always
-have the same output, (namely John).
-
 MutableIDCard is the mutable object that gets shared between different threads.
 It is mutable because it has two mutable fields: Date and BufferedImage.
 
@@ -106,6 +99,13 @@ synchronized block. The accessors in MutableIDCard are also synchronized.
 DataGenerator class also uses synchronized to lock its (static) getters.
 This means the three DataGenerator accessors calls in the PSVM right at the
 start of the execution will be called by one thread at a time.. I think ..
+
+However, if one modifies the teacherCode by introducing the use of defensive
+copying (to a new constructor in MutableIDCard), the code produces a different
+output.
+Whereas the output used to flip non-deterministically between John and Mary,
+the modified code that includes the creation of defensive copies seems to always
+have the same output, (namely John).
 
 ---
 
