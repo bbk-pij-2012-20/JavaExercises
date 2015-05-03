@@ -54,7 +54,7 @@ what effects they seem to have.
 In this exercise, there could be two overall approaches one could take to make
 the shared variable(s) even more thread-safe:
 <ol>
-<li> Mutable objects that are shared are kept as mutable, but protected with locks.</li>
+<li> <h4>Mutable objects that are shared are kept as mutable, but protected with locks.</h4></li>
 
 A relatively simple way to achieve thread-safety with locks is by use of the
 'synchronized' keyword.
@@ -65,7 +65,7 @@ This approach might also require making 'defensive copies' of mutable objects th
 <br/><br/>
 
 
-<li>Objects that are shared are made immutable.</li>
+<li><h4>Objects that are shared are made immutable.</h4></li>
 </ol>
 How to make objects immutable is described by Bloch (Effective Java, 2nd Ed 2008).
 Paraphrasing the five rules:
