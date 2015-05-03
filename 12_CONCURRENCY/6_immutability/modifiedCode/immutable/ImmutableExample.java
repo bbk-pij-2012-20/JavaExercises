@@ -133,27 +133,8 @@ final class MutableIDCard { // modified to be completely immutable
     this.photo = photo;
 
   }
-/*
-rule#5. ensure exclusive access to any mutable components:
-    . If your class has any fields that refer to mutable objects, ensure that
-       clients of the class cannot obtain references to these objects.
-    . Never initialise such a field to a client-provided object reference or
-       return the object reference from an accessor.
-    . Make defensive copies in constructors, accessors, and readObject methods.
 
-    Making a deep copy to match up with the defensive copy made in Officer and Citizen.
-
-    public MutableIDCard(MutableIDCard id) {
-
-      set(id.getName(),
-        (Date) id.getDateOfBirth().clone(),
-          id.getPhoto().getSubimage(0,0,id.getPhoto.getWidth(),id.getPhoto().getHeight()));
-
-    }
-
-*/
-
-/*rule 1. don’t provide any mutators!
+/*rule 1. don’t provide any mutators. Thus, I am commenting it out completely.
 
   public void set(String name, Date dateOfBirth, BufferedImage photo) {
 
@@ -288,8 +269,9 @@ class Officer implements Runnable {
     String name = DataGenerator.getNextName();
     Date dateOfBirth = DataGenerator.getNextDate();
     BufferedImage photo = DataGenerator.getNextPhoto();
+//  id.set(name, dateOfBirth, photo); // rule 1. don’t provide any mutators.
     MutableIDCard id = new MutableIDCard(name, dateOfBirth, photo);
-//  id.set(name, dateOfBirth, photo); // rule 1. don’t provide any mutators!
+// So I have replaced the call to the mutator with creation of a new MutableIDCard object on line above.
 
   }
 
