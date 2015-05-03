@@ -62,7 +62,9 @@ A relatively simple way to achieve thread-safety with locks is by use of the
 
 This approach might also require making 'defensive copies' of mutable objects that are initialised in more than one thread.
 
---
+
+---
+
 
 <li>Objects that are shared are made immutable.</li>
 </ol>
