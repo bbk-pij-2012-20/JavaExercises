@@ -109,15 +109,9 @@ In order to take a different approach (such as described above as no.2), I make 
 
 The mutable fields of Date and BufferedImage are made final.
 
-The synchronized keywords are removed and the synchronized block are removed from MutableIDCard and
-DataGenerator.
+The synchronized keywords are removed from MutableIDCard and DataGenerator.
+The mutator in MutableIDCard is completely commented out and the call to the mutator in Officer is replaced with creation of a new MutableIDCard object.
 
+-
 
-----
-
-How about using volatile keyword instead of final?
-
-Of the two threads (Citizen and Officer), only Officer calls the mutator, hence
-only one thread writes to this variable while the other only reads from it. As
-such, one might also apply the 'volatile' keyword here to make it thread-safe.
-This would be in place of final.
+(Not sure whether 'volatile' keyword would be useful in this exercise or not.)
