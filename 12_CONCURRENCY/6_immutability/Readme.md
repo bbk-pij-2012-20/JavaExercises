@@ -45,7 +45,7 @@ So, it seems to be thread-safe, and non-deterministic... I guess..?
 
 ----
 
-How to change the teacherCode.
+<h3>How I changed the teacherCode.</h3>
 -
 
 I now consider the possible changes to the code that can be made and discuss
