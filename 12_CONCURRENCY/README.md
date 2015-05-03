@@ -1,8 +1,8 @@
 <h1>Concurrency</h1>
 
-In Java, light-weight processes (aka threads) are able to enhance program performance by executing discrete tasks within a program - in different order within a processor (superscalar) and on different processors ('multicore'). My Macbook Pro, for example, has four CPUs.
+In Java, light-weight processes (aka threads) are able to enhance program performance by executing discrete tasks within a program in different order within a processor (superscalar) and on different processors ('multicore'). My Macbook Pro, for example, has four CPUs.
 
-Where Java objects are shared between different threads of execution, memory space can be shared. Although any particular process is unaware of other processes (i.e. it 'thinks' it has the entire memory space for itself!), memory space is still shared out between them by the JVM and operating system. Threads, on the other hand can actually share the same space. While each distinct thread has its own memory stack (just like distinct processes), it can share the heap with other threads such that objects within the heap can be read and written to by different threads. The latter is not the case for normal processes.
+Where Java objects are shared between different threads of execution, memory space can be shared. Although any particular process is unaware of other processes (i.e. it 'thinks' it has the entire memory space for itself), in reality memory space is shared out between them, by the JVM and operating system. Threads, on the other hand can actually share the same space. While each distinct thread has its own memory stack (just like distinct processes), it can share the heap with other threads such that objects within the heap can be read and written to by different threads. The latter is not the case for normal processes.
 
 To make this multi-threading memory model thread-safe, Java offers the programmer a number of mechanisms. Three of these mechanisms are briefly explored in this set of exercises:
 
