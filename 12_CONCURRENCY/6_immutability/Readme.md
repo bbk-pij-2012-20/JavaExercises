@@ -53,15 +53,14 @@ what effects they seem to have.
 
 
 In this exercise, there could be two overall approaches one could take to make
-the shared variable(s) thread-safe:
+the shared variable(s) even more thread-safe:
 
 1. Mutable objects that are shared are kept as mutable, but protected with locks.
 
-A relatively simple way to achieve thread-saftey with locks is by use of the
+A relatively simple way to achieve thread-safety with locks is by use of the
 'synchronized' keyword.
 
-This is simply but might also require making 'defensive copies' of mutable
-objects that are initialised in more than one thread.
+This approach might also require making 'defensive copies' of mutable objects that are initialised in more than one thread.
 
 
 2. Objects that are shared are made immutable.
