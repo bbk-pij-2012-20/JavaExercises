@@ -11,6 +11,7 @@ DataGenerator, MutableIDClass). Read it carefully.
 
 
 --
+My answer:
 
 The code compiles, (so there are no compilation 'flaws').
 
@@ -43,12 +44,16 @@ to generate incorrect information.
 So, it seems to be thread-safe, and non-deterministic.
 
 ----
+
+How to change the teacherCode.
+-
+
 I now consider the possible changes to the code that can be made and discuss
 what effects they seem to have.
 
 
-There are essentially two overall approaches one could take with concurrently
-run threads that involve (a) shared variable(s).
+In this exercise, there could be two overall approaches one could take to make
+the shared variable(s) thread-safe:
 
 1. Mutable objects that are shared are kept as mutable, but protected with locks.
 
@@ -105,7 +110,10 @@ start of the execution will be called by one thread at a time.. I think ..
 
 Approach no2, making MutableIDCard immutable.
 
+The mutable fields of Date and BufferedImage are made final.
 
+The synchronized keywords and block are removed from MutableIDCard and
+DataGenerator.
 
 
 ----
