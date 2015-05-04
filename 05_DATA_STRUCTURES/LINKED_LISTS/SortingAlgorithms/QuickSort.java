@@ -8,14 +8,15 @@ use lists of some length.
 */
 
 /*
-like bubble sort & cocktail sort, quick sort is at worst O(n^2). (n is number of elements).
-However, quick sort typically acts more like an O(n log n) algorithm.
-Reason for this better performance is that quick sort is comparing and moving values very efficiently without shifting,
-which means it will only be comparing numbers once. So in essence, each comparison will reduce the possible final sorted
-list in half, or in other words, to log (n!) which is n log (n)
+Like bubble sort & cocktail sort, quick sort is at worst a O(n^2) algorithm
+(where n is number of elements). However, quick sort typically acts more like
+an O(n log n) algorithm.
+The reason for this better performance is that quick sort is comparing and
+moving values very efficiently without shifting, which means it will only be
+comparing numbers once. So in essence, each comparison will reduce the possible
+final sorted list in half, or in other words, to log (n!) which is n log (n)
 
-
-Also known as a partition-exchange sort
+Quick sort is also known as a 'partition-exchange sort'.
 
 Steps in quick sort:
 
@@ -239,33 +240,6 @@ class List {
 
 		}
 
-/*if (firstLeft == null) {
-
-	System.out.println("firstLeft is dull");
-
-	if (lastLeft == null) {
-
-		System.out.println("lastLeft is dull too");
-
-	}
-
-} else if (lastLeft == null) {
-
-	System.out.println("lastLeft is dull");
-
-	if (firstLeft == null) {
-
-		System.out.println("firstLeft is dull too");
-
-	}
-
-} else if (lastLeft != null && firstLeft != null) {
-
-	System.out.println("passdeduchypanylefthandside: " + toString(firstLeft, lastLeft));
-
-}
-System.out.println("APRES insert() action:BUT AFTER THE WHILES does firstLeft become 10 ??? It should still be 7 or is the toString not working properly?: " + firstLeft.n + "  and lastLeft: " + lastLeft.n);
-*/
 		int nLL = nL + 1;
 		sort(firstLeft, lastLeft, nLL, nR);
 
@@ -281,33 +255,6 @@ System.out.println("APRES insert() action:BUT AFTER THE WHILES does firstLeft be
 
 		}
 
-/*if (firstRight ==null) {
-
-	System.out.println("firstRight is dull");
-
-	if (lastRight ==null) {
-
-		System.out.println("lastRight is dull too");
-
-	}
-
-} else if (lastRight ==null) {
-
-	System.out.println("lastRight is dull");
-
-	if (firstRight ==null) {
-
-		System.out.println("firstRight is dull too");
-
-	}
-
-} else if (lastRight != null && firstRight != null) {
-
-	System.out.println("the RIGHT side: "+ toString(firstRight, lastRight));
-
-}
-System.out.println();
-*/
 		int nRR = nR + 1;
 		sort(firstRight, lastRight, nL, nRR); // and finally here is the recursion!
 
@@ -428,12 +375,6 @@ System.out.println();
 
 				firstLast[1] = nodeToMove;
 
-		/*		if (last == getLast()) {
-
-					pointLastAt(nodeToMove);
-
-				}*/
-
 			}
 
 			if (nodeToMove == last) {//if nodeToMove is last, last might need reassigning
@@ -441,12 +382,6 @@ System.out.println();
 				if (nodeToMove.previous != pivot) {
 
 					firstLast[1] = nodeToMove.previous;
-
-			/*		if (last == getLast()) {
-
-						pointLastAt(nodeToMove.previous);
-
-					}*/
 
 				}
 
@@ -483,12 +418,6 @@ System.out.println();
 			if (nodeToMove == last) {//if nodeToMove is last, last must be reassigned.
 
 				firstLast[1] = nodeToMove.previous;
-
-		/*		if (last == getLast()) {
-
-					pointLastAt(nodeToMove.previous);
-
-				}*/
 
 			}
 
@@ -551,97 +480,6 @@ System.out.println();
 		return firstLast;
 
 	}
-	/* NOT USING THIS METHOD IN THIS VERSION
-	*
-	Swaps position of two nodes passed to it. (Incomplete as it does reassign first & last yet)
-	*	(This method may not be used at all though)
-	*
-	protected void swap(Node node1, Node node2) {
-
-		Node preNode1 = node1.getPrevious();
-		Node nextNode1 = node1.getNext();
-		Node preNode2 = node2.getPrevious();
-		Node nextNode2 = node2.getNext();
-		Node newNode1 = node1;
-		Node newNode2 = node2;
-
-		if (preNode1 == node2) {
-
-			newNode2.setPreviousTo(node1);
-			newNode1.setNextTo(node2);
-			newNode2.setNextTo(nextNode1);
-
-			if (nextNode1 != null) {
-
-				nextNode1.setPreviousTo(newNode2);
-
-			}
-
-			newNode1.setPreviousTo(preNode2);
-
-			if (preNode2 != null) {
-
-				preNode2.setNextTo(node1);
-
-			}
-
-		} else if (preNode2 == node1) {
-
-			newNode1.setPreviousTo(node2);
-			newNode2.setNextTo(node1);
-			newNode1.setNextTo(nextNode2);
-
-			if (nextNode2 != null) {
-
-				nextNode2.setPreviousTo(node1);
-
-			}
-
-			newNode2.setPreviousTo(preNode1);
-
-			if (preNode1 != null) {
-
-				preNode1.setNextTo(node2);
-
-			}
-
-		} else {
-
-			newNode2.setPreviousTo(preNode1);
-
-			if (preNode1 != null) {
-
-				preNode1.setNextTo(newNode2);
-
-			}
-
-			newNode2.setNextTo(nextNode1);
-
-			if (nextNode1 != null) {
-
-				nextNode1.setPreviousTo(newNode2);
-
-			}
-
-			newNode1.setPreviousTo(preNode2);
-
-			if (preNode2 != null) {
-
-				preNode2.setNextTo(newNode1);
-
-			}
-
-			newNode1.setNextTo(nextNode2);
-
-			if (nextNode2 != null) {
-
-				nextNode2.setPreviousTo(newNode1);
-
-			}
-
-		}
-
-	}*/
 
 	public void pointFirstAt(Node node) {
 
