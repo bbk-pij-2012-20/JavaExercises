@@ -1,8 +1,8 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/05_DATA_STRUCTURES/LINKED_LISTS/SortingAlgorithms
+// cd ~/Desktop/all_pooled/computing/CODING/JavaExercises/05_DATA_STRUCTURES/LINKED_LISTS/SortingAlgorithms
 // Exercise 7.13 (Using data structures & pointers to implement Sorting Algorithms). Difficulty level: very.
 /*
 This is a popular sorting algorithm that is very fast in most situations. Once you have finished all the other exercises,
-look up in wikipedia how this method works and make your own implementation (put it in ListUtilities.quickSort(List)).
+look up in Wikipedia how this method works and make your own implementation (put it in ListUtilities.quickSort(List)).
 Then compare its performance with the other two methods. In order to see significant differences, you will need to
 use lists of some length.
 */
@@ -11,7 +11,7 @@ use lists of some length.
 like bubble sort & cocktail sort, quick sort is at worst O(n^2). (n is number of elements).
 However, quick sort typically acts more like an O(n log n) algorithm.
 Reason for this better performance is that quick sort is comparing and moving values very efficiently without shifting,
-which means it will only be comparing numbers once. So in essence each comparison will reduce the possible final sorted
+which means it will only be comparing numbers once. So in essence, each comparison will reduce the possible final sorted
 list in half, or in other words, to log (n!) which is n log (n)
 
 
@@ -44,12 +44,17 @@ public class QuickSort {
 		qs.makeDLL(list);
 		System.out.print("\nafter making list: ");
 		qs.print(list);
+		long start, end;
+		start = System.nanoTime();
 		qs.sort(list);
-		System.out.print("\nafter sorting list: ");
-//		qs.print(sortedList);// gives the same output
+		end = System.nanoTime();
+		System.out.println("\nit took: " + ((end - start) / 1000) + " microseconds");
+		System.out.print("after sorting list: ");
+//	qs.print(sortedList);// gives the same output
 		qs.print(list);
 		System.out.println();
-/*		List.Node node1 = list.new Node(1);
+/*
+		List.Node node1 = list.new Node(1);
 		List.Node node2 = list.new Node(2);
 		List.Node node3 = list.new Node(3);
 		List.Node node4 = list.new Node(4);
