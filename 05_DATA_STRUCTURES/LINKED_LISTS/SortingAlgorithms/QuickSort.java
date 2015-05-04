@@ -53,25 +53,6 @@ public class QuickSort {
 //	qs.print(sortedList);// gives the same output
 		qs.print(list);
 		System.out.println();
-/*
-		List.Node node1 = list.new Node(1);
-		List.Node node2 = list.new Node(2);
-		List.Node node3 = list.new Node(3);
-		List.Node node4 = list.new Node(4);
-		qs.add(list, node1);
-		qs.add(list, node2);
-		qs.add(list, node3);
-		qs.add(list, node4);
-		System.out.print("\n\nafter adding nodes 1,2,3,4 to end of list: ");
-		qs.print(list);
-		System.out.print("\n\nafter inserting node 4 next to node 1: ");
-		list.insert(node1, node4, list.getFirst(), list.getLast(), "next");
-		qs.print(list);
-		System.out.print("\n\nafter inserting node 1 previous to node 4: i.e. should be the same");
-		list.insert(node4, node1, list.getFirst(), list.getLast(), "previous");
-		qs.print(list);
-		System.out.println();
-*/
 	}
 
 	public void makeDLL(List list) {
@@ -90,8 +71,7 @@ public class QuickSort {
 		add(list, list.new Node(4));
 		add(list, list.new Node(1));
 		add(list, list.new Node(341));
-
-//there NullPointerException when I have an odd number of nodes, but it works fine with even numbers.
+		add(list, list.new Node(340));
 
 	}
 
@@ -183,7 +163,6 @@ class List {
 
 		}
 
-
 		Node currentNode = first;
 		Node pivot = last;
 		int comparisonsToMake = -1 + listLengthBetween(first, last);
@@ -260,21 +239,21 @@ class List {
 
 		}
 
-/*if (firstLeft ==null) {
+/*if (firstLeft == null) {
 
 	System.out.println("firstLeft is dull");
 
-	if (lastLeft ==null) {
+	if (lastLeft == null) {
 
 		System.out.println("lastLeft is dull too");
 
 	}
 
-} else if (lastLeft ==null) {
+} else if (lastLeft == null) {
 
 	System.out.println("lastLeft is dull");
 
-	if (firstLeft ==null) {
+	if (firstLeft == null) {
 
 		System.out.println("firstLeft is dull too");
 
@@ -282,7 +261,7 @@ class List {
 
 } else if (lastLeft != null && firstLeft != null) {
 
-	System.out.println("passdeduchypanylefthandside: "+toString(firstLeft, lastLeft));
+	System.out.println("passdeduchypanylefthandside: " + toString(firstLeft, lastLeft));
 
 }
 System.out.println("APRES insert() action:BUT AFTER THE WHILES does firstLeft become 10 ??? It should still be 7 or is the toString not working properly?: " + firstLeft.n + "  and lastLeft: " + lastLeft.n);
@@ -330,7 +309,7 @@ System.out.println("APRES insert() action:BUT AFTER THE WHILES does firstLeft be
 System.out.println();
 */
 		int nRR = nR + 1;
-		sort(firstRight, lastRight, nL, nRR);
+		sort(firstRight, lastRight, nL, nRR); // and finally here is the recursion!
 
 	}
 
