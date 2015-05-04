@@ -27,3 +27,25 @@ Building a generic stack, using bounded types.
 
 Exercise 11.6:
 Building a generic map, including a generic hash table.
+
+---
+
+Some extra notes:
+
+Venkat Subramaniam (2009): “..if you are comfortable working with a statically-typed language then Java generics is fine. For dynamically-typed languages, it’s not required and I would not choose to use it at all. It provides something but comes with too much extra complexity to the point where it could be argued that you wouldn’t benefit greatly from just avoiding it all together.”
+
+(.NET implementation of Generics is better. In C++, Generics is more complicated).
+
+benefits of Java generics:
+
+1. provide compile-time type safety,
+2. place constraints on Generics parameters.
+
+type erasure:
+
+List<String> and List<Integer> are considered to be the same object at runtime.
+Both forms are erased to their ‘raw type’, which is just List.
+
+Map<Long, String> m = new HashMap<Long, String>();
+System.out.println(Arrays.toString(m.getClass().getTypeParameters()));
+This println outputs: [K,V]
