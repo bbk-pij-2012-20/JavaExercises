@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaCoding/JavaExercises/recursion
+// cd ~/Desktop/all_pooled/computing/CODING/JavaExercises/04_RECURSION
 // Exercise 5.2b (Recursion, recursion vs iteration).
 /*
 Write a small program with a method that calculates the nth element of the
@@ -12,27 +12,40 @@ The sequence of Fibonacci numbers starts off like this:
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, and so on..
 */
 
+/**
+* This class compares the speed of calculating the nth Fibonacci number with
+* a recursive method as compared to an iterative method.
+* The iterative method turns out to be faster the recursive method for all
+* Fibonacci number computations. The difference increases significantly for
+* nth numbers greater than about the 15th.
+*
+* For the 15th number, the iterative method is about 20x times faster than the
+* recursive method.
+* For the 45th number, the iterative method is about 20,000x times faster than
+* the recursive method.
+*/
 public class FibonacciRecVsIter {
 
 	public static void main(String[] args) {
 
-		int nth, result = 0;
-		long start, end = 0;
+		int nth, resultRec, resultIter = 0;
+		long start, end, timeRec, timeIter = 0;
 
 		System.out.println("Which nth Fibonacci number do you want?");
 		nth = Integer.parseInt(System.console().readLine());
-		FibonacciRecursive fibRec = new FibonacciRecursive();
+		FibonacciRecVsIter fRVI = new FibonacciRecVsIter();
 
-		start = System.currentNanoTime();
-		result = fibRec.fib(nth);
-		end = System.currentNanoTime();
-		System.out.printf(nth + "th Fibonacci with recursive method = %s\n", result);
-
-		System.out.println("input a whole, positive number");
-		String inputStr = System.console().readLine();
-		int n = Integer.parseInt(inputStr);
-//	System.out.printf("fibo at %s = \n %d", inputNum, fibAt(inputNum));
-		System.out.println("fibo at " + n + " = " + fibAt(n));
+		start = System.nanoTime();
+		resultRec = fRVI.fibRecursive(nth);
+		end = System.nanoTime();
+		timeRec = end - start;
+		start = System.nanoTime();
+		resultIter = fRVI.fibIterative(nth);
+		end = System.nanoTime();
+		timeIter = end - start;
+		System.out.printf(nth + "th Fibonacci with recursive method = %s. With iterative method = %s\n", resultRec, resultIter);
+		System.out.printf("Recursive took %s nanosecs. Iterative took %s nanosecs\n", timeRec, timeIter);
+		System.out.println("Thus, iterative method is " + (timeRec / timeIter ) + " times faster than recursive.");
 
 	}
 
@@ -54,7 +67,7 @@ public class FibonacciRecVsIter {
 
 		} else {
 
-			return fibonacciAt(n - 1) + fibonacciAt(n - 2);
+			return fibRecursive(n - 1) + fibRecursive(n - 2);
 
 		}
 
