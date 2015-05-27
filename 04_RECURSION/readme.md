@@ -1,6 +1,6 @@
 <h1>Recursion</h1>
 
-The exercises (5.2b and 14.1) cover three different approaches to calculating Fibonacci numbers. They are:<br/>
+The Fibonacci-related exercises (5.2b and 14.1) cover three different approaches to coding a computation that returns the nth Fibonacci number. They are:<br/>
 Iteration **vs** Recursion **vs** Recursion-with-Memoization.
 
 On the whole, it would seem that iteration comes out marginally better than
