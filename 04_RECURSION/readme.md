@@ -1,13 +1,13 @@
 <h1>Recursion</h1>
 
-Calculating Fibonacci numbers<br/>
-Iteration vs Recursion vs Recursion with Memoization.
+The exercises (5.2b and 14.1) cover three different approaches to calculating Fibonacci numbers. They are:<br/>
+Iteration **vs** Recursion **vs** Recursion-with-Memoization.
 
 On the whole, it would seem that iteration comes out marginally better than
-recursion-with-memoization for the larger calculation of 45th. Iteration is
-marginally slower than recursion-with-memoization for the 15th.
+recursion-with-memoization for the larger calculation of 45th.<br/> Iteration is
+marginally slower than recursion-with-memoization for the 15th.<br/>
 Recursion-without-memoization is more than 20-fold slower for 15th and as
-much as 200,000 times slower for the 45th. 
+much as 200,000 times slower for the 45th.
 
 Times taken to calculate the **15th** Fibonacci number
 --
