@@ -40,4 +40,4 @@ Thus, for the 45th Fibonacci number, the fastest to slowest computation is:
 **In summary**  <br/>
 Fastest:&nbsp;&nbsp;&nbsp;&nbsp;Iterative&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ **22,000 ns**<br/>
 Mid:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recursive with memoization&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ **30,000 ns**<br/>
-Slowest:&nbsp;&nbsp;&nbsp;Recursive (without memoization)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ **4,000,000,000 ns** (i.e. about 4 secs)<br/>
+Slowest:&nbsp;&nbsp;&nbsp;Recursive (without memoization)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ **4,000,000,000 ns** (i.e. about 4 secs)<br/>
