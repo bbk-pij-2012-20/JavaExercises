@@ -7,7 +7,9 @@ On the whole, it would seem that iteration comes out marginally better than
 recursion-with-memoization.
 Recursion-without-memoization is very slow indeed.
 
-**Times taken to calculate the 15th Fibonacci number**<br/>
+Times taken to calculate the **15th** Fibonacci number
+--
+
 
 (Ex 5.2b) the iterative method computes the 15th Fibonacci number in ~10,000
 nanoseconds while the recursive method computes the 15th in ~200,000 nanoseconds.
@@ -24,7 +26,8 @@ Slowest:&nbsp;&nbsp;&nbsp;Recursive (without memoization)&nbsp;&nbsp;&nbsp;&nbsp
 
 ---
 
-**Times taken to calculate the 45th Fibonacci number**<br/>
+Times taken to calculate the **45th** Fibonacci number
+--
 
 (Ex 5.2b) the iterative method computes the 45th Fibonacci number in ~22,000.
 nanoseconds while the recursive method computes the 45th in ~4,000,000,000 nanoseconds.
