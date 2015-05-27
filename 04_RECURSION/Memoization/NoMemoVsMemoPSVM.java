@@ -6,7 +6,7 @@ There is a major, but solvable, problem with the original form of Fibonacci
 recursive code (in RECURSION Exercise 5.2b), also included below in NoMemo class.
 
 The problem is that the greater the value of n, the greater the number of
-repetitions of exactly same computations occur.
+repetitions of exactly the same computations occur.
 This is wasteful and as a result the performance of the algorithm exponentially
 deteriorates.
 
