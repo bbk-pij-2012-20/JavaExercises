@@ -54,4 +54,4 @@ marginally slower than recursion-with-memoization for the 15th.<br/>
 Recursion-without-memoization is more than 20-fold slower for 15th and as
 much as 200,000 times slower for the 45th.
 
-Thus, despite these exercises (5.1-5.8 & 14.1-14.7) being about recursion, it would seem that for the Fibonacci series, the
+Thus, despite these exercises (5.1-5.8 & 14.1-14.7) being about recursion, it would seem that for the Fibonacci series, these exercises demonstrate that despite its conciseness, recursion, even with memoization, is not necessarily the automatic choice over iteration.
