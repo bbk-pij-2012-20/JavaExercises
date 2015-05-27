@@ -10,7 +10,7 @@ Recursion-without-memoization is more than 20-fold slower for 15th and as
 much as 200,000 times slower for the 45th.
 
 Times taken to calculate the **15th** Fibonacci number
---
+-
 
 
 (Ex 5.2b) the iterative method computes the 15th Fibonacci number in ~10,000
