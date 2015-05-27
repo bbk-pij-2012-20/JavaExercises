@@ -1,7 +1,7 @@
 <h1>Recursion</h1>
 
 The Fibonacci-related exercises (5.2b and 14.1) cover three different approaches to coding a computation that returns the nth Fibonacci number. They are:<br/>
-Iteration **vs** Recursion **vs** Recursion-with-Memoization.
+<h3>Iteration vs Recursion vs Recursion-with-Memoization.</h3>
 
 On the whole, it would seem that iteration comes out marginally better than
 recursion-with-memoization for the larger calculation of 45th.<br/> Iteration is
@@ -25,10 +25,10 @@ Fastest:&nbsp;&nbsp;&nbsp;&nbsp;Recursive with memoization&nbsp;&nbsp;&nbsp;&nbs
 Mid:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iterative&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~ **10,000 ns**<br/>
 Slowest:&nbsp;&nbsp;&nbsp;Recursive (without memoization)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ **200,000 ns**<br/>
 
----
-
-Times taken to calculate the **45th** Fibonacci number
 --
+
+<h4>Times taken to calculate the 45th Fibonacci number</h4>
+
 
 (Ex 5.2b) the iterative method computes the 45th Fibonacci number in ~22,000.
 nanoseconds while the recursive method computes the 45th in ~4,000,000,000 nanoseconds.
