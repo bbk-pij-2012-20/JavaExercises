@@ -1,6 +1,6 @@
 <h1>Recursion</h1>
 
-Calculating Fibonacci numbers
+Calculating Fibonacci numbers<br/>
 Iteration, recursion and recursion with memoization:
 
 (Ex 5.2b) the iterative method computes the 15th Fibonacci number in ~10,000
