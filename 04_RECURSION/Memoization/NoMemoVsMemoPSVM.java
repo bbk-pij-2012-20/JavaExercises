@@ -5,11 +5,13 @@
 There is a major, but solvable, problem with the original form of Fibonacci
 recursive code (in RECURSION Exercise 5.2b), also included below in NoMemo class.
 
-The problem is that the larger the Fibonacci number, the more repetitions of
-the calculations occur.
+The problem is that the greater the value of n, the more repetitions of the same
+calculations occur. This is wasteful and the performance of the algorithm
+exponentially deteriorates.
 
-The solution to avoid repeating the code many time is that we can store the
-results of each calculation in an array - this is called "memoization".
+The solution to avoid repeating the code is to use a technique in which each
+Fibonacci number that is calculated is stored, such as in an array.
+This technique is called "memoization".
 */
 
 /**
