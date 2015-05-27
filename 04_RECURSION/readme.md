@@ -1,10 +1,10 @@
 <h1>Recursion</h1>
 
-**Fibonacci numbers** (Ex 5.2b & 14.1)
+<h3>Fibonacci numbers</h3> (Ex 5.2b & 14.1)<br/>
 Recursion can be used to calculate the nth number in a famous sequence of numbers called the "Fibonacci numbers". It is named for 12th century mathematician Leonardi Bonacci who was instrumental in bringing awareness of Eastern mathematics to Europe. (The numbers series dates as far back as 200 BC in Sanskrit prosody). It is widely observed in nature.
 
 The Fibonacci number-related exercises (5.2b and 14.1) cover three different approaches to coding a computation that returns the nth Fibonacci number. They are:<br/>
-<h3>Iteration vs Recursion vs Recursion-with-Memoization.</h3>
+**Iteration vs Recursion vs Recursion-with-Memoization.**
 
 --
 
