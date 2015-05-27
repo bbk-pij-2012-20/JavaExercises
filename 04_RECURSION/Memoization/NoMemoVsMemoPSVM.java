@@ -2,12 +2,12 @@
 // Ex 14.1: Memoization for performance gain with larger recursive computations.
 
 /*
-There is a major, but solvable, problem with the original form of Fibonacci
-recursive code (in RECURSION Exercise 5.2b), also included below in NoMemo class.
+There is a major, but solvable, problem with the original form (Exercise 5.2b) of
+the otherwise elegant recursive code for calculating the nth Fibonacci number.
 
 The problem is that the greater the value of n, the greater the number of
 repetitions of exactly the same computations occur.
-This is wasteful and as a result the performance of the algorithm exponentially
+This is wasteful and as a result, the performance of the algorithm exponentially
 deteriorates.
 
 The solution to avoid repeating the same computations over and again is to use
@@ -29,6 +29,7 @@ as in an array. This technique is called "memoization".
 * time. The difference then increases exponentially with the 45th Fibonacci
 * number being calculated about 120,000 times faster with memoization than
 * without.
+*
 */
 public class NoMemoVsMemoPSVM {
 
@@ -52,17 +53,17 @@ public class NoMemoVsMemoPSVM {
 		System.out.println("using memoization for fib(5) was " + (nonMemoTime / memoTime) + " times faster than recusion without memoization \n");
 
 		start = System.nanoTime();
-		result = nonMemo.fib(10);
+		result = nonMemo.fib(15);
 		end = System.nanoTime();
 		nonMemoTime = end - start;
-		System.out.println("calling fib(10), (Not using memoization). The result is: " + result + ". Time taken: " + nonMemoTime + " nanosecs");
+		System.out.println("calling fib(15), (Not using memoization). The result is: " + result + ". Time taken: " + nonMemoTime + " nanosecs");
 		memoize = new Memoization();
 		start = System.nanoTime();
-		result = memoize.fib(10);
+		result = memoize.fib(15);
 		end = System.nanoTime();
 		memoTime = end - start;
-		System.out.println("calling fib(10), (Using memoization). The result is: " + result + ". Time taken: " + memoTime + " nanosecs");
-		System.out.println("using memoization for fib(10) was " + (nonMemoTime / memoTime) + " times faster than recusion without memoization \n");
+		System.out.println("calling fib(15), (Using memoization). The result is: " + result + ". Time taken: " + memoTime + " nanosecs");
+		System.out.println("using memoization for fib(15) was " + (nonMemoTime / memoTime) + " times faster than recusion without memoization \n");
 
 		start = System.nanoTime();
 		result = nonMemo.fib(20);
@@ -120,12 +121,16 @@ public class NoMemoVsMemoPSVM {
 
 }
 
+/**
+* This class has the recursive method for calculating the nth Fibonacci number
+* without memoization. It is the same as the code shown in Ex. 5.2b.
+*/
 class NoMemo {
 
 	/**
 	*	returns the nth Fibonacci number
 	*/
-	public static int fib(int n) {
+	public int fib(int n) {
 
 		if ((n == 1) || (n == 2)) {
 
@@ -133,8 +138,7 @@ class NoMemo {
 
 		} else {
 
-			int result = fib(n - 1) + fib(n - 2);
-			return result;
+			return fib(n - 1) + fib(n - 2);
 
     }
 
@@ -142,6 +146,9 @@ class NoMemo {
 
 }
 
+/**
+* This class performs the recursive with memoization.
+*/
 class Memoization {
 // arrays are 0-based, so F(1) is stored at position 0, etc
 	private int[] precalculated = null;
@@ -169,7 +176,7 @@ class Memoization {
 	}
 
 	/**
-	* Initialisation involves setting the length of the array, first two elements, then the remainder
+	* Initialisating the array.
 	*/
 	public void initPrecalculatedArray(int n) {
 
