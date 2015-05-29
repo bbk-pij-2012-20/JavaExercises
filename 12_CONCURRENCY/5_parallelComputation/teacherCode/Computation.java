@@ -1,4 +1,4 @@
-// cd ~/Desktop/ALL_POOLED/COMPUTING/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation
+// cd ~/Desktop/all_pooled/computing/CODING/JavaExercises/12_CONCURRENCY/5_parallelComputation/teacherCode
 // Exercise 17.5: Introduction to concurrency
 
 import java.util.*;
@@ -72,15 +72,15 @@ public class Computation implements Runnable {
   */
   public synchronized double getResult() {
 
-      while (!resultReady) {
+    while (!resultReady) {
 
-        try {
+      try {
 
-          wait();
+        wait();
 
-        } catch (InterruptedException ex) {
+      } catch (InterruptedException ex) {
 		    // Nothing to do, just sleep less
-        }
+      }
 
     }
 
