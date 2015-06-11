@@ -9,7 +9,7 @@
 <li>Basic scripts #2</li>
 <li>Starting to encapsulate (in methods rather than as single scripts in main method)</li>
 <li>Recursion (and memoization)</li>
-<li>Data structures (including arrays, linked lists & trees)</li>
+<li>Data structures (including arrays, linked lists (incl. sorting algorithms) & trees)</li>
 <li>Maps</li>
 <li>Inheritance (including ad hoc polymorphism)</li>
 <li>Generics (aka parametric polymorphism)</li>
