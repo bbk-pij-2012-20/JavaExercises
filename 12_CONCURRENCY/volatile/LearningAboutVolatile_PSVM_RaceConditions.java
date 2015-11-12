@@ -4,6 +4,9 @@
 This is based on example given in Oracle's language specification (chapter 8).
 
 Two threads are created, one calls method1 and the other calls method2.
+This class uses methods and variables in LearningAboutVolatile.java that are not thread-safe - race conditions are observed.
+
+Compare to LearningAboutVolatile_PSVM_Synchronized and LearningAboutVolatile_PSVM_Volatile
 */
 
 public class LearningAboutVolatile_PSVM_RaceConditions {
