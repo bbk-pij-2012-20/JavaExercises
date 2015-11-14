@@ -9,16 +9,16 @@ This class uses methods and variables in LearningAboutVolatile.java that are not
 Compare to LearningAboutVolatile_PSVM_Synchronized and LearningAboutVolatile_PSVM_Volatile
 */
 
-public class LearningAboutVolatile_PSVM_RaceConditions {
+public class PSVM_RaceConditions {
 
-  boolean running = true;
+  protected boolean running = true;
 
   public static void main(String[] args) {
 
-    final long start = System.currentTimeMillis();
-    LearningAboutVolatile_PSVM l = new LearningAboutVolatile_PSVM();
-    Runnable r = new RepeatedlyCallsMethod1(l);
-    Runnable r2 = new RepeatedlyCallsMethod2(l);
+    PSVM_RaceConditions rc = new PSVM_RaceConditions();
+
+    Runnable r = new RepeatedlyCallsMethod1(rc);
+    Runnable r2 = new RepeatedlyCallsMethod2(rc);
     Thread t = new Thread(r);
     Thread t2 = new Thread(r2);
 
@@ -31,30 +31,34 @@ public class LearningAboutVolatile_PSVM_RaceConditions {
 
 class RepeatedlyCallsMethod1 implements Runnable {
 
-  LearningAboutVolatile_PSVM l = null;
+  private PSVM_RaceConditions rc = null;
 
-  public RepeatedlyCallsMethod1(LearningAboutVolatile_PSVM l) {
+  public RepeatedlyCallsMethod1(PSVM_RaceConditions rc) {
 
-    this.l = l;
+    this.rc = rc;
 
   }
 
   @Override
   public void run() {
 
-    while (l.running) {
+    int counter = 0;
+
+    while (obj.running && counter < 100) {
 
       LearningAboutVolatile.method1();
 
       try {
 
-        Thread.sleep(10);
+        Thread.sleep(5);
 
       } catch (InterruptedException e) {
 
         System.out.println("thread interrupted");
 
       }
+
+      counter++;
 
     }
 
@@ -64,30 +68,34 @@ class RepeatedlyCallsMethod1 implements Runnable {
 
 class RepeatedlyCallsMethod2 implements Runnable {
 
-  LearningAboutVolatile_PSVM l = null;
+  private PSVM_RaceConditions rc = null;
 
-  public RepeatedlyCallsMethod2(LearningAboutVolatile_PSVM l) {
+  public RepeatedlyCallsMethod2(PSVM_RaceConditions rc) {
 
-    this.l = l;
+    this.rc = rc;
 
   }
 
   @Override
   public void run() {
 
-    while (l.running) {
+    int counter = 0;
+
+    while (rc.running && counter < 100) {
 
       LearningAboutVolatile.method2();
 
       try {
 
-        Thread.sleep(10);
+        Thread.sleep(5);
 
       } catch (InterruptedException e) {
 
         System.out.println("thread interrupted");
 
       }
+
+      counter++;
 
     }
 
