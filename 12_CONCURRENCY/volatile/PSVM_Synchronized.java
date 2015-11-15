@@ -11,7 +11,7 @@ Compare to LearningAboutVolatile_PSVM_RaceConditions and LearningAboutSynchroniz
 
 public class PSVM_Synchronized {
 
-  protected boolean running = true;
+  protected int counter = 0;
 
   public static void main(String[] args) {
 
@@ -31,16 +31,26 @@ public class PSVM_Synchronized {
 
 class RepeatedlyCallsSynchMethod1 implements Runnable {
 
+  private PSVM_Synchronized syn = null;
+
+  public RepeatedlyCallsSynchMethod1(PSVM_Synchronized syn) {
+
+    this.syn = syn;
+
+  }
+
   @Override
   public void run() {
 
-    while (true) {
+    final long start = System.currentTimeMillis();
+
+    while (syn.counter < 1000) {
 
       LearningAboutVolatile.synch_method1();
 
       try {
 
-        Thread.sleep(5);
+        Thread.sleep(1);
 
       } catch (InterruptedException e) {
 
@@ -48,7 +58,13 @@ class RepeatedlyCallsSynchMethod1 implements Runnable {
 
       }
 
+      syn.counter++;
+
     }
+
+    final long end = System.currentTimeMillis();
+    long duration = end - start;
+    System.out.println("Duration with synchronized: " + duration + " ms");
 
   }
 
@@ -56,16 +72,24 @@ class RepeatedlyCallsSynchMethod1 implements Runnable {
 
 class RepeatedlyCallsSynchMethod2 implements Runnable {
 
+  private PSVM_Synchronized syn = null;
+
+  public RepeatedlyCallsSynchMethod2(PSVM_Synchronized syn) {
+
+    this.syn = syn;
+
+  }
+
   @Override
   public void run() {
 
-    while (true) {
+    while (syn.counter < 1000) {
 
       LearningAboutVolatile.synch_method2();
 
       try {
 
-        Thread.sleep(5);
+        Thread.sleep(1);
 
       } catch (InterruptedException e) {
 

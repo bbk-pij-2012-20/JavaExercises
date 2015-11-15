@@ -11,7 +11,7 @@ Compare to LearningAboutVolatile_PSVM_Synchronized and LearningAboutVolatile_PSV
 
 public class PSVM_RaceConditions {
 
-  protected boolean running = true;
+  protected int counter = 0;
 
   public static void main(String[] args) {
 
@@ -42,15 +42,15 @@ class RepeatedlyCallsMethod1 implements Runnable {
   @Override
   public void run() {
 
-    int counter = 0;
+    final long start = System.currentTimeMillis();
 
-    while (obj.running && counter < 100) {
+    while (rc.counter < 1000) {
 
       LearningAboutVolatile.method1();
 
       try {
 
-        Thread.sleep(5);
+        Thread.sleep(1);
 
       } catch (InterruptedException e) {
 
@@ -58,9 +58,13 @@ class RepeatedlyCallsMethod1 implements Runnable {
 
       }
 
-      counter++;
+      rc.counter++;
 
     }
+
+    final long end = System.currentTimeMillis();
+    long duration = end - start;
+    System.out.println("Duration with race conditions: " + duration + " ms");
 
   }
 
@@ -79,23 +83,19 @@ class RepeatedlyCallsMethod2 implements Runnable {
   @Override
   public void run() {
 
-    int counter = 0;
-
-    while (rc.running && counter < 100) {
+    while (rc.counter < 1000) {
 
       LearningAboutVolatile.method2();
 
       try {
 
-        Thread.sleep(5);
+        Thread.sleep(1);
 
       } catch (InterruptedException e) {
 
         System.out.println("thread interrupted");
 
       }
-
-      counter++;
 
     }
 

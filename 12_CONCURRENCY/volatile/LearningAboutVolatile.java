@@ -32,7 +32,8 @@ public class LearningAboutVolatile {
   */
   public static void method2() {
 
-    System.out.println("i - j " + (i - j));
+    boolean safe = i >= j;
+    System.out.printf("%ssafe \n", safe ? "" : "********************************************************* not thread");
 
   }
 
@@ -51,14 +52,15 @@ public class LearningAboutVolatile {
   */
   public static synchronized void synch_method2() {
 
-    System.out.println("synch_i - synch_j " + (synch_i - synch_j));
+    boolean safe = synch_i == synch_j;
+    System.out.printf("%ssafe \n", safe ? "" : "********************************************************* not thread");
 
   }
 
   /**
   * non-synchronized method number 1 accessing volatile shared variables
   */
-  public static void method1() {
+  public static void vol_method1() {
 
     vol_i++;
     vol_j++;
@@ -68,9 +70,10 @@ public class LearningAboutVolatile {
   /**
   * non-synchronized method number 2 accessing volatile shared variables
   */
-  public static void method2() {
+  public static void vol_method2() {
 
-    System.out.println("vol_i - vol_j " + (vol_i - vol_j));
+    boolean safe = vol_i >= vol_j;
+    System.out.printf("%ssafe \n", safe ? "" : "********************************************************* not thread");
 
   }
 

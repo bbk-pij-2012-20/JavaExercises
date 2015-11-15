@@ -11,7 +11,7 @@ Compare to LearningAboutVolatile_PSVM_RaceConditions and LearningAboutSynchroniz
 
 public class PSVM_Volatile {
 
-  protected boolean running = true;
+  protected int counter = 0;
 
   public static void main(String[] args) {
 
@@ -31,16 +31,26 @@ public class PSVM_Volatile {
 
 class RepeatedlyCallsVolMethod1 implements Runnable {
 
+  private PSVM_Volatile vol = null;
+
+  public RepeatedlyCallsVolMethod1(PSVM_Volatile vol) {
+
+    this.vol = vol;
+
+  }
+
   @Override
   public void run() {
 
-    while (true) {
+    final long start = System.currentTimeMillis();
+
+    while (vol.counter < 1000) {
 
       LearningAboutVolatile.vol_method1();
 
       try {
 
-        Thread.sleep(5);
+        Thread.sleep(1);
 
       } catch (InterruptedException e) {
 
@@ -48,7 +58,13 @@ class RepeatedlyCallsVolMethod1 implements Runnable {
 
       }
 
+      vol.counter++;
+
     }
+
+    final long end = System.currentTimeMillis();
+    long duration = end - start;
+    System.out.println("Duration with race conditions: " + duration + " ms");
 
   }
 
@@ -56,16 +72,24 @@ class RepeatedlyCallsVolMethod1 implements Runnable {
 
 class RepeatedlyCallsVolMethod2 implements Runnable {
 
+  private PSVM_Volatile vol = null;
+
+  public RepeatedlyCallsVolMethod2(PSVM_Volatile vol) {
+
+    this.vol = vol;
+
+  }
+
   @Override
   public void run() {
 
-    while (true) {
+    while (vol.counter < 1000) {
 
       LearningAboutVolatile.vol_method2();
 
       try {
 
-        Thread.sleep(5);
+        Thread.sleep(1);
 
       } catch (InterruptedException e) {
 
